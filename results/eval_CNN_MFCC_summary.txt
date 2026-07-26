@@ -1,0 +1,13 @@
+Accuracy: 95.65%
+Precision (macro/weighted): 85.95% / 96.73%
+Recall (macro/weighted): 98.96% / 95.65%
+F1 (macro/weighted): 91.46% / 95.90%
+ROC-AUC (macro, OvR): 1.0000
+Confidence เฉลี่ย (ถูก/ผิด): 95.25% / 72.76%
+
+Per-class:
+  belly_pain      P=75.00% R=100.00% F1=85.71% n=3
+  burping         P=100.00% R=100.00% F1=100.00% n=2
+  discomfort      P=71.43% R=100.00% F1=83.33% n=5
+  hungry          P=100.00% R=94.81% F1=97.33% n=77
+  tired           P=83.33% R=100.00% F1=90.91% n=5

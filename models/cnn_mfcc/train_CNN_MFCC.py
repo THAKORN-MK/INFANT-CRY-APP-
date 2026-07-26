@@ -15,10 +15,9 @@ from tensorflow.keras.callbacks import (
 # ══════════════════════════════════════════
 #  CONFIG
 # ══════════════════════════════════════════
-
-DATA_DIR = 'D:/INFANT CRY/data_set'
-SAVE_DIR   = '.'                    # บันทึกไฟล์ใน models/cnn_mfcc/
-RESULT_DIR = '../../results'
+DATA_DIR   = 'D:/INFANT CRY/data_set'
+SAVE_DIR   = 'D:/INFANT CRY/models/cnn_mfcc'
+RESULT_DIR = 'D:/INFANT CRY/results'
 
 EMOTIONS  = ['belly_pain', 'burping', 'discomfort', 'hungry', 'tired']
 SR        = 22050
@@ -36,37 +35,21 @@ AUG_TIMES = {
 }
 
 # ══════════════════════════════════════════
-#  DEBUG — ใส่ตรงนี้  ✅
-# ══════════════════════════════════════════
-import os, glob
-print("DATA_DIR exists:", os.path.exists(DATA_DIR))
-for label in EMOTIONS:
-    path = f'{DATA_DIR}/{label}'
-    print(f"  {label}: exists={os.path.exists(path)}, files={len(glob.glob(path + '/*.wav'))}")
-
-# ══════════════════════════════════════════
 #  FEATURE EXTRACTION — MFCC + Delta + Delta2
 # ══════════════════════════════════════════
 def extract_mfcc(audio, sr=SR, n_mfcc=N_MFCC, max_len=MAX_LEN):
-    """
-    แปลงเสียง → MFCC + Delta + Delta-Delta
-    output shape: (120, max_len, 1)
-    - 40 MFCC
-    - 40 Delta   (การเปลี่ยนแปลง)
-    - 40 Delta2  (การเปลี่ยนแปลงของการเปลี่ยนแปลง)
-    """
     mfcc   = librosa.feature.mfcc(y=audio, sr=sr, n_mfcc=n_mfcc,
                                    n_fft=2048, hop_length=512)
     delta  = librosa.feature.delta(mfcc)
     delta2 = librosa.feature.delta(mfcc, order=2)
-    combined = np.vstack([mfcc, delta, delta2])  # (120, frames)
+    combined = np.vstack([mfcc, delta, delta2])
 
     if combined.shape[1] < max_len:
         combined = np.pad(combined, ((0,0),(0, max_len - combined.shape[1])))
     else:
         combined = combined[:, :max_len]
 
-    return combined[..., np.newaxis].astype(np.float32)  # (120, 128, 1)
+    return combined[..., np.newaxis].astype(np.float32)
 
 # ══════════════════════════════════════════
 #  AUGMENTATION
@@ -78,15 +61,10 @@ def augment_audio(y, sr, n=6):
     results.append(librosa.effects.pitch_shift(y, sr=sr, n_steps=-1.5))
     results.append(librosa.effects.time_stretch(y, rate=1.1))
     results.append(librosa.effects.time_stretch(y, rate=0.9))
-    results.append(y * np.random.uniform(0.8, 1.2))  # volume shift
+    results.append(y * np.random.uniform(0.8, 1.2))
     return results[:n]
 
-def mixup(X, y, alpha=0.3, n_mix=200):
-    """
-    Mixup: ผสมเสียง 2 ไฟล์
-    X_mix = λ*X1 + (1-λ)*X2
-    y_mix = λ*y1 + (1-λ)*y2
-    """
+def mixup(X, y, alpha=0.3, n_mix=300):
     X_mix, y_mix = [], []
     for _ in range(n_mix):
         i, j = np.random.choice(len(X), 2, replace=False)
@@ -111,7 +89,6 @@ for label in EMOTIONS:
             audio, sr = librosa.load(f, sr=SR, mono=True)
             audio, _  = librosa.effects.trim(audio, top_db=20)
             audio     = librosa.util.normalize(audio)
-
             for aug_audio in augment_audio(audio, sr, n=aug):
                 aug_audio = librosa.util.normalize(aug_audio.astype(np.float32))
                 feat = extract_mfcc(aug_audio, sr=sr)
@@ -136,21 +113,18 @@ X_train, X_val, y_train, y_val = train_test_split(
     X, y_enc, test_size=0.2, random_state=42, stratify=y_enc
 )
 
-# Normalize
 mean    = X_train.mean()
 std     = X_train.std()
 X_train = (X_train - mean) / std
 X_val   = (X_val   - mean) / std
 np.save(f'{SAVE_DIR}/norm_stats_CNN_MFCC.npy', [mean, std])
 
-# Mixup บน training set
 print("\n🔀 Mixup augmentation...")
 X_mix, y_mix = mixup(X_train, y_train, alpha=0.3, n_mix=300)
 X_train = np.concatenate([X_train, X_mix])
 y_train = np.concatenate([y_train, y_mix])
 print(f"  Training set หลัง mixup: {len(X_train)} ไฟล์")
 
-# Class weight
 y_train_int   = np.argmax(y_train, axis=1)
 class_weights = compute_class_weight(
     class_weight='balanced',
@@ -166,25 +140,16 @@ for i, lbl in enumerate(le.classes_):
 #  ATTENTION LAYER
 # ══════════════════════════════════════════
 class AttentionLayer(layers.Layer):
-    """
-    Self-Attention: โมเดลเลือกโฟกัสส่วนสำคัญของเสียงเอง
-    """
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
     def build(self, input_shape):
-        self.W = self.add_weight(
-            shape=(input_shape[-1], input_shape[-1]),
-            initializer='glorot_uniform', trainable=True, name='attn_W'
-        )
-        self.b = self.add_weight(
-            shape=(input_shape[-1],),
-            initializer='zeros', trainable=True, name='attn_b'
-        )
-        self.u = self.add_weight(
-            shape=(input_shape[-1],),
-            initializer='glorot_uniform', trainable=True, name='attn_u'
-        )
+        self.W = self.add_weight(shape=(input_shape[-1], input_shape[-1]),
+                                  initializer='glorot_uniform', trainable=True, name='attn_W')
+        self.b = self.add_weight(shape=(input_shape[-1],),
+                                  initializer='zeros', trainable=True, name='attn_b')
+        self.u = self.add_weight(shape=(input_shape[-1],),
+                                  initializer='glorot_uniform', trainable=True, name='attn_u')
 
     def call(self, x):
         score = tf.nn.tanh(tf.tensordot(x, self.W, axes=1) + self.b)
@@ -197,13 +162,8 @@ class AttentionLayer(layers.Layer):
 #  MODEL — CNN + Attention + BiLSTM
 # ══════════════════════════════════════════
 def build_CNN_MFCC(input_shape=(120, 128, 1), num_classes=5):
-    """
-    CNN + Attention + Bidirectional LSTM
-    เทรนเองทั้งหมด ไม่ใช้ pretrained
-    """
     inputs = layers.Input(shape=input_shape)
 
-    # ── CNN Block 1 ──
     x = layers.Conv2D(32, (3,3), padding='same')(inputs)
     x = layers.BatchNormalization()(x)
     x = layers.Activation('relu')(x)
@@ -213,7 +173,6 @@ def build_CNN_MFCC(input_shape=(120, 128, 1), num_classes=5):
     x = layers.MaxPooling2D((2,2))(x)
     x = layers.Dropout(0.25)(x)
 
-    # ── CNN Block 2 ──
     x = layers.Conv2D(64, (3,3), padding='same')(x)
     x = layers.BatchNormalization()(x)
     x = layers.Activation('relu')(x)
@@ -223,7 +182,6 @@ def build_CNN_MFCC(input_shape=(120, 128, 1), num_classes=5):
     x = layers.MaxPooling2D((2,2))(x)
     x = layers.Dropout(0.25)(x)
 
-    # ── CNN Block 3 ──
     x = layers.Conv2D(128, (3,3), padding='same')(x)
     x = layers.BatchNormalization()(x)
     x = layers.Activation('relu')(x)
@@ -233,20 +191,16 @@ def build_CNN_MFCC(input_shape=(120, 128, 1), num_classes=5):
     x = layers.MaxPooling2D((2,2))(x)
     x = layers.Dropout(0.3)(x)
 
-    # ── Reshape → Sequential ──
     shape = x.shape
     x = layers.Reshape((shape[1], shape[2] * shape[3]))(x)
 
-    # ── Bidirectional LSTM ──
     x = layers.Bidirectional(layers.LSTM(128, return_sequences=True))(x)
     x = layers.Dropout(0.3)(x)
     x = layers.Bidirectional(layers.LSTM(64, return_sequences=True))(x)
     x = layers.Dropout(0.3)(x)
 
-    # ── Attention ──
     x = AttentionLayer()(x)
 
-    # ── Classifier ──
     x = layers.Dense(128, activation='relu')(x)
     x = layers.BatchNormalization()(x)
     x = layers.Dropout(0.4)(x)
@@ -254,27 +208,20 @@ def build_CNN_MFCC(input_shape=(120, 128, 1), num_classes=5):
     x = layers.Dropout(0.4)(x)
 
     outputs = layers.Dense(num_classes, activation='softmax')(x)
-
     return Model(inputs, outputs, name='CNN_MFCC_Attention_BiLSTM')
 
 
 model = build_CNN_MFCC(input_shape=X_train.shape[1:], num_classes=5)
 model.summary()
 
-# Label smoothing ป้องกัน overfit
 loss_fn = tf.keras.losses.CategoricalCrossentropy(label_smoothing=0.1)
-
 model.compile(
     optimizer=tf.keras.optimizers.AdamW(learning_rate=0.001, weight_decay=1e-4),
     loss=loss_fn,
     metrics=['accuracy']
 )
 
-# ══════════════════════════════════════════
-#  CALLBACKS
-# ══════════════════════════════════════════
 os.makedirs(RESULT_DIR, exist_ok=True)
-
 callbacks = [
     EarlyStopping(patience=30, restore_best_weights=True, verbose=1),
     ReduceLROnPlateau(factor=0.3, patience=12, min_lr=1e-7, verbose=1),
@@ -282,9 +229,6 @@ callbacks = [
     CSVLogger(f'{RESULT_DIR}/training_log_CNN_MFCC.csv')
 ]
 
-# ══════════════════════════════════════════
-#  TRAIN
-# ══════════════════════════════════════════
 print("\n🚀 เริ่มเทรน CNN + MFCC + Attention + BiLSTM...")
 print(f"  Input shape : {X_train.shape[1:]}")
 print(f"  Train size  : {len(X_train)}")
@@ -300,9 +244,6 @@ history = model.fit(
     class_weight=cw
 )
 
-# ══════════════════════════════════════════
-#  บันทึก
-# ══════════════════════════════════════════
 with open(f'{SAVE_DIR}/labels_CNN_MFCC.json', 'w') as f:
     json.dump(le.classes_.tolist(), f)
 
