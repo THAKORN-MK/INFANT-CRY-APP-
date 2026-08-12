@@ -1,0 +1,21 @@
+Main Emotion Classifier — 5-Fold Cross Validation
+Features: MFCC + Delta + Delta2 + Mel + Chroma
+Model: CNN + BiLSTM + Attention + Mixup
+
+Fold Scores: ['99.56%', '99.23%', '99.45%', '99.67%', '99.51%']
+Mean Accuracy: 99.48%
+Std: 0.15%
+
+              precision    recall  f1-score   support
+
+  belly_pain     0.9971    0.9971    0.9971      2040
+     burping     0.9973    0.9911    0.9942      2240
+  discomfort     0.9882    0.9950    0.9916      2016
+      hungry     0.9800    0.9800    0.9800       651
+       tired     0.9981    0.9981    0.9981      2148
+
+    accuracy                         0.9942      9095
+   macro avg     0.9921    0.9923    0.9922      9095
+weighted avg     0.9942    0.9942    0.9942      9095
+
+ROC-AUC (macro, OvR): 0.9999

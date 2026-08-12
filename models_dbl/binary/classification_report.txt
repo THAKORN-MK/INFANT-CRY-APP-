@@ -1,0 +1,18 @@
+Binary Classifier — 5-Fold Cross Validation
+Features: MFCC + Delta + Delta2 + Mel + Chroma
+Model: CNN + BiLSTM + Attention
+
+Fold Scores: ['99.94%', '99.71%', '99.83%', '99.83%', '99.94%']
+Mean Accuracy: 99.85%
+Std: 0.09%
+
+              precision    recall  f1-score   support
+
+    not_baby     0.9982    0.9985    0.9984      3994
+        baby     0.9987    0.9985    0.9986      4653
+
+    accuracy                         0.9985      8647
+   macro avg     0.9985    0.9985    0.9985      8647
+weighted avg     0.9985    0.9985    0.9985      8647
+
+ROC-AUC: 0.9996
