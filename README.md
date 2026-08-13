@@ -83,8 +83,8 @@ Input (196, 128, 1)
 
 | โมเดล | Val Accuracy | เทคนิค |
 |-------|-------------|--------|
-| Stage 1 Binary | - | CNN+MFCC+BiLSTM+Attention, K-Fold |
-| Stage 2 Emotion | - | CNN+MFCC+Mel+Chroma+BiLSTM+Attention, Mixup |
+| Stage 1 Binary | 99.94% | CNN+MFCC+BiLSTM+Attention, K-Fold |
+| Stage 2 Emotion | 99.67% | CNN+MFCC+Mel+Chroma+BiLSTM+Attention, Mixup |
 
 ---
 
