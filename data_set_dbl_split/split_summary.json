@@ -1,0 +1,13 @@
+{
+  "test_size": 0.2,
+  "random_state": 42,
+  "per_class": {
+    "not_baby": {
+      "total": 2000,
+      "train": 1600,
+      "test": 400
+    }
+  },
+  "total_train": 1600,
+  "total_test": 400
+}
