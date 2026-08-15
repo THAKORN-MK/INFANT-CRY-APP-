@@ -1,0 +1,20 @@
+Independent Test Results
+Model: best_model_main_dbl.keras
+Features: MFCC + Delta + Delta2 + Mel + Chroma
+Test Set: 20% of original files (no augmentation)
+
+Test Accuracy : 100.00%
+
+              precision    recall  f1-score   support
+
+  belly_pain     1.0000    1.0000    1.0000        34
+     burping     1.0000    1.0000    1.0000        56
+  discomfort     1.0000    1.0000    1.0000        34
+      hungry     1.0000    1.0000    1.0000        43
+       tired     1.0000    1.0000    1.0000       144
+
+    accuracy                         1.0000       311
+   macro avg     1.0000    1.0000    1.0000       311
+weighted avg     1.0000    1.0000    1.0000       311
+
+ROC-AUC (macro, OvR): 1.0000
