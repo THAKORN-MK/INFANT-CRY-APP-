@@ -1,6 +1,6 @@
 # CryInsight Model Architecture and Training Protocol
 
-เอกสารนี้อธิบายสถาปัตยกรรม การเตรียมข้อมูล การเพิ่มข้อมูล (augmentation) วิธีฝึก และวิธีประเมินโมเดล CryInsight ตาม implementation ปัจจุบัน โดยระบบแบ่งเป็น 2 ขั้นเพื่อแยกคำถามว่า “เป็นเสียงทารกหรือไม่” ออกจากคำถามว่า “เสียงทารกอยู่ในกลุ่มอารมณ์ใด”
+เอกสารนี้อธิบายสถาปัตยกรรม การเตรียมข้อมูล การเพิ่มข้อมูล (augmentation) วิธีฝึก และวิธีประเมินโมเดล CryInsight ตาม implementation ปัจจุบัน โดยระบบแบ่งเป็น 2 ขั้นเพื่อแยกคำถามว่า “เป็นเสียงทารกหรือไม่” ออกจากคำถามว่า “เสียงทารกอยู่ในกลุ่มเชิงปฏิบัติการใดตาม Dataset”
 
 ## 1. ภาพรวมระบบ
 
@@ -23,7 +23,7 @@ CNN + MFCC/Delta/Delta2/Log-Mel/Chroma + BiLSTM + Attention
               │
               ▼
 belly_pain / burping / discomfort / hungry / tired
-พร้อมคะแนนความมั่นใจจาก Softmax
+พร้อมคะแนนจาก Softmax ที่ยังไม่ผ่านการปรับเทียบ
 ```
 
 เหตุผลที่แบ่งเป็น 2 Stage คือให้ Stage 1 ทำหน้าที่กรองเสียงสิ่งแวดล้อมก่อน เพื่อไม่บังคับให้ Stage 2 เลือกหนึ่งใน 5 กลุ่มทารกเมื่ออินพุตไม่ใช่เสียงทารก โครงสร้างนี้ทำให้หน้าที่ของแต่ละโมเดลชัดเจนและนำไปเชื่อมกับ Web application ได้ตรงไปตรงมา
@@ -244,14 +244,14 @@ Waveform augmentation ที่ trainer เลือกใช้:
 
 ## 9. Normalization และการป้องกัน leakage
 
-แต่ละ fold มี normalizer ของตัวเอง โดยคำนวณ mean และ standard deviation จาก training features ของ fold นั้นเท่านั้น จากนั้นนำค่าสถิติเดียวกันไปแปลง training, validation และ held-out test
+แต่ละ Fold มี normalizer ของตัวเอง โดยคำนวณ mean และ standard deviation จาก Training features ของ Fold นั้นเท่านั้น จากนั้นนำค่าสถิติเดียวกันไปแปลง Training และ Validation ของ Fold เดียวกัน
 
 ```text
 fit mean/std: fold training originals + training augmentation
-apply mean/std: fold training, fold validation, locked test
+apply mean/std: fold training, fold validation
 ```
 
-ห้าม fit normalizer จาก validation หรือ test เพราะจะทำให้ข้อมูลเกี่ยวกับ distribution ของชุดประเมินรั่วเข้าสู่กระบวนการฝึก ไฟล์ normalizer จึงถูกบันทึกพร้อม metadata ที่ระบุ `run_id`, fold, feature shape และ SHA-256
+หลัง Cross-validation ระบบสร้าง Final-refit normalizer ใหม่จาก Training features ทั้งหมด และใช้ normalizer นี้กับ locked Test เพียงครั้งเดียว ห้าม fit normalizer จาก Validation หรือ Test เพราะจะทำให้ข้อมูลเกี่ยวกับ distribution ของชุดประเมินรั่วเข้าสู่กระบวนการฝึก ไฟล์ normalizer จึงถูกบันทึกพร้อม metadata ที่ระบุ `run_id`, identity (`fold_N` หรือ `final_refit`), feature shape และ SHA-256
 
 ## 10. Five-fold training protocol
 
@@ -284,19 +284,18 @@ flowchart TB
         L["Fold validation<br/>Original only"] --> M["Apply fold normalizer"]
         M --> N["Validation metrics<br/>และ OOF prediction"]
         K --> N
-
-        O["Locked held-out test<br/>Original only · No augmentation"] --> P["Apply fold normalizer"]
-        P --> Q["Held-out metrics<br/>บันทึกแยกสำหรับ Fold"]
-        K --> Q
     end
 
     E --> F
     E --> L
-    D --> O
     N --> R["รวม OOF metrics<br/>หลังครบ 5 folds"]
-    Q --> S["สรุป held-out metrics<br/>ทั้ง 5 fold models"]
-    K --> T["เลือก deployment fold<br/>ด้วย validation loss เท่านั้น"]
-    T --> U(["best_model bundle"])
+    R --> S["Median of 5 best epochs<br/>ไม่ใช้ Test"]
+    D --> T["Final-refit training<br/>Train originals ทั้งหมด + augmentation"]
+    S --> T
+    T --> U["Final model + final normalizer<br/>best_model bundle"]
+    B --> V["เปิด Test หลัง Final-refit<br/>Original only · No augmentation"]
+    U --> V
+    V --> W(["Final Test metrics<br/>ประเมินครั้งเดียว"])
 
     classDef data fill:#F8FAFC,stroke:#334155,color:#0F172A,stroke-width:1.5px;
     classDef audit fill:#FFF7ED,stroke:#C2410C,color:#431407,stroke-width:1.5px;
@@ -307,15 +306,15 @@ flowchart TB
 
     class A,B data;
     class C,D audit;
-    class E,F,G,H,I,J,K train;
-    class L,M,N,R validation;
-    class O,P,Q,S test;
-    class T,U result;
+    class E,F,G,H,I,J,K,T train;
+    class L,M,N,R,S validation;
+    class B,V,W test;
+    class U,W result;
 
     linkStyle default stroke:#64748B,stroke-width:1.5px;
 ```
 
-เส้นทาง validation และ held-out test ใช้ checkpoint และ normalizer ของ fold เดียวกัน แต่ทั้งสองชุดไม่มี augmentation และไม่มีส่วนในการ fit normalizer โดยเฉพาะ held-out metrics จะถูกใช้เพื่อรายงานเท่านั้น ไม่ใช่เกณฑ์เลือก deployment fold
+Fold 1–5 ไม่โหลด feature ของ Test และไม่สร้าง Test metrics แต่ละ Fold เลือก checkpoint จาก Validation ของตนเองเท่านั้น เมื่อครบทุก Fold จึงนำ `best_epoch` ทั้ง 5 ค่ามาหาค่ามัธยฐาน สร้าง Final Model และ Final normalizer ใหม่จาก Train ทั้งหมด แล้วเปิด Test ประเมินเพียงครั้งเดียว
 
 หลักการสำคัญ:
 
@@ -326,6 +325,8 @@ flowchart TB
 - ใช้ random seed `42` เป็นค่าเริ่มต้น
 - checkpoint ของแต่ละ fold เลือก epoch ที่มี `val_loss` ต่ำที่สุด
 - Early stopping และ ReduceLROnPlateau เฝ้าดู `val_loss`
+- Final-refit ไม่มี EarlyStopping และฝึกตามจำนวน Epoch มัธยฐานที่ freeze จาก Fold 1–5
+- Test ไม่ถูกใช้เลือก architecture, hyperparameters, Epoch, threshold, augmentation หรือ normalizer
 - ใช้ AdamW ค่า learning rate เริ่มต้น `0.001` และ weight decay `1e-4`
 
 ค่าหลักที่ต่างกัน:
@@ -340,42 +341,50 @@ flowchart TB
 | Mixup samples/fold | 0 | 500 |
 | Mixup alpha | ไม่ใช้ | 0.3 |
 
-## 11. Held-out test หลังแต่ละ fold
+## 11. Final-refit และการเปิด Test ครั้งเดียว
 
-เมื่อ train ของ fold เสร็จ ระบบโหลด checkpoint ที่มี `val_loss` ต่ำที่สุดของ fold นั้น แล้วประเมิน locked test ชุดเดียวกันทันที:
+เมื่อครบทั้ง 5 Fold ระบบใช้ Validation เท่านั้นเพื่อกำหนดจำนวน Epoch สำหรับ Final-refit:
 
 ```text
-Fold N training
-   │
-   ├─ เลือก checkpoint ด้วย fold validation val_loss
-   ├─ ประเมิน fold validation
-   └─ ประเมิน data_set_dbl_split/test
+best_epoch ของ Fold 1–5
+        ↓
+ค่ามัธยฐานของ best_epoch
+        ↓
+สร้างโมเดลและ normalizer ใหม่จาก Train ทั้งหมด
+        ↓
+บันทึก best_model แบบ final_refit
+        ↓
+ประเมิน data_set_dbl_split/test หนึ่งครั้ง
 ```
 
-ผล test ไม่ถูกใช้เพื่อ:
+Final-refit ใช้ augmentation แบบ target-based ที่คำนวณใหม่จาก Train ทั้งหมด Stage 2 ใช้ Mixup ตาม configuration เดิม ส่วน Test มีเฉพาะ original records และไม่มี augmentation
+
+ผล Test ไม่ถูกใช้เพื่อ:
 
 - เลือก epoch
 - ปรับ hyperparameters
 - สร้าง augmentation
 - fit normalizer
-- เลือก best deployment fold
+- เลือกหรือเปลี่ยน Final Model
 
-การประเมิน test หลังทุก fold ให้ข้อมูลเปรียบเทียบความเสถียรระหว่างโมเดล 5 ตัว แต่ทุกโมเดลใช้ test records ชุดเดียวกัน ดังนั้นผลทั้ง 5 folds มีความสัมพันธ์กันและไม่ใช่ independent experiments
+การ hash/audit Test ก่อนฝึกใช้เฉพาะตรวจ provenance และตัด Train overlap ไม่ได้ใช้คำนวณ metric หรือปรับโมเดล การสร้าง prediction และ metric ของ Test เกิดเพียงครั้งเดียวหลังบันทึก Final Model แล้ว
 
-## 12. การเลือก best model
+## 12. การสร้าง best model
 
-หลังครบ 5 folds ระบบเลือก deployment fold ตามกฎ:
+หลังครบ 5 Fold ระบบสร้าง deployment bundle ตามกฎ:
 
-1. เลือก fold ที่มี `selected_checkpoint_val_loss` ต่ำที่สุด
-2. หากค่าเท่ากัน ให้เลือกหมายเลข fold ต่ำกว่า
-3. ไม่ใช้ test accuracy หรือ test F1 ในการเลือก
+1. อ่าน `best_epoch` ของ Fold 1–5 ซึ่งแต่ละค่ามาจาก `val_loss` ของ Fold นั้น
+2. ใช้ค่ามัธยฐานเป็น `final_epoch`
+3. สร้าง model ใหม่และ fit normalizer ใหม่จาก Training features ทั้งหมด
+4. เทรนตาม `final_epoch` โดยไม่ใช้ Test หรือ Validation เพิ่มเติม
+5. บันทึก bundle ก่อนประเมิน Test ครั้งเดียว
 
-โมเดลของ fold ที่ชนะถูกคัดลอกพร้อม normalizer, labels, preprocessing contract, metrics และ manifests ไปยังโฟลเดอร์ `best_model`
+Final-refit model ถูกบันทึกพร้อม normalizer, labels, preprocessing contract, augmentation manifest, class counts, history และ manifests ในโฟลเดอร์ `best_model`
 
 - Stage 1: `best_model_binary_dbl.keras`
 - Stage 2: `best_model_main_dbl.keras`
 
-เหตุผลที่ไม่ใช้ test metric เลือก best model คือการเลือกจาก test จะเปลี่ยน test ให้กลายเป็น validation โดยปริยายและทำให้ค่าประเมินเอนเอียง
+โมเดลนี้ไม่ใช่ Fold ที่มีคะแนนดีที่สุด ผล OOF ใช้ประเมิน development procedure ส่วนผล Final Test ใช้ประเมิน Final-refit artefact ภายใน corpus เดียวกัน
 
 ## 13. Metrics
 
@@ -389,12 +398,17 @@ Fold N training
 - Weighted F1
 - ROC-AUC สำหรับ Stage 1
 - Macro/weighted one-vs-rest ROC-AUC สำหรับ Stage 2 เมื่อคำนวณได้
+- Sensitivity และ Specificity สำหรับ Stage 1
+- Log loss
+- Multiclass Brier score
+- Top-label Expected Calibration Error แบบ 10 bins
 - Classification report
 - Confusion matrix ทั้ง CSV และ PNG
+- 95% group-percentile bootstrap confidence intervals เมื่อ group structure รองรับ
 
-OOF metrics รวม validation predictions ที่ record แต่ละรายการถูกประเมินหนึ่งครั้ง ส่วน held-out metrics ถูกบันทึกแยกทุก fold และสรุปค่าเฉลี่ย/SD ของโมเดลทั้ง 5 ตัว
+OOF metrics รวม Validation predictions ที่ record แต่ละรายการถูกประเมินหนึ่งครั้ง ส่วน `final_test_metrics.json` มาจาก Final-refit model เพียงตัวเดียวและ Test evaluation ครั้งเดียว
 
-Accuracy จริงไม่ควรประมาณหรือกรอกล่วงหน้า ต้องอ่านจาก artefact หลังการฝึกเสร็จ คะแนน Softmax เป็น model confidence และไม่ควรเรียกว่า calibrated probability เว้นแต่มีการทดสอบ calibration เพิ่มเติม
+Accuracy จริงไม่ควรประมาณหรือกรอกล่วงหน้า ต้องอ่านจาก artefact หลังการฝึกเสร็จ Log loss, Brier score และ ECE เป็น calibration diagnostics แต่ไม่ได้ทำให้ Softmax กลายเป็น calibrated probability จึงต้องเรียกว่า uncalibrated model score จนกว่าจะมี calibration protocol แยกต่างหาก
 
 ## 14. โครงสร้างผลลัพธ์
 
@@ -424,20 +438,18 @@ Models_dbl/<stage>/runs/<run_id>/
 │   ├── history.csv
 │   ├── validation_predictions.csv
 │   ├── metrics.json
-│   ├── heldout_test_predictions.csv
-│   ├── heldout_test_metrics.json
-│   ├── heldout_test_confusion_matrix.csv
-│   ├── heldout_test_confusion_matrix.png
-│   ├── heldout_test_manifest.json
 │   └── fold_manifest.json
 │
 ├── best_model/
 │   ├── best_model_*_dbl.keras
 │   ├── norm_stats_*.npy
+│   ├── norm_stats_*.npy.metadata.json
 │   ├── preprocessing_config.json
 │   ├── labels_*.json
-│   ├── heldout_test_metrics.json
-│   ├── source_fold_manifest.json
+│   ├── augmentation_manifest.csv
+│   ├── class_counts.json
+│   ├── history.csv
+│   ├── final_refit_manifest.json
 │   └── deployment_manifest.json
 │
 ├── oof_predictions.csv
@@ -445,8 +457,11 @@ Models_dbl/<stage>/runs/<run_id>/
 ├── oof_confusion_matrix.csv
 ├── oof_confusion_matrix.png
 ├── fold_metrics.csv
-├── heldout_test_fold_metrics.csv
-├── heldout_test_summary.json
+├── final_test_predictions.csv
+├── final_test_metrics.json
+├── final_test_confusion_matrix.csv
+├── final_test_confusion_matrix.png
+├── final_test_manifest.json
 └── verification.json
 ```
 
@@ -476,12 +491,16 @@ Models_dbl/<stage>/runs/<run_id>/
 
 ## 16. ข้อจำกัดสำหรับการตีพิมพ์
 
-- Train และ test มาจาก corpus เดียวกัน จึงเรียกผล test นี้ว่า `locked internal held-out test` ไม่ใช่ external validation
-- ยังไม่มี subject/session identifiers ที่ตรวจสอบได้ครบถ้วน การป้องกัน leakage ของเสียงทารกจึงรับประกันระดับ exact-content family แต่ยังไม่รับประกัน subject-independent evaluation
-- การประเมิน test ชุดเดิมหลังทุก fold ทำให้ค่าทั้ง 5 รายการสัมพันธ์กัน
-- Augmentation และ Mixup เป็นวิธีลด overfitting/imbalance แต่ไม่ได้รับประกันว่า accuracy จะสูงขึ้น ต้องยืนยันจากผลทดลองหรือ ablation study
-- กลุ่มทั้ง 5 ของ Stage 2 เป็น label ตาม dataset ไม่ควรตีความเป็นการวินิจฉัยทางการแพทย์
-- ก่อนรายงานผลควรใช้ metrics จาก immutable run ที่ `verification.json` มีสถานะ `complete` เท่านั้น
+- Train และ Test มาจาก corpus เดียวกัน และ corpus นี้เคยถูกใช้พัฒนาโมเดล legacy มาก่อน ผลใหม่จึงเป็น `locked internal held-out test for the frozen new run` ไม่ใช่ external validation หรือหลักฐาน generalizability
+- `split_audio.py` แบ่งข้อมูลระดับไฟล์ ยังไม่มี subject/session identifiers ที่ตรวจสอบได้ครบถ้วน การป้องกัน leakage ของเสียงทารกจึงรับประกันระดับ exact-content family แต่ยังไม่รับประกัน subject-independent evaluation
+- Stage 1 มี source confounding เพราะเสียง `baby` มาจาก InfantCry-DBL ขณะที่ `not_baby` มาจาก ESC-50 โมเดลอาจเรียนรู้ลักษณะการบันทึกหรือแหล่ง Dataset แทน semantic class
+- Stage 2 มี class imbalance สูง โดยบางคลาสมี original Train น้อยกว่าคลาสใหญ่หลายเท่า Target-based augmentation และ Mixup ลด imbalance เชิงจำนวนแต่ไม่ได้สร้าง independent biological observations ใหม่
+- ยังต้องมี ablation study เพื่อยืนยันผลของ augmentation, Mixup และ feature/model components รวมถึง baseline comparison และหลาย random seeds หากขอบเขตบทความต้องการข้อสรุปเชิงเปรียบเทียบ
+- Log loss, Brier score และ ECE ที่บันทึกเป็น calibration diagnostics เท่านั้น คะแนน Softmax ยังเป็น uncalibrated model score และห้ามตีความเป็นโอกาสถูกต้องทางการแพทย์
+- Metrics ของ Stage 1 และ Stage 2 แยกกันยังไม่ใช่ end-to-end cascade evaluation เพราะความผิดพลาดของ Stage 1 มีผลต่อการ route ไป Stage 2
+- กลุ่มทั้ง 5 ของ Stage 2 เป็น operational labels ตาม Dataset ไม่ใช่อารมณ์ที่ยืนยันเชิงคลินิกและไม่ควรตีความเป็นการวินิจฉัยทางการแพทย์
+- Repository ปัจจุบันยังไม่มีหลักฐานต้นฉบับที่ยืนยัน dataset citation, annotation procedure, inter-rater reliability, license, consent และ ethics ครบถ้วน ต้องตรวจจากแหล่งข้อมูลต้นฉบับก่อนส่งตีพิมพ์
+- ก่อนรายงานผลต้องใช้ metrics จาก immutable run ที่ `verification.json` มีสถานะ `complete` เท่านั้น พร้อมระบุ run ID, sample support, uncertainty interval และ evaluation scope
 
 ## 17. ไฟล์ implementation ที่เกี่ยวข้อง
 

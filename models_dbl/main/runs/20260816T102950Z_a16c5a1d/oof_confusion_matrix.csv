@@ -1,0 +1,6 @@
+actual_label,predicted_belly_pain,predicted_burping,predicted_discomfort,predicted_hungry,predicted_tired
+belly_pain,101,2,2,6,6
+burping,5,153,6,2,9
+discomfort,1,5,76,11,4
+hungry,9,1,4,124,7
+tired,5,9,2,7,488

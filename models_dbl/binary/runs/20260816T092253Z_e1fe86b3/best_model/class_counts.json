@@ -1,0 +1,18 @@
+{
+  "class_weight_enabled": false,
+  "final_pre_mixup_training_by_label": {
+    "baby": 1384,
+    "not_baby": 1384
+  },
+  "generated_training_by_label": {
+    "baby": 336,
+    "not_baby": 0
+  },
+  "mixup_samples": 0,
+  "original_training_by_label": {
+    "baby": 1048,
+    "not_baby": 1384
+  },
+  "target_samples_per_class": 1384,
+  "validation_original_count": 0
+}

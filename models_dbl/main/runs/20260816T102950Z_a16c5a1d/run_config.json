@@ -1,0 +1,36 @@
+{
+  "batch_size": 32,
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 42,
+  "early_stopping_patience": 30,
+  "epochs": 200,
+  "label_smoothing": 0.1,
+  "labels": [
+    "belly_pain",
+    "burping",
+    "discomfort",
+    "hungry",
+    "tired"
+  ],
+  "learning_rate": 0.001,
+  "lr_patience": 12,
+  "mixup_alpha": 0.3,
+  "mixup_samples": 500,
+  "n_folds": 5,
+  "run_id": "20260816T102950Z_a16c5a1d",
+  "schema_version": "1.0",
+  "seed": 42,
+  "source_snapshot": {
+    "files": {
+      "Models_dbl\\Main\\train_main_dbl.py": "dfa0b857eae756f19f79658797e99ebc839b4991f856225f6f0ceff065302d3a",
+      "cryinsight\\audio\\features.py": "1eec3aaa537158909b675027318292fcea982282d757448e7ce58dfbe3c7f6fc",
+      "cryinsight\\training\\artefacts.py": "ff06af8b12c0b7b411e8a5f58b76fd4d25fb3f68f683093f27ac6203414b3c74",
+      "cryinsight\\training\\protocol.py": "930f5d7aab2354b7e279ae18aebfe134f44e67d24788c403c416e23e8b379fe9"
+    },
+    "identifier": "source_sha256:63e6103a73346bb9d3d8656a9988e504de1644f55a4be79b2d2a09615710daf0"
+  },
+  "stage_root": "D:\\INFANT CRY\\Models_dbl\\Main",
+  "test_data_dir": "D:\\INFANT CRY\\data_set_dbl_split\\test",
+  "train_data_dir": "D:\\INFANT CRY\\data_set_dbl_split\\train",
+  "weight_decay": 0.0001
+}

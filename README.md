@@ -35,7 +35,7 @@ flowchart TB
 
 แผนภาพนี้แสดง inference flow ของระบบ ส่วน augmentation, 5-fold validation และ held-out testing เป็นขั้นตอนเฉพาะระหว่างการพัฒนาโมเดล
 
-รายละเอียดเชิงเทคนิค เหตุผลของ feature แต่ละชนิด โครงสร้าง neural network และข้อจำกัดสำหรับงานวิจัยอยู่ใน [Architecture.md](./Architecture.md)
+ผลการฝึกและประเมินโมเดลแต่ละครั้งรวบรวมอยู่ที่ [Experiment Report Hub](./Report/report.md) ส่วนรายละเอียดเชิงเทคนิค เหตุผลของ feature แต่ละชนิด โครงสร้าง neural network และข้อจำกัดสำหรับงานวิจัยอยู่ใน [Architecture.md](./Architecture.md)
 
 ## Environment หลัก
 
@@ -102,6 +102,10 @@ python -c "import sys, tensorflow, numpy, librosa, sklearn; print(sys.version); 
 INFANT CRY/
 ├── Architecture.md
 ├── README.md
+├── Report/
+│   ├── report.md                   # Experiment Report Hub
+│   ├── runs/                       # รายงานถาวรของแต่ละการทดลอง
+│   └── assets/                     # ภาพประกอบรายงาน
 ├── split_audio.py
 │
 ├── data_set_dbl/                  # ข้อมูลต้นฉบับ
@@ -169,6 +173,8 @@ data_set_dbl_split/test
 
 `--overwrite` จะลบ `data_set_dbl_split` เดิมก่อนสร้างใหม่ จึงไม่ควรใช้ระหว่างหรือหลังเริ่มการทดลองที่ต้องอ้างอิง split เดิม
 
+การแบ่งนี้เป็น stratified split ระดับไฟล์ ไม่ใช่ระดับทารกหรือ recording session เนื่องจากยังไม่มี `subject_id/session_id` ที่ตรวจสอบได้ครบถ้วน ตัว trainer จึงตรวจ SHA-256 และ group provenance เพิ่มเติม พร้อมสงวนรายการ Test ที่ชนกับ Train ออกจากการฝึก แต่ยังไม่สามารถรับรอง subject-independent evaluation ได้
+
 ## Feature และ architecture
 
 ### Stage 1 — Binary Baby Gate
@@ -223,18 +229,18 @@ fold_N/augmentation_manifest.csv
 
 ## Training protocol
 
-1. อ่านและ hash ข้อมูล `train/test`
-2. ให้ locked test มีสิทธิ์ก่อน
-3. ไม่นำ training records ที่ group หรือ SHA-256 ชนกับ test เข้าเทรน
-4. แบ่ง training originals เป็น grouped 5-fold
-5. สร้าง augmentation จาก training partition ของแต่ละ fold เท่านั้น
-6. fit normalizer จาก training features ของ fold เท่านั้น
-7. เลือก checkpoint จาก `val_loss` ต่ำที่สุด
-8. ประเมิน fold validation
-9. ประเมิน locked test หลังจบแต่ละ fold
-10. เลือก `best_model` จาก validation loss ไม่ใช่ test accuracy
+1. อ่านและ hash ข้อมูล `train/test` เพื่อ audit provenance และตรวจ overlap โดยยังไม่ใช้ Test คำนวณผล
+2. ให้ locked Test มีสิทธิ์ก่อน และไม่นำ training record ที่ group หรือ SHA-256 ชนกับ Test เข้าเทรน
+3. แบ่ง training originals เป็น grouped 5-fold ก่อน augmentation
+4. ใน Fold 1–5 สร้าง augmentation เฉพาะ Training partition
+5. fit normalizer จาก Training features ของแต่ละ Fold เท่านั้น
+6. เลือก checkpoint จาก `val_loss` ของ Fold validation
+7. สร้าง OOF prediction จาก original validation records และไม่ประเมิน Test ภายใน Fold
+8. สรุปจำนวน Epoch สุดท้ายด้วยค่ามัธยฐานของ `best_epoch` ทั้ง 5 Fold
+9. สร้าง Final-refit model ใหม่จาก Train 80% ทั้งหมด พร้อม final-refit normalizer และ augmentation plan ของตนเอง
+10. ประเมิน Final-refit model บน locked internal Test 20% เพียงครั้งเดียว
 
-held-out test ถูกประเมินหลังทุก fold ตาม protocol ปัจจุบัน แต่ไม่ถูกใช้เลือก epoch, hyperparameter หรือ deployment fold
+Test ไม่ถูกใช้เลือก architecture, hyperparameters, Epoch, augmentation, normalizer หรือ Final Model ผล OOF ใช้ประเมินกระบวนการพัฒนา ส่วนผล `final_test_*` ใช้ประเมิน Final-refit artefact ภายใน corpus เดียวกัน
 
 ## ตรวจข้อมูลโดยไม่เทรน
 
@@ -328,11 +334,24 @@ runs/<run_id>/
 ├── fold_4/
 ├── fold_5/
 ├── best_model/
+│   ├── best_model_*_dbl.keras
+│   ├── norm_stats_*_dbl.npy
+│   ├── norm_stats_*_dbl.npy.metadata.json
+│   ├── labels_*_dbl.json
+│   ├── preprocessing_config.json
+│   ├── augmentation_manifest.csv
+│   ├── class_counts.json
+│   ├── history.csv
+│   ├── final_refit_manifest.json
+│   └── deployment_manifest.json
 ├── oof_metrics.json
 ├── oof_predictions.csv
 ├── fold_metrics.csv
-├── heldout_test_fold_metrics.csv
-├── heldout_test_summary.json
+├── final_test_predictions.csv
+├── final_test_metrics.json
+├── final_test_confusion_matrix.csv
+├── final_test_confusion_matrix.png
+├── final_test_manifest.json
 └── verification.json
 ```
 
@@ -342,8 +361,6 @@ runs/<run_id>/
 - normalizer และ metadata
 - training history
 - validation predictions/metrics
-- held-out test predictions/metrics
-- confusion matrix
 - augmentation manifest
 - fold manifest
 
@@ -354,7 +371,7 @@ best_model/best_model_binary_dbl.keras
 best_model/best_model_main_dbl.keras
 ```
 
-ต้องใช้ model พร้อมกับ normalizer, labels และ `preprocessing_config.json` จาก `best_model` ชุดเดียวกัน ห้ามนำไฟล์จากคนละ run หรือคนละ fold มาผสมกัน
+`best_model` ไม่ใช่สำเนาของ Fold ที่คะแนนดีที่สุด แต่เป็น Final-refit model ที่เทรนใหม่ด้วย Train 80% ทั้งหมดตามจำนวน Epoch มัธยฐานจาก 5 Fold ต้องใช้ model พร้อม normalizer, labels และ `preprocessing_config.json` จาก bundle เดียวกัน
 
 ## Metrics
 
@@ -365,12 +382,15 @@ best_model/best_model_main_dbl.keras
 - Macro precision/recall/F1
 - Weighted F1
 - ROC-AUC เมื่อคำนวณได้
+- Sensitivity และ Specificity สำหรับ Stage 1
+- Log loss, Brier score และ Expected Calibration Error (ECE) เพื่อวินิจฉัย calibration
 - Classification report
 - Confusion matrix
+- 95% group-bootstrap confidence intervals เมื่อ group structure รองรับ
 
 README นี้ไม่ระบุค่า accuracy ล่วงหน้า เพราะค่าที่รายงานต้องมาจาก run ที่ฝึกเสร็จจริงและ `verification.json` มีสถานะ `complete`
 
-ผล validation ภายใน 5-fold อยู่ใน `oof_metrics.json` ส่วนผล test ของแต่ละ fold และสรุปรวมอยู่ใน `heldout_test_metrics.json` และ `heldout_test_summary.json`
+ผล validation ภายใน 5-fold อยู่ใน `oof_metrics.json` ส่วนผลประเมิน Final-refit model บน locked internal Test ครั้งเดียวอยู่ใน `final_test_metrics.json`
 
 ## รัน unit tests
 
@@ -378,7 +398,7 @@ README นี้ไม่ระบุค่า accuracy ล่วงหน้า
 & 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' -m unittest discover -s tests -v
 ```
 
-baseline ที่ตรวจล่าสุดผ่าน 59 tests
+baseline ที่ตรวจล่าสุดผ่าน 63 tests
 
 ## ปัญหาที่พบบ่อย
 
@@ -415,11 +435,14 @@ accuracy จะไม่มีจนกว่า training run จะจบคร
 
 ## การตีความผลวิจัย
 
-- `data_set_dbl_split/test` เป็น locked internal held-out test ไม่ใช่ external validation เพราะมาจาก corpus เดียวกับ train
+- `data_set_dbl_split/test` เป็น locked internal held-out test สำหรับ run ใหม่ ไม่ใช่ external validation เพราะมาจาก corpus เดียวกับ Train และ corpus นี้เคยถูกใช้พัฒนาโมเดลเก่ามาก่อน
 - ยังไม่มี subject/session identifiers ที่ยืนยันครบ จึงไม่ควรอ้างว่าเป็น subject-independent evaluation
-- test ชุดเดียวกันถูกประเมินด้วยโมเดลทั้ง 5 folds ผลจึงมีความสัมพันธ์กัน
-- คะแนน Softmax เป็น model confidence และไม่ใช่ calibrated probability โดยอัตโนมัติ
+- Stage 1 ใช้เสียงทารกและ `not_baby` จากคนละแหล่งข้อมูล จึงมีความเสี่ยงต่อ dataset-source bias
+- Stage 2 มี class imbalance สูง และบางคลาสต้องพึ่ง synthetic augmentation จำนวนมาก จึงควรมี ablation study ก่อนกล่าวอ้างว่า augmentation ช่วยเพิ่มผลลัพธ์
+- คะแนน Softmax เป็น uncalibrated model score ไม่ใช่ calibrated probability หรือโอกาสถูกต้องทางการแพทย์
 - label ทั้ง 5 ของ Stage 2 เป็นกลุ่มตาม dataset ไม่ใช่การวินิจฉัยทางการแพทย์
+- ผล Stage 1 และ Stage 2 แยกกันยังไม่ใช่การประเมิน end-to-end cascade ของระบบใช้งานจริง
+- ต้องตรวจ citation, annotation provenance, license, consent และ ethics ของ Dataset จากแหล่งต้นฉบับก่อนส่งตีพิมพ์
 
 ## License
 

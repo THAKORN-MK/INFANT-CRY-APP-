@@ -1,0 +1,33 @@
+{
+  "batch_size": 32,
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 42,
+  "class_weight_enabled": false,
+  "early_stopping_patience": 25,
+  "epochs": 200,
+  "label_smoothing": 0.05,
+  "labels": [
+    "not_baby",
+    "baby"
+  ],
+  "learning_rate": 0.001,
+  "lr_patience": 10,
+  "mixup_samples": 0,
+  "n_folds": 5,
+  "run_id": "20260816T092253Z_e1fe86b3",
+  "schema_version": "1.0",
+  "seed": 42,
+  "source_snapshot": {
+    "files": {
+      "Models_dbl\\binary\\train_binary_dbl.py": "d2df9f74903ee3e5edaf0e76ca0e40a7da6514f61af5f59fefa2d3282c41052c",
+      "cryinsight\\audio\\features.py": "1eec3aaa537158909b675027318292fcea982282d757448e7ce58dfbe3c7f6fc",
+      "cryinsight\\training\\artefacts.py": "ff06af8b12c0b7b411e8a5f58b76fd4d25fb3f68f683093f27ac6203414b3c74",
+      "cryinsight\\training\\protocol.py": "930f5d7aab2354b7e279ae18aebfe134f44e67d24788c403c416e23e8b379fe9"
+    },
+    "identifier": "source_sha256:b70c86baae636300c5c3be214d6d071d00db8008f9b8f7c0454da6a0b7a8e3ec"
+  },
+  "stage_root": "D:\\INFANT CRY\\Models_dbl\\binary",
+  "test_data_dir": "D:\\INFANT CRY\\data_set_dbl_split\\test",
+  "train_data_dir": "D:\\INFANT CRY\\data_set_dbl_split\\train",
+  "weight_decay": 0.0001
+}

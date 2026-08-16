@@ -1,0 +1,173 @@
+{
+  "artefact_sha256": {
+    "dataset_audit": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\dataset_audit.json",
+      "sha256": "a59e5149b484e7a63419d9b34c3a54892076606b50cec0eb3aab068285e68742"
+    },
+    "deployment_labels": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\best_model\\labels_binary_dbl.json",
+      "sha256": "43236580949626a62a064c12591be344d53abce6754c6f9bbe00af94c580182f"
+    },
+    "deployment_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\best_model\\deployment_manifest.json",
+      "sha256": "77484b42b54e30325c561b1a82400df7176eff9ec68502a1c6187072909b59c1"
+    },
+    "deployment_model": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\best_model\\best_model_binary_dbl.keras",
+      "sha256": "24978cfbb9115ce167a5397ca1dcb624b85d9723a22ffdc7ed942797f4592534"
+    },
+    "deployment_normalizer": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\best_model\\norm_stats_binary_dbl.npy",
+      "sha256": "c35050a30d33ff0954cece085c22319cc81f4889f05461226c507102c01cc1d4"
+    },
+    "deployment_preprocessing": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\best_model\\preprocessing_config.json",
+      "sha256": "04f986e209fff29b6a45e3405613189bd9cf75693b6e836e7d180597f4738617"
+    },
+    "final_refit_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\best_model\\final_refit_manifest.json",
+      "sha256": "429e21e0996eb8ec935234854274260df69bc35a8261aee7f35dce8ea700dec3"
+    },
+    "final_test_confusion_matrix_csv": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\final_test_confusion_matrix.csv",
+      "sha256": "2735749fb688607ea184f4d0e7437216069c774d57fd95e2a7a03b0085c5e0a3"
+    },
+    "final_test_confusion_matrix_png": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\final_test_confusion_matrix.png",
+      "sha256": "3d997b9338bebad259c26f34d138c0b6890ce690d20349c306112427b28f4192"
+    },
+    "final_test_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\final_test_manifest.json",
+      "sha256": "5b90901c54af583f5d7be2127fb0ba25ab03610686faa18185012964b6051661"
+    },
+    "final_test_metrics": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\final_test_metrics.json",
+      "sha256": "799ea4beba3ae5886a04d1199dbba02ff7d79d3fa874429334dacb4bae5051e5"
+    },
+    "final_test_predictions": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\final_test_predictions.csv",
+      "sha256": "999f03b120f64989ab46052d8b03a648513472bbb208bbf3b3e5b019887b7e60"
+    },
+    "fold_1_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_1\\fold_manifest.json",
+      "sha256": "408e12a70da71a4c478f1901b9aac50fb5ca24233ef607c87301807c096b8bb0"
+    },
+    "fold_2_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_2\\fold_manifest.json",
+      "sha256": "698980b0e1d0e308839495b3daed3694af137b7b1d1122d46619bb80d6612e06"
+    },
+    "fold_3_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\fold_manifest.json",
+      "sha256": "6da4612ce83e251d99e87ead955bfdf26106558e1e442303cd0b92321d2da8e4"
+    },
+    "fold_4_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_4\\fold_manifest.json",
+      "sha256": "2b8fee218ede1a0d23e9cf22bdad92d20e9d3eb0f8d98a604cf70f16ff350e59"
+    },
+    "fold_5_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_5\\fold_manifest.json",
+      "sha256": "8f0c6424b4612399db9fc96e7d95599dc12bacfd9574ae1a144a9537fc392e6d"
+    },
+    "fold_assignments": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_assignments.csv",
+      "sha256": "d6b5e7aa0732cebd26574ad8d8ea5614963d19b53ae0a07663313358d0837302"
+    },
+    "fold_metrics": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_metrics.csv",
+      "sha256": "7191d781da1c9d758848b6e578fe3b815d403d7642f66e8d901ed473419baf7d"
+    },
+    "heldout_dataset_audit": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\heldout_dataset_audit.json",
+      "sha256": "90408034d31ddf509824992704ad42cbb639863b99aa6b76de5b0f7d5988c9d3"
+    },
+    "heldout_record_audit": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\heldout_record_audit.csv",
+      "sha256": "5dce14c5d2c33ec05589d429812f86c41f428e82169bf6405e45362e237d0e0c"
+    },
+    "heldout_reservation": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\heldout_reservation.json",
+      "sha256": "38b7e7f46bb7d1fa223b622bc48d86bd06283181083d72dc7e3ba840cc4fbb47"
+    },
+    "oof_confusion_matrix_csv": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\oof_confusion_matrix.csv",
+      "sha256": "9a486a1f1af88b28948f7780a3a8b70594f9d8133d4a77d65c6e4409f16e2609"
+    },
+    "oof_confusion_matrix_png": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\oof_confusion_matrix.png",
+      "sha256": "2b2a0a4d7f83cce55b82597cdf7a347033af175a9af4d43045e4bd2511b92012"
+    },
+    "oof_metrics": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\oof_metrics.json",
+      "sha256": "c50629a1fb6b59421c1fc18af8e093be6f22024b03fd800c9b8d8c6e9e5a214b"
+    },
+    "oof_predictions": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\oof_predictions.csv",
+      "sha256": "160973e615212b2f1f5adc87328818a7a40b42e28f5b6c53dd2acbbfc9a72453"
+    },
+    "protocol": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\protocol.json",
+      "sha256": "7518c3ccd1c9701b97870563c6e30ea8ebc1c85d93eae00bbe8c16e757d9209d"
+    },
+    "record_audit": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\record_audit.csv",
+      "sha256": "3d5be322a0ab48985379ba627b0a16b94854c1af92f6cd74811a8b15b21efe5e"
+    },
+    "root_labels": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\labels_binary_dbl.json",
+      "sha256": "43236580949626a62a064c12591be344d53abce6754c6f9bbe00af94c580182f"
+    },
+    "root_preprocessing_config": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\preprocessing_config.json",
+      "sha256": "04f986e209fff29b6a45e3405613189bd9cf75693b6e836e7d180597f4738617"
+    },
+    "run_config": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\run_config.json",
+      "sha256": "516c128a7247c59be845c0af6ff5f21f5ddd820a316bc769bc17d81193f7eac8"
+    }
+  },
+  "completed_at": "2026-08-16T10:27:40.673098+00:00",
+  "deployment_selection": {
+    "final_epoch": 38,
+    "fold_best_epochs": [
+      38,
+      57,
+      47,
+      20,
+      28
+    ],
+    "heldout_test_used_for_selection": false,
+    "selection_rule": "median_fold_best_epoch",
+    "selection_source": "internal_fold_validation_only",
+    "strategy": "final_refit"
+  },
+  "evaluation_scope": "corrected_grouped_internal_validation",
+  "folds_completed": 5,
+  "heldout_evaluation_scope": "locked_internal_heldout_test_once_after_final_refit",
+  "heldout_test_evaluation_count": 1,
+  "heldout_test_used_for_model_selection": false,
+  "independent_external_validation_performed": false,
+  "oof_coverage": {
+    "duplicate_count": 0,
+    "expected_count": 2432,
+    "missing_count": 0,
+    "predicted_count": 2432
+  },
+  "run_id": "20260816T092253Z_e1fe86b3",
+  "schema_version": "1.0",
+  "seed_evidence": {
+    "numpy_seed": 42,
+    "python_random_seed": 42,
+    "tensorflow_deterministic_ops_enabled": true,
+    "tensorflow_seed": 42
+  },
+  "source_snapshot": {
+    "files": {
+      "Models_dbl\\binary\\train_binary_dbl.py": "d2df9f74903ee3e5edaf0e76ca0e40a7da6514f61af5f59fefa2d3282c41052c",
+      "cryinsight\\audio\\features.py": "1eec3aaa537158909b675027318292fcea982282d757448e7ce58dfbe3c7f6fc",
+      "cryinsight\\training\\artefacts.py": "ff06af8b12c0b7b411e8a5f58b76fd4d25fb3f68f683093f27ac6203414b3c74",
+      "cryinsight\\training\\protocol.py": "930f5d7aab2354b7e279ae18aebfe134f44e67d24788c403c416e23e8b379fe9"
+    },
+    "identifier": "source_sha256:b70c86baae636300c5c3be214d6d071d00db8008f9b8f7c0454da6a0b7a8e3ec"
+  },
+  "status": "complete"
+}

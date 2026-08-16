@@ -1,0 +1,72 @@
+{
+  "best_epoch": 85,
+  "checkpoint_monitor": "val_loss",
+  "created_at": "2026-08-16T11:36:28.397039+00:00",
+  "feature_shape": [
+    196,
+    128,
+    1
+  ],
+  "files": {
+    "augmentation_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_2\\augmentation_manifest.csv",
+      "sha256": "ba01f4fcce841b825058c5aea1bf51daf10ad7d3a23c3e903bd4f86644776888"
+    },
+    "class_counts": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_2\\class_counts.json",
+      "sha256": "ff9f0557ff10124eef4ed56a07df5d9b5b9e67cd3bbe971cb7d4f4e41aaad4c1"
+    },
+    "fold_assignments": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_assignments.csv",
+      "sha256": "2509dcec6b2c02a6725afaf3c0ea77f6cf2d983338cc47930a34c09ce4500e65"
+    },
+    "history": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_2\\history.csv",
+      "sha256": "73ec719e2a124593d551623811fb58f5bbc8919c944d594e580a095e15868ef1"
+    },
+    "labels": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_2\\labels_main_dbl.json",
+      "sha256": "404ffdd91141a6e0d6b46f98a9b55da655a29e0c0f1a464db203cde7ba6c6431"
+    },
+    "metrics": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_2\\metrics.json",
+      "sha256": "5d0ae2e1947159eeeb294aafc9dff01f30b07cba208ba9d789c239d9726c1ba8"
+    },
+    "model": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_2\\fold_2_main_dbl.keras",
+      "sha256": "eae8a40784963e3202dfb7755faf6bf57b83fb6c67eef23f2ceaf8cfbf3aa6ec"
+    },
+    "normalizer": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_2\\norm_stats_main_dbl.npy",
+      "sha256": "529a5356b6ba92b48f8d752d0d3411a178b5c9c8e9a8796fb3b2f03bf0d13169"
+    },
+    "normalizer_metadata": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_2\\norm_stats_main_dbl.npy.metadata.json",
+      "sha256": "e942ea7c67524c7510097c0448fe215120a4eabdb3766aaaa0f4e5a368df4f04"
+    },
+    "preprocessing_config": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_2\\preprocessing_config.json",
+      "sha256": "16203d042cd55bb17bd5ff80d749c35b09bf848e48d88aa8a95bb2f1a53ebf14"
+    },
+    "validation_predictions": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_2\\validation_predictions.csv",
+      "sha256": "19c8cb60017f80fa7189f3df587628b5fec71fba5ca2a695c4e5f6626786e0f9"
+    }
+  },
+  "fold": 2,
+  "label_order": [
+    "belly_pain",
+    "burping",
+    "discomfort",
+    "hungry",
+    "tired"
+  ],
+  "run_id": "20260816T102950Z_a16c5a1d",
+  "schema_version": "1.0",
+  "source_snapshot_identifier": "source_sha256:63e6103a73346bb9d3d8656a9988e504de1644f55a4be79b2d2a09615710daf0",
+  "split_seed": 42,
+  "splitter_name": "StratifiedGroupKFold",
+  "training_augmented_count": 1199,
+  "training_original_count": 836,
+  "validation_original_count": 209
+}

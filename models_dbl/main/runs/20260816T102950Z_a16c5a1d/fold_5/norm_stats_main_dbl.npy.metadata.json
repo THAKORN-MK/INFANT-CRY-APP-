@@ -1,0 +1,17 @@
+{
+  "axis": "global_scalar",
+  "dtype": "float32",
+  "epsilon": 1e-08,
+  "feature_shape": [
+    196,
+    128,
+    1
+  ],
+  "fit_sample_count": 2055,
+  "fold": 5,
+  "mean": -8.542028264116382,
+  "normalizer_path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\fold_5\\norm_stats_main_dbl.npy",
+  "normalizer_sha256": "ff0112e0f4ff62c69fa1f717f5bdc3afe854f3d2d5f1c97842920560af101270",
+  "run_id": "20260816T102950Z_a16c5a1d",
+  "std": 21.782154847222643
+}

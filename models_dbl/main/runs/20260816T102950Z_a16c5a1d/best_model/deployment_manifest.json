@@ -1,0 +1,62 @@
+{
+  "deployment_model": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\best_model_main_dbl.keras",
+  "deployment_normalizer": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\norm_stats_main_dbl.npy",
+  "deployment_strategy": "final_refit",
+  "files": {
+    "augmentation_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\augmentation_manifest.csv",
+      "sha256": "670bed15759a57ebfb553323462bd3afc5d1ff8f9fb9f2fe475a5297f179441a"
+    },
+    "class_counts": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\class_counts.json",
+      "sha256": "4d477da42442fc361a78280b06f0d666b36ae8837e42c62acc4106291e288fcd"
+    },
+    "final_refit_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\final_refit_manifest.json",
+      "sha256": "3832540611a6b411b05f6fb0374162bc4abc74753fdaab97fbf45b17a0597aef"
+    },
+    "history": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\history.csv",
+      "sha256": "034055cb83542321c2e74225014fd2fab403b3123b5bba88ede56d03da81a720"
+    },
+    "labels": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\labels_main_dbl.json",
+      "sha256": "404ffdd91141a6e0d6b46f98a9b55da655a29e0c0f1a464db203cde7ba6c6431"
+    },
+    "model": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\best_model_main_dbl.keras",
+      "sha256": "4512bb78d0ec9d5183637d7a151399ad39ce5370e2f3e1a4261a228ffd537b47"
+    },
+    "normalizer": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\norm_stats_main_dbl.npy",
+      "sha256": "4f92cac63927b0f2ed3b0dfbdeca37441b46cf4d31d5d4c6e99bb4959d98303b"
+    },
+    "normalizer_metadata": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\norm_stats_main_dbl.npy.metadata.json",
+      "sha256": "08f1d77f2118cbd8870f74188b28840e2e7d1d14b6d1ab3995c78c794c44c311"
+    },
+    "preprocessing_config": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\preprocessing_config.json",
+      "sha256": "16203d042cd55bb17bd5ff80d749c35b09bf848e48d88aa8a95bb2f1a53ebf14"
+    }
+  },
+  "final_epoch": 60,
+  "final_refit_manifest": {
+    "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\final_refit_manifest.json",
+    "sha256": "3832540611a6b411b05f6fb0374162bc4abc74753fdaab97fbf45b17a0597aef"
+  },
+  "fold_best_epochs": [
+    58,
+    85,
+    67,
+    60,
+    56
+  ],
+  "heldout_test_used_for_selection": false,
+  "run_id": "20260816T102950Z_a16c5a1d",
+  "schema_version": "1.0",
+  "selection_rule": "median_fold_best_epoch",
+  "selection_source": "internal_fold_validation_only",
+  "stage": "stage2_main_five_class",
+  "status": "ready_for_deployment"
+}

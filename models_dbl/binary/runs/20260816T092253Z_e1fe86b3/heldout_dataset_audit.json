@@ -1,0 +1,29 @@
+{
+  "accuracy_status": "Corrected OOF accuracy is not available until all five folds are trained.",
+  "candidate_esc50_count": 400,
+  "candidate_infant_count": 310,
+  "candidate_original_count": 710,
+  "data_root": "D:\\INFANT CRY\\data_set_dbl_split\\test",
+  "eligible_counts_by_label": {
+    "baby": 303,
+    "not_baby": 391
+  },
+  "eligible_original_count": 694,
+  "esc50_target20_excluded_count": 9,
+  "esc50_target20_rule": "exclude_crying_baby_from_not_baby",
+  "evaluation_scope": "model_development_and_corrected_internal_validation",
+  "excluded_count": 16,
+  "exclusion_counts": {
+    "esc50_crying_baby": 9,
+    "same_label_exact_duplicate": 7
+  },
+  "group_rules": {
+    "baby": "exact_content_sha256",
+    "not_baby": "esc50_source_file"
+  },
+  "grouping_limitation": "Infant subject/session identifiers were not verified; infant grouping prevents exact-content families. ESC-50 negatives use source_file groups.",
+  "independent_external_validation_performed": false,
+  "schema_version": "1.0",
+  "source_confounding_limitation": "Baby positives originate from InfantCry-DBL while not_baby negatives originate from ESC-50; recording-source cues may confound Stage 1.",
+  "stage": "stage1_binary_baby_gate"
+}

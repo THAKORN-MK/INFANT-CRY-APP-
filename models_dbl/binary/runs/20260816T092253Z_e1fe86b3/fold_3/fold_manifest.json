@@ -1,0 +1,69 @@
+{
+  "best_epoch": 47,
+  "checkpoint_monitor": "val_loss",
+  "created_at": "2026-08-16T10:00:51.025591+00:00",
+  "feature_shape": [
+    120,
+    128,
+    1
+  ],
+  "files": {
+    "augmentation_manifest": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\augmentation_manifest.csv",
+      "sha256": "34cd4a47f881f705f3419ef45ea563b91fed7ce383a8fb76420d6a0bba0477b1"
+    },
+    "class_counts": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\class_counts.json",
+      "sha256": "7df892136d0cbad00a032ba9a35f690815112a12aff1ed7d0b85e0b0d55e78f1"
+    },
+    "fold_assignments": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_assignments.csv",
+      "sha256": "d6b5e7aa0732cebd26574ad8d8ea5614963d19b53ae0a07663313358d0837302"
+    },
+    "history": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\history.csv",
+      "sha256": "abe02ad7ef55f3e4246361c0a51e7479c0a5084e94d50417abca78d1bce4b7cb"
+    },
+    "labels": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\labels_binary_dbl.json",
+      "sha256": "43236580949626a62a064c12591be344d53abce6754c6f9bbe00af94c580182f"
+    },
+    "metrics": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\metrics.json",
+      "sha256": "96e54e8a5d0b723425ae4c30d46d2da4cb7842528292686275ed52161d99b43a"
+    },
+    "model": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\fold_3_binary_dbl.keras",
+      "sha256": "a0b5a6772c355df3d3c8ad1ac33e4631d9645f39123b7c5738d26698ff65a8de"
+    },
+    "normalizer": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\norm_stats_binary_dbl.npy",
+      "sha256": "eeec482877e7fa17b9c4e57e46e7c2620d2554b3416a1e930b6c09e821f3dc2c"
+    },
+    "normalizer_metadata": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\norm_stats_binary_dbl.npy.metadata.json",
+      "sha256": "7112dfc99463fc272375e982f8fb9177adddc6a74b71537c30caf6e213e66447"
+    },
+    "preprocessing_config": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\preprocessing_config.json",
+      "sha256": "04f986e209fff29b6a45e3405613189bd9cf75693b6e836e7d180597f4738617"
+    },
+    "validation_predictions": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\binary\\runs\\20260816T092253Z_e1fe86b3\\fold_3\\validation_predictions.csv",
+      "sha256": "8c68974e52aa4ae5a5f0b074feb91dec1f48c473d5c86db749f3e9c4cb9fda8d"
+    }
+  },
+  "fold": 3,
+  "label_order": [
+    "not_baby",
+    "baby"
+  ],
+  "run_id": "20260816T092253Z_e1fe86b3",
+  "schema_version": "1.0",
+  "source_snapshot_identifier": "source_sha256:b70c86baae636300c5c3be214d6d071d00db8008f9b8f7c0454da6a0b7a8e3ec",
+  "split_seed": 42,
+  "splitter_name": "StratifiedGroupKFold",
+  "training_augmented_count": 273,
+  "training_original_count": 1949,
+  "validation_original_count": 483
+}

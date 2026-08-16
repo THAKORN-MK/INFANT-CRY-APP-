@@ -1,0 +1,31 @@
+{
+  "augmentation_applied": false,
+  "evaluation_count": 1,
+  "evaluation_scope": "locked_internal_heldout_test_once_after_final_refit",
+  "files": {
+    "confusion_matrix_csv": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\final_test_confusion_matrix.csv",
+      "sha256": "091f8f38076d1661d2d6d8be9e0cae9f7d3fbbed9e32ae999dc794eb69234eff"
+    },
+    "confusion_matrix_png": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\final_test_confusion_matrix.png",
+      "sha256": "66bbce2f102b04515e330d37d5db72ea1101bb71bf3fd3fe2da935950c563994"
+    },
+    "metrics": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\final_test_metrics.json",
+      "sha256": "310f0922170e32c8dbf4505c80b9a58243304698d57739d481310f3f1f7d4753"
+    },
+    "predictions": {
+      "path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\final_test_predictions.csv",
+      "sha256": "adf9e0b914f5aaa4ec5df2c3f5cb7bee1106929a658db9d524466c62f5167835"
+    }
+  },
+  "heldout_test_used_for_model_selection": false,
+  "independent_external_validation_performed": false,
+  "model_path": "D:\\INFANT CRY\\Models_dbl\\Main\\runs\\20260816T102950Z_a16c5a1d\\best_model\\best_model_main_dbl.keras",
+  "model_sha256": "4512bb78d0ec9d5183637d7a151399ad39ce5370e2f3e1a4261a228ffd537b47",
+  "run_id": "20260816T102950Z_a16c5a1d",
+  "schema_version": "1.0",
+  "stage": "stage2_main_five_class",
+  "support_original_records": 303
+}
