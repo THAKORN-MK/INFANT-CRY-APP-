@@ -1,260 +1,426 @@
-# 🍼 Baby Cry Detector — CNN+MFCC 2-Stage
+# CryInsight — Two-stage Infant Cry Classification
 
-ระบบวิเคราะห์เสียงร้องของทารก ด้วย Deep Learning แบบ **2-Stage Pipeline**  
-เทรนเองทั้งหมด 100% โดยใช้ **CNN + MFCC + Mel + Chroma + BiLSTM + Attention**  
-จำแนกอารมณ์ทารกได้ 5 ประเภทตาม **Dunstan Baby Language**:
+CryInsight เป็นระบบวิเคราะห์ไฟล์เสียง `.wav` แบบ 2 Stage:
 
-| อารมณ์ | เสียง DBL | ความหมาย |
-|--------|----------|---------|
-| 😣 ปวดท้อง | eairh | ลมในช่องท้องส่วนล่าง |
-| 😮 เรอ | eh | ลมในหน้าอก ต้องการเรอ |
-| 😰 ไม่สบาย | heh | ผิวหนังระคายเคือง |
-| 🍼 หิว | neh | Sucking reflex |
-| 😴 เหนื่อย | owh | ง่วงนอน |
+1. **Stage 1 — Binary Baby Gate:** ตรวจว่าเป็นเสียงทารกหรือไม่
+2. **Stage 2 — Infant State Classifier:** เมื่อเป็นเสียงทารก จึงจำแนกเป็น 5 กลุ่ม
 
----
+## System overview
 
-## 🔄 สถาปัตยกรรม 2-Stage Pipeline
+```mermaid
+flowchart TB
+    A(["ไฟล์เสียง .wav"]) --> B["Audio preprocessing<br/>22,050 Hz · Mono · Trim · Normalize"]
+    B --> C["Stage 1 — Binary Baby Gate<br/>MFCC + Delta + Delta2<br/>CNN → BiLSTM → Attention"]
+    C --> D{"ผลการจำแนก Stage 1"}
+    D -->|"not_baby"| E["หยุดการประมวลผล<br/>แจ้งว่าไม่ใช่เสียงทารก"]
+    D -->|"baby"| F["Stage 2 — Infant State Classifier<br/>MFCC + Delta + Delta2 + Log-Mel + Chroma<br/>CNN → BiLSTM → Attention"]
+    F --> G(["ผลลัพธ์ 5 กลุ่ม<br/>belly_pain · burping · discomfort · hungry · tired"])
 
-```
-เสียงร้องทารก (.wav)
-        ↓
-┌─────────────────────────────────────┐
-│  Stage 1: Binary Classifier         │
-│  CNN + MFCC + BiLSTM + Attention    │
-│  "เสียงเด็กหรือไม่?"                │
-└─────────────────────────────────────┘
-        ├── ❌ ไม่ใช่ → หยุด แจ้งผล
-        └── ✅ ใช่
-                  ↓
-    ┌─────────────────────────────────────┐
-    │  Stage 2: Emotion Classifier        │
-    │  CNN + MFCC + Mel + Chroma          │
-    │       + BiLSTM + Attention          │
-    │  "อารมณ์คืออะไร?"                  │
-    └─────────────────────────────────────┘
-                  ↓
-         ผลลัพธ์ 5 อารมณ์ + ความมั่นใจ %
+    classDef input fill:#F8FAFC,stroke:#334155,color:#0F172A,stroke-width:1.5px;
+    classDef process fill:#F1F5F9,stroke:#475569,color:#0F172A,stroke-width:1.5px;
+    classDef stage fill:#EFF6FF,stroke:#1D4ED8,color:#172554,stroke-width:2px;
+    classDef decision fill:#FFF7ED,stroke:#C2410C,color:#431407,stroke-width:1.5px;
+    classDef stop fill:#FEF2F2,stroke:#B91C1C,color:#450A0A,stroke-width:1.5px;
+    classDef result fill:#F0FDF4,stroke:#15803D,color:#052E16,stroke-width:2px;
+
+    class A input;
+    class B process;
+    class C,F stage;
+    class D decision;
+    class E stop;
+    class G result;
+
+    linkStyle default stroke:#64748B,stroke-width:1.5px;
 ```
 
----
+แผนภาพนี้แสดง inference flow ของระบบ ส่วน augmentation, 5-fold validation และ held-out testing เป็นขั้นตอนเฉพาะระหว่างการพัฒนาโมเดล
 
-## 🧠 สถาปัตยกรรมโมเดล
+รายละเอียดเชิงเทคนิค เหตุผลของ feature แต่ละชนิด โครงสร้าง neural network และข้อจำกัดสำหรับงานวิจัยอยู่ใน [Architecture.md](./Architecture.md)
 
-### Stage 1 — Binary Classifier
-```
-Input (196, 128, 1)
-  → CNN Block 1: Conv2D(32×2) + BN + ReLU + MaxPool + Dropout(0.25)
-  → CNN Block 2: Conv2D(64×2) + BN + ReLU + MaxPool + Dropout(0.25)
-  → CNN Block 3: Conv2D(128×2) + BN + ReLU + MaxPool + Dropout(0.3)
-  → Reshape
-  → BiLSTM(128) + Dropout(0.3)
-  → BiLSTM(64)  + Dropout(0.3)
-  → Attention Layer
-  → Dense(128) + BN + Dropout(0.4)
-  → Dense(64)  + Dropout(0.4)
-  → Dense(2, softmax) → [not_baby, baby]
-```
+## Environment หลัก
 
-### Stage 2 — Emotion Classifier
-```
-Input (196, 128, 1)
-  → CNN Block 1: Conv2D(32×2) + BN + ReLU + MaxPool + Dropout(0.25)
-  → CNN Block 2: Conv2D(64×2) + BN + ReLU + MaxPool + Dropout(0.25)
-  → CNN Block 3: Conv2D(128×2) + BN + ReLU + MaxPool + Dropout(0.3)
-  → CNN Block 4: Conv2D(256)   + BN + ReLU + MaxPool + Dropout(0.3)
-  → Reshape
-  → BiLSTM(128) + Dropout(0.3)
-  → BiLSTM(64)  + Dropout(0.3)
-  → Attention Layer
-  → Dense(256) + BN + Dropout(0.4)
-  → Dense(128) + BN + Dropout(0.4)
-  → Dense(64)  + Dropout(0.3)
-  → Dense(5, softmax) → 5 อารมณ์
+โปรเจกต์นี้กำหนด **Python 3.10** เป็น environment หลัก
+
+| รายการ | เวอร์ชันหลัก |
+|---|---|
+| Python | **3.10** |
+| TensorFlow | 2.15.0 |
+| NumPy | 1.26.4 |
+| librosa | 0.11.0 |
+| scikit-learn | 1.7.2 |
+| matplotlib | เวอร์ชันที่รองรับ Python 3.10 |
+
+เหตุผลที่ใช้ Python 3.10:
+
+- เป็นเวอร์ชันที่ตรวจสอบร่วมกับ TensorFlow 2.15.0 ในโปรเจกต์นี้แล้ว
+- ลดปัญหาความเข้ากันได้ระหว่าง TensorFlow, Keras, NumPy และไลบรารีเสียง
+- ทำให้ environment สำหรับฝึกและโหลดโมเดลมี baseline เดียวกัน
+
+ไม่ควรเปลี่ยนไปใช้ Python เวอร์ชันอื่นโดยไม่รัน unit tests, model-build smoke test และตรวจการ save/load โมเดลใหม่ทั้งหมด
+
+## การติดตั้งบน Windows
+
+ตรวจสอบ Python 3.10:
+
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' --version
 ```
 
-**Feature:** MFCC(40) + Delta(40) + Delta²(40) + Mel(64) + Chroma(12) = **196 channels**  
-**Loss:** CategoricalCrossentropy (label_smoothing=0.1)  
-**Optimizer:** AdamW (lr=0.001, weight_decay=1e-4)
+ผลที่ต้องได้ควรขึ้นต้นด้วย:
 
----
-
-## 📊 ผลการเทรน
-
-| โมเดล | Val Accuracy | เทคนิค |
-|-------|-------------|--------|
-| Stage 1 Binary | 99.94% | CNN+MFCC+BiLSTM+Attention, K-Fold |
-| Stage 2 Emotion | 99.67% | CNN+MFCC+Mel+Chroma+BiLSTM+Attention, Mixup |
-
----
-
-## 📁 โครงสร้างโปรเจกต์
-
+```text
+Python 3.10
 ```
+
+### สร้าง virtual environment
+
+รันจากโฟลเดอร์ `D:\INFANT CRY`:
+
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' -m venv .venv310
+& '.\.venv310\Scripts\Activate.ps1'
+python -m pip install --upgrade pip
+```
+
+### ติดตั้งไลบรารีหลัก
+
+```powershell
+python -m pip install tensorflow==2.15.0 numpy==1.26.4 librosa==0.11.0 scikit-learn==1.7.2 matplotlib
+```
+
+ตรวจสอบ environment:
+
+```powershell
+python -c "import sys, tensorflow, numpy, librosa, sklearn; print(sys.version); print('TensorFlow', tensorflow.__version__); print('NumPy', numpy.__version__); print('librosa', librosa.__version__); print('scikit-learn', sklearn.__version__)"
+```
+
+> หากไม่ได้ activate virtual environment ให้ใช้ path ของ Python 3.10 แบบเต็มในทุกคำสั่งตามตัวอย่างส่วนการฝึกโมเดล
+
+## โครงสร้างโปรเจกต์ที่ใช้งานอยู่
+
+```text
 INFANT CRY/
-├── data_set_dbl/              ← Dataset InfantCry-DBL
-│   ├── belly_pain/   (170 ไฟล์)
-│   ├── burping/      (280 ไฟล์)
-│   ├── discomfort/   (168 ไฟล์)
-│   ├── hungry/       (217 ไฟล์)
-│   ├── tired/        (716 ไฟล์)
-│   └── not_baby/     (2,000 ไฟล์ จาก ESC-50)
+├── Architecture.md
+├── README.md
+├── split_audio.py
 │
-├── models_dbl/
-│   ├── binary/                ← Stage 1
-│   │   ├── train_binary_dbl.py
-│   │   ├── best_model_binary_dbl.keras
-│   │   ├── labels_binary_dbl.json
-│   │   ├── norm_stats_binary_dbl.npy
-│   │   ├── classification_report.txt
-│   │   └── confusion_matrix.png
-│   │
-│   ├── main/                  ← Stage 2
-│   │   ├── train_main_dbl.py
-│   │   ├── best_model_main_dbl.keras
-│   │   ├── labels_main_dbl.json
-│   │   ├── norm_stats_main_dbl.npy
-│   │   ├── classification_report.txt
-│   │   ├── confusion_matrix.png
-│   │   └── training_log.csv
-│   │
-│   └── app/                   ← แอปพลิเคชัน
-│       └── app_dbl.py
+├── data_set_dbl/                  # ข้อมูลต้นฉบับ
+├── data_set_dbl_split/
+│   ├── train/                     # ใช้สร้าง 5 folds และฝึก
+│   └── test/                      # locked held-out test
+│
+├── Models_dbl/
+│   ├── binary/
+│   │   └── train_binary_dbl.py    # Stage 1
+│   └── Main/
+│       └── train_main_dbl.py      # Stage 2
+│
+├── cryinsight/
+│   ├── audio/features.py
+│   └── training/
+│       ├── protocol.py
+│       └── artefacts.py
+│
+├── models_dbl_OLD/                # โค้ด/artefact รุ่นเดิม ใช้อ้างอิงเท่านั้น
+└── tests/
 ```
 
----
+trainer รุ่นปัจจุบันจะไม่เขียนทับโมเดลใน `models_dbl_OLD`
 
-## 🖥️ การติดตั้งสำหรับนักพัฒนา
+## Dataset
 
-### 1. ติดตั้ง Python 3.10
-ดาวน์โหลด: https://www.python.org/downloads/release/python-3100/
+โฟลเดอร์ `data_set_dbl` มี 6 label directories:
 
-> ✅ ติ๊ก **"Add Python to PATH"** ตอนติดตั้ง  
-> ⚠️ Python 3.11+ อาจมีปัญหากับ TensorFlow 2.15
-
-### 2. ติดตั้ง Library
-
-```bash
-pip install tensorflow==2.15.0
-pip install librosa scikit-learn numpy matplotlib seaborn
+```text
+belly_pain/
+burping/
+discomfort/
+hungry/
+tired/
+not_baby/
 ```
 
-### 3. เทรนโมเดล Stage 1 (Binary)
+- Stage 1 รวม 5 infant labels เป็น `baby` และใช้ `not_baby` เป็นคลาสลบ
+- Stage 2 ใช้เฉพาะ 5 infant labels
+- ESC-50 หมวด `crying_baby` (target 20) ไม่ถูกนำมาเป็น `not_baby`
 
-```bash
-cd models_dbl/binary
-python train_binary_dbl.py
+## การแบ่งข้อมูล 80/20
+
+สคริปต์ [split_audio.py](./split_audio.py) สุ่มแบ่งไฟล์รายคลาสจาก `data_set_dbl` ไปยัง:
+
+```text
+data_set_dbl_split/train
+data_set_dbl_split/test
 ```
 
-### 4. เทรนโมเดล Stage 2 (Emotion)
+ค่าเริ่มต้นคือ train 80%, test 20% และ seed 42
 
-```bash
-cd models_dbl/main
-python train_main_dbl.py
+หากยังไม่มี split:
+
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' split_audio.py
 ```
 
-### 5. รัน App
+หากปลายทางมีข้อมูล สคริปต์จะหยุดเพื่อป้องกันการเขียนทับ หากตั้งใจสร้างใหม่จริงให้ตรวจสอบปลายทางก่อนแล้วจึงใช้:
 
-```bash
-cd models_dbl/app
-python app_dbl.py
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' split_audio.py --overwrite
 ```
 
----
+`--overwrite` จะลบ `data_set_dbl_split` เดิมก่อนสร้างใหม่ จึงไม่ควรใช้ระหว่างหรือหลังเริ่มการทดลองที่ต้องอ้างอิง split เดิม
 
-## 📱 การติดตั้งสำหรับผู้ใช้ทั่วไป
+## Feature และ architecture
 
-### สิ่งที่ต้องมี
+### Stage 1 — Binary Baby Gate
 
-| รายการ | รายละเอียด |
-|--------|-----------|
-| Python | 3.10 |
-| Stage 1 Model | `best_model_binary_dbl.keras` |
-| Stage 1 Labels | `labels_binary_dbl.json` |
-| Stage 1 Norm | `norm_stats_binary_dbl.npy` |
-| Stage 2 Model | `best_model_main_dbl.keras` |
-| Stage 2 Labels | `labels_main_dbl.json` |
-| Stage 2 Norm | `norm_stats_main_dbl.npy` |
-| App | `app_dbl.py` |
-
-### ขั้นตอน
-
-**1. ติดตั้ง Library**
-```bash
-pip install tensorflow==2.15.0 librosa numpy matplotlib
+```text
+MFCC(40) + Delta(40) + Delta2(40)
+                 │
+                 ▼
+       Input (120, 128, 1)
+                 │
+                 ▼
+CNN → BiLSTM → Attention → Softmax(2)
+                 │
+                 ▼
+          not_baby / baby
 ```
 
-**2. รัน App**
-```bash
-python app_dbl.py
+Stage 1 ไม่ใช้ Log-Mel, Chroma หรือ Mixup
+
+### Stage 2 — Five-class Infant State Classifier
+
+```text
+MFCC(40) + Delta(40) + Delta2(40) + Log-Mel(64) + Chroma(12)
+                              │
+                              ▼
+                    Input (196, 128, 1)
+                              │
+                              ▼
+              CNN → BiLSTM → Attention → Softmax(5)
 ```
 
----
+Stage 2 ใช้ Mixup ค่าเริ่มต้น 500 ตัวอย่างต่อ fold และ `alpha=0.3`
 
-## 📦 Library ที่ใช้
+## Augmentation
 
-| Library | Version | หน้าที่ |
-|---------|---------|--------|
-| `tensorflow` | 2.15.0 | สร้างและรันโมเดล |
-| `librosa` | ≥ 0.11 | แปลงเสียงเป็น MFCC, Mel, Chroma |
-| `numpy` | ≥ 1.23 | คำนวณ array |
-| `scikit-learn` | ≥ 1.3 | Metrics, LabelEncoder, Class Weight |
-| `matplotlib` | ≥ 3.7 | กราฟใน App |
-| `seaborn` | latest | Confusion Matrix |
-| `tkinter` | built-in | GUI Application |
+augmentation ถูกสร้างเฉพาะ training partition ของแต่ละ fold หลังแบ่ง train/validation แล้ว
 
----
+วิธีที่ training plan ใช้:
 
-## 🗂️ Dataset ที่ใช้
+- Gaussian noise
+- Pitch shift
+- Time stretch
+- Time shift
 
-### InfantCry-DBL
-- **ผู้สร้าง:** Mohammed Tawfik (2026)
-- **จำนวน:** 1,551 ไฟล์ (54.4 นาที)
-- **License:** CC BY 4.0
-- **Cohen's κ:** 0.89 — ความน่าเชื่อถือสูง
+Stage 2 มี Mixup เพิ่มหลัง normalization ส่วน validation และ `data_set_dbl_split/test` ไม่มี augmentation
 
-### ESC-50 (Not Baby Samples)
-- **ผู้สร้าง:** Karol J. Piczak (2015)
-- **จำนวน:** 2,000 ไฟล์
-- **ใช้เป็น:** Negative samples สำหรับ Stage 1
+รายการ augmentation ทุกตัวอย่างถูกบันทึกใน:
 
----
-
-## ⚙️ เทคนิคที่ใช้เพิ่มความแม่นยำ
-
-| เทคนิค | รายละเอียด |
-|--------|-----------|
-| Data Augmentation | Pitch shift, Time stretch, Noise, Volume |
-| Mixup | ผสมเสียง 2 ไฟล์สร้างข้อมูลใหม่ |
-| Class Weight | แก้ปัญหา class imbalance |
-| Label Smoothing | ป้องกัน overconfidence |
-| Attention Mechanism | โฟกัสส่วนสำคัญของเสียง |
-| Bidirectional LSTM | จับ temporal pattern ทั้ง 2 ทิศทาง |
-| Batch Normalization | เทรนเสถียรและเร็วขึ้น |
-| AdamW Optimizer | Adam + Weight Decay ป้องกัน overfit |
-| EarlyStopping | หยุดเทรนเมื่อไม่ดีขึ้น |
-| ReduceLROnPlateau | ลด learning rate อัตโนมัติ |
-
----
-
-## ❓ แก้ปัญหาที่พบบ่อย
-
-**`ModuleNotFoundError: No module named 'librosa'`**
-```bash
-pip install librosa
+```text
+fold_N/augmentation_manifest.csv
 ```
 
-**`Cannot deserialize object of type 'AttentionLayer'`**  
-ตรวจสอบว่า `app_dbl.py` มีการลงทะเบียน `AttentionLayer` ด้วย `@tf.keras.saving.register_keras_serializable()`
+## Training protocol
 
-**`Could not load the model`**  
-ตรวจสอบว่าไฟล์ `.keras`, `.json`, `.npy` อยู่ใน folder ที่ถูกต้อง
+1. อ่านและ hash ข้อมูล `train/test`
+2. ให้ locked test มีสิทธิ์ก่อน
+3. ไม่นำ training records ที่ group หรือ SHA-256 ชนกับ test เข้าเทรน
+4. แบ่ง training originals เป็น grouped 5-fold
+5. สร้าง augmentation จาก training partition ของแต่ละ fold เท่านั้น
+6. fit normalizer จาก training features ของ fold เท่านั้น
+7. เลือก checkpoint จาก `val_loss` ต่ำที่สุด
+8. ประเมิน fold validation
+9. ประเมิน locked test หลังจบแต่ละ fold
+10. เลือก `best_model` จาก validation loss ไม่ใช่ test accuracy
 
-**`tensorflow` ติดตั้งไม่ได้บน Python 3.11+`**  
-ใช้ Python 3.10 ครับ
+held-out test ถูกประเมินหลังทุก fold ตาม protocol ปัจจุบัน แต่ไม่ถูกใช้เลือก epoch, hyperparameter หรือ deployment fold
 
----
+## ตรวจข้อมูลโดยไม่เทรน
 
-## 📄 License
+Stage 1:
 
-MIT License
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' Models_dbl/binary/train_binary_dbl.py --audit-only
+```
+
+Stage 2:
+
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' Models_dbl/Main/train_main_dbl.py --audit-only
+```
+
+โหมด `--audit-only` ไม่สร้าง run และไม่เริ่ม TensorFlow training
+
+## เตรียม run โดยไม่เทรน
+
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' Models_dbl/binary/train_binary_dbl.py --prepare-only
+
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' Models_dbl/Main/train_main_dbl.py --prepare-only
+```
+
+โหมดนี้สร้าง audit, fold assignments และ configuration แต่ไม่สร้างโมเดล
+
+## เทรน Stage 1
+
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' Models_dbl/binary/train_binary_dbl.py --train
+```
+
+ค่าเริ่มต้น:
+
+- Epoch สูงสุด: 200
+- Batch size: 32
+- Learning rate: 0.001
+- AdamW weight decay: `1e-4`
+- Label smoothing: 0.05
+- Early-stopping patience: 25
+- Mixup: ไม่ใช้
+
+## เทรน Stage 2
+
+ควรเทรน Stage 1 ให้เสร็จก่อนหากต้องการนำระบบ 2 Stage ไปใช้งานครบ pipeline
+
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' Models_dbl/Main/train_main_dbl.py --train
+```
+
+ค่าเริ่มต้น:
+
+- Epoch สูงสุด: 200
+- Batch size: 32
+- Learning rate: 0.001
+- AdamW weight decay: `1e-4`
+- Label smoothing: 0.10
+- Early-stopping patience: 30
+- Mixup: 500 samples/fold, alpha 0.3
+
+สามารถระบุ run ID ได้ เช่น:
+
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' Models_dbl/binary/train_binary_dbl.py --train --run-id stage1_seed42
+```
+
+run ID ต้องไม่ซ้ำ เพราะ run directories เป็น immutable
+
+## ผลลัพธ์หลังเทรน
+
+Stage 1:
+
+```text
+Models_dbl/binary/runs/<run_id>/
+```
+
+Stage 2:
+
+```text
+Models_dbl/Main/runs/<run_id>/
+```
+
+โครงสร้างสำคัญ:
+
+```text
+runs/<run_id>/
+├── fold_1/
+├── fold_2/
+├── fold_3/
+├── fold_4/
+├── fold_5/
+├── best_model/
+├── oof_metrics.json
+├── oof_predictions.csv
+├── fold_metrics.csv
+├── heldout_test_fold_metrics.csv
+├── heldout_test_summary.json
+└── verification.json
+```
+
+ภายในแต่ละ `fold_N` มี:
+
+- `fold_N_binary_dbl.keras` หรือ `fold_N_main_dbl.keras`
+- normalizer และ metadata
+- training history
+- validation predictions/metrics
+- held-out test predictions/metrics
+- confusion matrix
+- augmentation manifest
+- fold manifest
+
+โมเดลสำหรับนำไปใช้งานอยู่ที่:
+
+```text
+best_model/best_model_binary_dbl.keras
+best_model/best_model_main_dbl.keras
+```
+
+ต้องใช้ model พร้อมกับ normalizer, labels และ `preprocessing_config.json` จาก `best_model` ชุดเดียวกัน ห้ามนำไฟล์จากคนละ run หรือคนละ fold มาผสมกัน
+
+## Metrics
+
+ระบบบันทึก:
+
+- Accuracy
+- Balanced accuracy
+- Macro precision/recall/F1
+- Weighted F1
+- ROC-AUC เมื่อคำนวณได้
+- Classification report
+- Confusion matrix
+
+README นี้ไม่ระบุค่า accuracy ล่วงหน้า เพราะค่าที่รายงานต้องมาจาก run ที่ฝึกเสร็จจริงและ `verification.json` มีสถานะ `complete`
+
+ผล validation ภายใน 5-fold อยู่ใน `oof_metrics.json` ส่วนผล test ของแต่ละ fold และสรุปรวมอยู่ใน `heldout_test_metrics.json` และ `heldout_test_summary.json`
+
+## รัน unit tests
+
+```powershell
+& 'C:\Users\Admin\AppData\Local\Programs\Python\Python310\python.exe' -m unittest discover -s tests -v
+```
+
+baseline ที่ตรวจล่าสุดผ่าน 59 tests
+
+## ปัญหาที่พบบ่อย
+
+### `ModuleNotFoundError: No module named 'librosa'`
+
+ตรวจว่าใช้ Python 3.10 environment ที่ติดตั้ง dependencies แล้ว:
+
+```powershell
+python -m pip install librosa==0.11.0
+```
+
+### `ModuleNotFoundError: No module named 'sklearn'`
+
+```powershell
+python -m pip install scikit-learn==1.7.2
+```
+
+### TensorFlow import ไม่ได้
+
+ตรวจว่า interpreter เป็น Python 3.10 และติดตั้ง TensorFlow ใน interpreter เดียวกัน:
+
+```powershell
+python --version
+python -m pip show tensorflow
+```
+
+### Audio สั้นเกินไป
+
+feature contract ปัจจุบันจะเติมศูนย์ทางขวาจนถึงจำนวน sample ขั้นต่ำสำหรับ Delta window หากยังเกิด error ให้ดู `record_id` และ `filepath` ที่ trainer รายงานเพื่อตรวจว่าไฟล์เสียหรือถอดรหัสไม่ได้
+
+### ไม่พบ accuracy
+
+accuracy จะไม่มีจนกว่า training run จะจบครบ 5 folds ตรวจ `verification.json` หากสถานะเป็น `incomplete` ต้องใช้ run ใหม่ ไม่ควรเขียนทับ run เดิม
+
+## การตีความผลวิจัย
+
+- `data_set_dbl_split/test` เป็น locked internal held-out test ไม่ใช่ external validation เพราะมาจาก corpus เดียวกับ train
+- ยังไม่มี subject/session identifiers ที่ยืนยันครบ จึงไม่ควรอ้างว่าเป็น subject-independent evaluation
+- test ชุดเดียวกันถูกประเมินด้วยโมเดลทั้ง 5 folds ผลจึงมีความสัมพันธ์กัน
+- คะแนน Softmax เป็น model confidence และไม่ใช่ calibrated probability โดยอัตโนมัติ
+- label ทั้ง 5 ของ Stage 2 เป็นกลุ่มตาม dataset ไม่ใช่การวินิจฉัยทางการแพทย์
+
+## License
+
+ตรวจสอบสิทธิ์ของ source code และ dataset แต่ละแหล่งก่อนแจกจ่ายหรือตีพิมพ์ผล เนื่องจาก license ของ dataset อาจแตกต่างจาก license ของตัวโปรเจกต์
