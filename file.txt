@@ -1,0 +1,112 @@
+Cry Project - WSL / Ubuntu / VS Code / TensorFlow GPU Commands
+================================================================
+
+ข้อมูล Environment ปัจจุบัน
+---------------------------
+WSL distribution : Ubuntu-22.04
+Linux user        : adminuser
+Project           : /mnt/d/INFANT CRY
+Python GPU venv   : /home/adminuser/.venvs/audio-ml-gpu
+GPU               : NVIDIA GeForce RTX 5070 Ti
+
+
+1) เปิด Ubuntu จาก Windows PowerShell
+--------------------------------------
+wsl -d Ubuntu-22.04
+
+เปิดด้วย user ที่กำหนด:
+wsl -d Ubuntu-22.04 -u adminuser
+
+
+2) เข้าโฟลเดอร์โปรเจกต์ภายใน Ubuntu
+-------------------------------------
+cd "/mnt/d/INFANT CRY"
+
+
+3) เปิด Python GPU environment
+-------------------------------
+source /home/adminuser/.venvs/audio-ml-gpu/bin/activate
+
+เมื่อเปิดสำเร็จ prompt ต้องขึ้นต้นด้วย:
+(audio-ml-gpu)
+
+ปิด environment:
+deactivate
+
+
+4) เปิดโปรเจกต์ด้วย VS Code ในโหมด WSL
+---------------------------------------
+cd "/mnt/d/INFANT CRY"
+code .
+
+มุมล่างซ้ายของ VS Code ต้องแสดง:
+WSL: Ubuntu-22.04
+
+Python interpreter ที่ต้องเลือก:
+/home/adminuser/.venvs/audio-ml-gpu/bin/python
+
+
+5) เปิด Environment ภายใน VS Code Terminal
+--------------------------------------------
+source /home/adminuser/.venvs/audio-ml-gpu/bin/activate
+
+
+6) ตรวจว่า TensorFlow พบ GPU
+-----------------------------
+python -c "import tensorflow as tf; print('TensorFlow', tf.__version__); print(tf.config.list_physical_devices('GPU'))"
+
+ผลต้องมี GPU:0 หรือ PhysicalDevice ที่ device_type เป็น GPU
+
+ทดสอบให้มีการคำนวณบน GPU จริง:
+python -c "import tensorflow as tf; a=tf.random.normal((2048,2048)); b=tf.linalg.matmul(a,a); print('Device:', b.device); print('Finite:', bool(tf.reduce_all(tf.math.is_finite(b))))"
+
+
+7) ตรวจเวอร์ชันไลบรารีหลัก
+---------------------------
+python -c "import tensorflow as tf, numpy, librosa, sklearn, matplotlib; print('TensorFlow', tf.__version__); print('NumPy', numpy.__version__); print('librosa', librosa.__version__); print('scikit-learn', sklearn.__version__); print('matplotlib', matplotlib.__version__); print('GPU', tf.config.list_physical_devices('GPU'))"
+
+ตรวจ dependency:
+python -m pip check
+
+
+8) รัน Unit Tests (ไม่ใช่ Full Training)
+----------------------------------------
+cd "/mnt/d/INFANT CRY"
+python -m unittest discover -s tests -v
+
+
+9) Audit Dataset โดยไม่ Train
+------------------------------
+python Models_dbl/binary/train_binary_dbl.py --audit-only
+python Models_dbl/Main/train_main_dbl.py --audit-only
+
+
+10) คำสั่งจัดการ WSL จาก Windows PowerShell
+--------------------------------------------
+ดู distribution และสถานะ:
+wsl --list --verbose
+
+ดูสถานะ WSL:
+wsl --status
+
+อัปเดต WSL:
+wsl --update
+
+ปิดเฉพาะ Ubuntu-22.04:
+wsl --terminate Ubuntu-22.04
+
+ปิด WSL ทั้งหมด:
+wsl --shutdown
+
+เปิด Ubuntu ใหม่:
+wsl -d Ubuntu-22.04
+
+
+11) หมายเหตุสำคัญ
+------------------
+- คำสั่ง Train ต้องรันเมื่อ prompt มี (audio-ml-gpu) เท่านั้น
+- ก่อน Train ให้ตรวจ GPU:0 ทุกครั้ง
+- TensorFlow อาจแจ้ง PTX JIT สำหรับ compute capability 12.0a ของ RTX 5070 Ti
+  ข้อความนี้เป็น warning ไม่ใช่ error และการเริ่มใช้งานครั้งแรกอาจใช้เวลานานขึ้น
+- ห้ามใช้ Python ฝั่ง Windows สำหรับ GPU training ของ TensorFlow 2.21
+- ยังไม่ให้รัน Full Training จนกว่าโค้ดจะผ่าน compatibility tests
