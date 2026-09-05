@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "wave": "B_features",
+  "seeds": [42],
+  "selection_metric": "oof_macro_f1",
+  "candidate_source": "parent_rank_1",
+  "continue_on_candidate_failure": true,
+  "candidates": [],
+  "parameters": {
+    "variants": {
+      "anchor": {},
+      "without_chroma": {
+        "feature_view": "feature_block_subset",
+        "parameters": {"blocks": ["mfcc", "delta", "delta2", "log_mel"]}
+      },
+      "without_log_mel": {
+        "feature_view": "feature_block_subset",
+        "parameters": {"blocks": ["mfcc", "delta", "delta2", "chroma"]}
+      },
+      "mfcc_derivatives_only": {
+        "feature_view": "feature_block_subset",
+        "parameters": {"blocks": ["mfcc", "delta", "delta2"]}
+      }
+    }
+  }
+}

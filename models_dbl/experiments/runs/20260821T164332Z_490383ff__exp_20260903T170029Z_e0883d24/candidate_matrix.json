@@ -1,0 +1,96 @@
+{
+  "expected_job_count": 15,
+  "jobs": [
+    {
+      "candidate_id": "stage1_majority",
+      "fold": 1,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_majority",
+      "fold": 2,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_majority",
+      "fold": 3,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_majority",
+      "fold": 4,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_majority",
+      "fold": 5,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_mfcc_svm",
+      "fold": 1,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_mfcc_svm",
+      "fold": 2,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_mfcc_svm",
+      "fold": 3,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_mfcc_svm",
+      "fold": 4,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_mfcc_svm",
+      "fold": 5,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_logmel_small_cnn",
+      "fold": 1,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_logmel_small_cnn",
+      "fold": 2,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_logmel_small_cnn",
+      "fold": 3,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_logmel_small_cnn",
+      "fold": 4,
+      "seed": 42,
+      "stage": "stage1"
+    },
+    {
+      "candidate_id": "stage1_logmel_small_cnn",
+      "fold": 5,
+      "seed": 42,
+      "stage": "stage1"
+    }
+  ],
+  "schema_version": "1.0"
+}

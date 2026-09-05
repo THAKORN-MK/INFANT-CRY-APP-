@@ -1,0 +1,15 @@
+{
+  "artefact_sha256": {
+    "fold_result": "261300ee82558d3a5ba36dc9b34f0c82e99f324d48d59d3940875345e02c4ec7",
+    "manifest": "80d065ed186552ec99ed6b73cf2bb3b4e1a335fe8c4aadba0cd1a97811fa2350",
+    "metrics": "69a1cdc56d45206007a749fef54df7bee88d52cd64afc7907537bd310f2f417a",
+    "model": "4357b3c1d1df8f735f09d5627e7a43b6dbbcdff6df14b6434814eda99843d026",
+    "predictions": "53ad1d35d06e93e991b1632cf465a3ebe6574008261e6978f7ca771b41179a55"
+  },
+  "candidate_id": "stage1_majority",
+  "fold": 5,
+  "fold_result_path": "attempt_1/fold_result.json",
+  "schema_version": "1.0",
+  "seed": 42,
+  "status": "complete"
+}

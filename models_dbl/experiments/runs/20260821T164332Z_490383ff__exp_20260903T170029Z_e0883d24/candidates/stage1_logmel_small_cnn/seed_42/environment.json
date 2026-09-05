@@ -1,0 +1,39 @@
+{
+  "contains_neural_candidates": true,
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+  "python_executable": "/home/adminuser/.venvs/audio-ml-gpu/bin/python",
+  "python_version": "3.10.12",
+  "requested_device": "gpu",
+  "schema_version": "1.0",
+  "tensorflow_runtime": {
+    "gpus": [
+      {
+        "compute_capability": "12.0",
+        "name": "/physical_device:GPU:0"
+      }
+    ],
+    "keras_version": "3.12.4",
+    "memory_growth_requested": true,
+    "mixed_precision_requested": true,
+    "physical_gpu_count": 1,
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "precision_policy": "mixed_float16",
+    "python_executable": "/home/adminuser/.venvs/audio-ml-gpu/bin/python",
+    "python_version": "3.10.12",
+    "requested_device": "gpu",
+    "require_gpu": true,
+    "schema_version": "1.0",
+    "selected_device": "gpu",
+    "tensorflow_build": {
+      "cpu_compiler": "clang",
+      "cuda_compute_capabilities": "['sm_60', 'sm_70', 'sm_80', 'sm_89', 'compute_90']",
+      "cuda_version": "12.5.1",
+      "cudnn_version": "9",
+      "is_cuda_build": "True",
+      "is_rocm_build": "False",
+      "is_tensorrt_build": "False"
+    },
+    "tensorflow_version": "2.21.0",
+    "wsl_distribution": "Ubuntu-22.04"
+  }
+}

@@ -1,0 +1,4 @@
+rank,candidate_id,wave,seeds,oof_macro_f1_mean,oof_macro_f1_std,oof_balanced_accuracy_mean,oof_accuracy_mean,minimum_class_recall_mean,parameter_count,verification_status
+1,stage1_mfcc_svm,stage1_baselines,42,0.9756759068422549,0.0,0.9754555884040066,0.9761513157894737,0.9704198473282443,30408.4,complete
+2,stage1_logmel_small_cnn,stage1_baselines,42,0.9246399231114657,0.0,0.927891828089838,0.9255756578947368,0.9111271676300579,10754.0,complete
+3,stage1_majority,stage1_baselines,42,0.36268343815513626,0.0,0.5,0.569078947368421,0.0,0.0,complete

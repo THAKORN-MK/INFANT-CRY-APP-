@@ -36,8 +36,8 @@ class ArtefactError(ValueError):
 
 @dataclass(frozen=True)
 class NormalizerStats:
-    mean: float
-    std: float
+    mean: float | np.ndarray
+    std: float | np.ndarray
     epsilon: float
     axis: str
     feature_shape: tuple[int, int, int]
@@ -45,6 +45,9 @@ class NormalizerStats:
     fit_sample_count: int
     run_id: str
     fold: int | str
+    feature_order: tuple[str, ...] = ()
+    feature_blocks: tuple[tuple[str, int, int], ...] = ()
+    preprocessing_version: str = "1.0"
 
 
 @dataclass(frozen=True)
@@ -196,18 +199,30 @@ def _metadata_path(normalizer_path: Path) -> Path:
 
 
 def _validate_normalizer(stats: NormalizerStats) -> None:
-    if not math.isfinite(stats.mean):
+    mean = np.asarray(stats.mean, dtype=np.float64)
+    std = np.asarray(stats.std, dtype=np.float64)
+    if not np.isfinite(mean).all():
         raise ArtefactError("Normalizer mean must be finite")
-    if not math.isfinite(stats.std) or stats.std <= stats.epsilon:
+    if not np.isfinite(std).all() or np.any(std < stats.epsilon):
         raise ArtefactError(
-            f"Normalizer std must be finite and greater than epsilon {stats.epsilon}"
+            f"Normalizer std must be finite and at least epsilon {stats.epsilon}"
         )
     if stats.epsilon <= 0.0 or not math.isfinite(stats.epsilon):
         raise ArtefactError("Normalizer epsilon must be finite and positive")
-    if stats.axis != "global_scalar":
-        raise ArtefactError("Only the audited global_scalar normalizer is supported")
     if len(stats.feature_shape) != 3 or any(dimension <= 0 for dimension in stats.feature_shape):
         raise ArtefactError(f"Invalid feature shape: {stats.feature_shape}")
+    if stats.axis == "global_scalar":
+        if mean.shape != () or std.shape != ():
+            raise ArtefactError("global_scalar normalizer requires scalar mean/std")
+    elif stats.axis == "per_feature_bin":
+        expected = (stats.feature_shape[0], 1, 1)
+        if mean.shape != expected or std.shape != expected:
+            raise ArtefactError(
+                f"per_feature_bin mean/std must have shape {expected}, "
+                f"received {mean.shape} and {std.shape}"
+            )
+    else:
+        raise ArtefactError(f"Unsupported normalizer axis: {stats.axis}")
     if stats.dtype != "float32":
         raise ArtefactError("Normalizer dtype must be float32")
     if stats.fit_sample_count <= 0:
@@ -219,6 +234,74 @@ def _validate_normalizer(stats: NormalizerStats) -> None:
             raise ArtefactError("Normalizer fold must start at 1")
     elif stats.fold != "final_refit":
         raise ArtefactError("Normalizer identity must be a fold number or final_refit")
+
+
+def fit_normalizer(
+    training_features: np.ndarray,
+    *,
+    epsilon: float,
+    run_id: str,
+    fold: int | str,
+    axis: str = "per_feature_bin",
+    feature_order: Sequence[str] = (),
+    feature_blocks: Sequence[tuple[str, int, int]] = (),
+    preprocessing_version: str = "1.0",
+) -> NormalizerStats:
+    """Fit statistics from one Training partition and never from Validation/Test."""
+
+    values = np.asarray(training_features, dtype=np.float32)
+    if values.ndim != 4 or values.shape[0] < 1:
+        raise ValueError(
+            "Training features must have shape [sample, feature, time, channel]"
+        )
+    if not np.isfinite(values).all():
+        raise ValueError("Training features contain non-finite values")
+    if axis == "global_scalar":
+        mean: float | np.ndarray = float(values.mean(dtype=np.float64))
+        raw_std = float(values.std(dtype=np.float64))
+        std: float | np.ndarray = max(raw_std, float(epsilon))
+    elif axis == "per_feature_bin":
+        mean = values.mean(axis=(0, 2, 3), dtype=np.float64).reshape(-1, 1, 1)
+        raw_std = values.std(axis=(0, 2, 3), dtype=np.float64).reshape(-1, 1, 1)
+        std = np.maximum(raw_std, float(epsilon))
+    else:
+        raise ValueError(f"Unsupported normalizer axis: {axis}")
+    stats = NormalizerStats(
+        mean=mean,
+        std=std,
+        epsilon=float(epsilon),
+        axis=axis,
+        feature_shape=tuple(int(value) for value in values.shape[1:]),
+        dtype="float32",
+        fit_sample_count=int(values.shape[0]),
+        run_id=run_id,
+        fold=fold,
+        feature_order=tuple(str(value) for value in feature_order),
+        feature_blocks=tuple(
+            (str(name), int(start), int(end))
+            for name, start, end in feature_blocks
+        ),
+        preprocessing_version=str(preprocessing_version),
+    )
+    _validate_normalizer(stats)
+    return stats
+
+
+def apply_normalizer(features: np.ndarray, stats: NormalizerStats) -> np.ndarray:
+    """Apply persisted statistics with strict tensor-shape and finite checks."""
+
+    _validate_normalizer(stats)
+    values = np.asarray(features, dtype=np.float32)
+    if values.ndim != 4 or tuple(values.shape[1:]) != tuple(stats.feature_shape):
+        raise ValueError(
+            f"Normalizer feature shape {stats.feature_shape} does not match "
+            f"tensor shape {values.shape}"
+        )
+    normalized = (values - np.asarray(stats.mean)) / np.asarray(stats.std)
+    normalized = np.asarray(normalized, dtype=np.float32)
+    if not np.isfinite(normalized).all():
+        raise ValueError("Normalization produced non-finite values")
+    return normalized
 
 
 def _save_npy_once(path: Path, values: np.ndarray) -> None:
@@ -252,9 +335,33 @@ def save_normalizer(path: str | Path, stats: NormalizerStats) -> None:
     if output.exists() or metadata.exists():
         collision = output if output.exists() else metadata
         raise FileExistsError(f"Refusing to replace immutable artefact: {collision}")
-    _save_npy_once(output, np.asarray([stats.mean, stats.std], dtype=np.float64))
-    payload = asdict(stats)
-    payload["feature_shape"] = list(stats.feature_shape)
+    mean = np.asarray(stats.mean, dtype=np.float64)
+    std = np.asarray(stats.std, dtype=np.float64)
+    values = (
+        np.asarray([float(mean), float(std)], dtype=np.float64)
+        if stats.axis == "global_scalar"
+        else np.stack((mean, std), axis=0)
+    )
+    _save_npy_once(output, values)
+    payload = {
+        "epsilon": stats.epsilon,
+        "axis": stats.axis,
+        "feature_shape": list(stats.feature_shape),
+        "dtype": stats.dtype,
+        "fit_sample_count": stats.fit_sample_count,
+        "run_id": stats.run_id,
+        "fold": stats.fold,
+        "feature_order": list(stats.feature_order),
+        "feature_blocks": [list(row) for row in stats.feature_blocks],
+        "preprocessing_version": stats.preprocessing_version,
+        "mean_shape": list(mean.shape),
+        "std_shape": list(std.shape),
+        "array_shape": list(values.shape),
+    }
+    if stats.axis == "global_scalar":
+        # Retain fields expected by existing deployed scalar bundles.
+        payload["mean"] = float(mean)
+        payload["std"] = float(std)
     payload["normalizer_path"] = str(output)
     payload["normalizer_sha256"] = sha256_file(output)
     try:
@@ -300,15 +407,26 @@ def load_normalizer(
         values = np.load(output, allow_pickle=False)
     except Exception as exc:
         raise ArtefactError(f"Could not load normalizer array {output}: {exc}") from exc
-    if values.shape != (2,) or not np.isfinite(values).all():
+    if values.ndim < 1 or values.shape[0] != 2 or not np.isfinite(values).all():
         raise ArtefactError(
-            f"Normalizer array must contain two finite scalars, received {values.shape}"
+            f"Normalizer array must contain mean/std on axis 0, received {values.shape}"
         )
+    axis = str(payload["axis"])
+    if axis == "global_scalar":
+        if values.shape != (2,):
+            raise ArtefactError(
+                f"global_scalar normalizer array must have shape (2,), received {values.shape}"
+            )
+        mean: float | np.ndarray = float(values[0])
+        std: float | np.ndarray = float(values[1])
+    else:
+        mean = np.asarray(values[0], dtype=np.float64)
+        std = np.asarray(values[1], dtype=np.float64)
     stats = NormalizerStats(
-        mean=float(payload["mean"]),
-        std=float(payload["std"]),
+        mean=mean,
+        std=std,
         epsilon=float(payload["epsilon"]),
-        axis=str(payload["axis"]),
+        axis=axis,
         feature_shape=tuple(int(value) for value in payload["feature_shape"]),
         dtype=str(payload["dtype"]),
         fit_sample_count=int(payload["fit_sample_count"]),
@@ -318,10 +436,22 @@ def load_normalizer(
             if isinstance(payload["fold"], int)
             else str(payload["fold"])
         ),
+        feature_order=tuple(str(value) for value in payload.get("feature_order", ())),
+        feature_blocks=tuple(
+            (str(row[0]), int(row[1]), int(row[2]))
+            for row in payload.get("feature_blocks", ())
+        ),
+        preprocessing_version=str(payload.get("preprocessing_version", "1.0")),
     )
     _validate_normalizer(stats)
-    if not np.allclose(values, [stats.mean, stats.std], rtol=0.0, atol=1e-12):
-        raise ArtefactError("Normalizer numeric values disagree with metadata")
+    if axis == "global_scalar" and "mean" in payload:
+        if not np.allclose(
+            values,
+            [float(payload["mean"]), float(payload["std"])],
+            rtol=0.0,
+            atol=1e-12,
+        ):
+            raise ArtefactError("Normalizer numeric values disagree with metadata")
     return stats
 
 
@@ -383,6 +513,31 @@ def _require_sklearn_metrics():
     return metrics
 
 
+def normalize_probability_rows(
+    scores: np.ndarray,
+    *,
+    sum_tolerance: float = 1e-4,
+) -> np.ndarray:
+    """Validate and exactly renormalize Softmax rows for metric libraries."""
+
+    values = np.asarray(scores, dtype=np.float64)
+    if values.ndim != 2 or values.shape[1] < 2:
+        raise ValueError("Probability scores must be a two-dimensional class matrix")
+    if not np.isfinite(values).all():
+        raise ValueError("Probability scores must be finite")
+    if np.any(values < 0.0):
+        raise ValueError("Probability scores must be non-negative")
+    row_sums = values.sum(axis=1, keepdims=True)
+    if np.any(row_sums <= 0.0):
+        raise ValueError("Probability rows must have a positive sum")
+    if not np.all(np.abs(row_sums - 1.0) <= sum_tolerance):
+        raise ValueError("Probability rows do not sum to one within tolerance")
+    normalized = values / row_sums
+    if not np.isfinite(normalized).all():
+        raise ValueError("Probability normalization produced non-finite values")
+    return normalized
+
+
 def _metric_values(
     true_indices: np.ndarray,
     predicted_indices: np.ndarray,
@@ -391,6 +546,7 @@ def _metric_values(
     label_indices: Sequence[int],
     metrics_module: Any,
 ) -> dict[str, float | None]:
+    scores = normalize_probability_rows(scores)
     all_labels_observed = set(np.unique(true_indices).tolist()) == set(label_indices)
     one_hot = np.eye(len(label_indices), dtype=np.float64)[true_indices]
     confidence = scores.max(axis=1)

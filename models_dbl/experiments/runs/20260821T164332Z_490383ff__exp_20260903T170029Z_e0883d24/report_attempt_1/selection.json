@@ -1,0 +1,33 @@
+{
+  "exclusions": [],
+  "experiment_run_id": "20260821T164332Z_490383ff__exp_20260903T170029Z_e0883d24",
+  "heldout_test_used_for_selection": false,
+  "parent_provenance": {},
+  "promotion": {
+    "checks": {
+      "three_seed_confirmation": false
+    },
+    "failed_checks": [
+      "three_seed_confirmation"
+    ],
+    "heldout_test_used_for_selection": false,
+    "schema_version": "1.0",
+    "selection_scope": "corrected_grouped_internal_validation",
+    "status": "no_promotion_recommended"
+  },
+  "ranked_candidate_ids": [
+    "stage1_mfcc_svm",
+    "stage1_logmel_small_cnn",
+    "stage1_majority"
+  ],
+  "reference_oof_metrics": {
+    "minimum_class_recall": 0.9869942196531792,
+    "oof_accuracy": 0.9893092105263158,
+    "oof_balanced_accuracy": 0.9896803159334598,
+    "oof_macro_f1": 0.9891135999427032
+  },
+  "reference_stage": "stage1",
+  "schema_version": "1.0",
+  "status": "complete",
+  "wave": "stage1_baselines"
+}

@@ -109,4 +109,92 @@ wsl -d Ubuntu-22.04
 - TensorFlow อาจแจ้ง PTX JIT สำหรับ compute capability 12.0a ของ RTX 5070 Ti
   ข้อความนี้เป็น warning ไม่ใช่ error และการเริ่มใช้งานครั้งแรกอาจใช้เวลานานขึ้น
 - ห้ามใช้ Python ฝั่ง Windows สำหรับ GPU training ของ TensorFlow 2.21
-- ยังไม่ให้รัน Full Training จนกว่าโค้ดจะผ่าน compatibility tests
+- Stage 2 checkpoint ระหว่าง Epoch จะอยู่ใน /tmp/cryinsight_checkpoints และคัดลอกกลับ Run folder หลัง Fold จบ ห้ามตั้ง CRYINSIGHT_CHECKPOINT_STAGING_DIR เป็น /mnt/c หรือ /mnt/d
+- ให้รัน Full Training หลัง compatibility tests และ checkpoint smoke test ผ่านแล้ว
+
+
+12) ตรวจ Baseline / Ablation Registry โดยไม่ Train
+---------------------------------------------------
+python Models_dbl/experiments/run_experiments.py --audit-only --config Models_dbl/experiments/configs/stage2_wave_a.json
+
+ตรวจสคริปต์รายตัวโดยไม่ Train:
+python Models_dbl/experiments/baselines/stage1/mfcc_svm.py --audit-only
+python Models_dbl/experiments/baselines/stage2/yamnet_transfer.py --audit-only
+python Models_dbl/experiments/ablations/feature_ablation.py --audit-only
+
+หมายเหตุ: definition_ready ไม่ใช่ผลการ Train และ metrics ยังคงเป็น not_run
+
+
+13) คำสั่ง Full Training (รันเมื่อพร้อมเท่านั้น)
+------------------------------------------------
+Stage 1:
+python Models_dbl/binary/train_binary_dbl.py --train --device gpu --require-gpu --mixed-precision
+
+Stage 2 single-branch:
+python Models_dbl/Main/train_main_dbl.py --train --device gpu --require-gpu --mixed-precision --architecture corrected_single_branch
+
+Stage 2 จะใช้ run_id เดียวกับ Binary run ล่าสุดอัตโนมัติ แต่ Binary run ต้องมี verification.json สถานะ complete ก่อน หาก Binary ล่าสุดยัง Train อยู่ Stage 2 จะหยุดและไม่เลือก Run เก่าแทน
+
+Stage 2 multi-branch candidate:
+python Models_dbl/Main/train_main_dbl.py --train --device gpu --require-gpu --mixed-precision --architecture corrected_multi_branch
+
+ปิด feature cache เฉพาะเมื่อต้องการตรวจเทียบ:
+เพิ่ม flag --no-feature-cache
+
+กำหนด cache directory เอง:
+เพิ่ม flag --feature-cache-dir /path/to/cache
+
+
+14) ไฟล์ Environment
+---------------------
+ติดตั้ง direct dependencies:
+python -m pip install -r requirements/gpu-py310.txt
+
+ตรวจ lock ที่ใช้ทดสอบ:
+python -m pip freeze
+เปรียบเทียบกับ requirements/gpu-environment-lock.txt
+
+
+15) ขอบเขตที่ยังไม่ทำ
+----------------------
+- ยังไม่ implement external-audio input contract
+- ยังไม่ implement automatic multi-window inference
+- ยังไม่ implement quality rejection และ Webapp routing สำหรับเสียงภายนอก
+- งานข้างต้นรอการตัดสินใจแยกต่างหาก
+
+
+16) Shared Experiment Engine — Audit และ Prepare เท่านั้น
+----------------------------------------------------------
+source /home/adminuser/.venvs/audio-ml-gpu/bin/activate
+cd "/mnt/d/INFANT CRY"
+
+ตรวจ Wave A โดยไม่สร้าง Run และไม่ Train:
+python Models_dbl/experiments/run_experiments.py --audit-only --config Models_dbl/experiments/configs/stage2_wave_a.json
+
+สร้าง Prepared Experiment Run โดยยังไม่ Train:
+python Models_dbl/experiments/run_experiments.py --prepare-only --pipeline-run-id 20260821T164332Z_490383ff --config Models_dbl/experiments/configs/stage2_wave_a.json
+
+หลัง Prepare ให้ตรวจ protocol.json, resolved_config.json, candidate_matrix.json,
+shared_fold_assignments.csv และ state.json ก่อน คำสั่งเริ่ม Wave A Training จะให้หลัง
+ตรวจ Prepared Run และได้รับอนุมัติแยกต่างหากเท่านั้น
+
+
+17) ถ้าเปิด Ubuntu ไม่ได้: ตรวจสถานะก่อน ไม่ติดตั้งซ้ำ
+-------------------------------------------------------
+รันใน PowerShell (ไม่ใช่ Ubuntu):
+wsl --version
+wsl --list --verbose
+Get-Service WslService,vmcompute -ErrorAction SilentlyContinue
+Get-CimInstance Win32_ComputerSystem | Select-Object HypervisorPresent
+
+สองคำสั่งต่อไปนี้เป็นการอ่านข้อมูล แต่ต้องเปิด PowerShell ด้วย Run as administrator:
+Get-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+bcdedit /enum
+
+ถ้าขึ้น HCS_E_SERVICE_NOT_AVAILABLE ให้เก็บข้อความและผลตรวจข้างต้นก่อน
+อย่า unregister Ubuntu, ลบ venv, เปลี่ยน boot policy หรือ reinstall เพื่อเดาสาเหตุ
+ขั้นตอนนี้ไม่แก้ Windows features, BIOS หรือสั่ง restart เครื่อง
+อ้างอิง: https://learn.microsoft.com/en-us/windows/wsl/troubleshooting
+
+สถานะเก็บงานและหลักฐานล่าสุด:
+docs/superpowers/plans/2026-09-03-inline-execution-status.md

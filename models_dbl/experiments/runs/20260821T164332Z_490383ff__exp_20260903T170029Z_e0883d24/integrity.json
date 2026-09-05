@@ -1,0 +1,10 @@
+{
+  "artefact_sha256": {
+    "candidate_matrix.json": "947e18c8da1c58174d0e9c9ff1df672e344a4b797076242e97214538097eacfb",
+    "protocol.json": "9186dac1c7d53afc2cc4ac252f7af598341eb9034537bb90fb4532826e4c4933",
+    "reference_run.json": "f4b7fe064879c607679c5ae26a1d1fac99cafde60b3b999dea4d0d2fa8b551ad",
+    "resolved_config.json": "be54d7ca1468246b847f1aee72f76258bb60fdebf53fd4d6c5c4fd9a22ec7039",
+    "shared_fold_assignments.csv": "f506befebeb2e1bf563a149b5859e8d539191e7ba8844e316cdb923c05b10627"
+  },
+  "schema_version": "1.0"
+}

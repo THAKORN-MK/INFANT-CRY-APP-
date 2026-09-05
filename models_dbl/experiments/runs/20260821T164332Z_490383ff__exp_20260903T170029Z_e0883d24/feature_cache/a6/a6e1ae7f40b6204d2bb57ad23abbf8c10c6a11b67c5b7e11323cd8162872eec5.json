@@ -1,0 +1,11 @@
+{
+  "array_sha256": "a648cf20fc9d6680ea75e6c4ee3bdd8efb0dd5520eff56bcf228d486da4e7b67",
+  "dtype": "float32",
+  "key": "a6e1ae7f40b6204d2bb57ad23abbf8c10c6a11b67c5b7e11323cd8162872eec5",
+  "schema_version": "1.0",
+  "shape": [
+    196,
+    128,
+    1
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "best_epoch": 32,
+  "checkpoint_monitor": "val_loss",
+  "fold": 2,
+  "publication_mode": "verified_copy_once",
+  "run_id": "20260821T164332Z_490383ff",
+  "schema_version": "1.0",
+  "selected_checkpoint_val_loss": 0.650169312953949,
+  "sha256": "386864112eedb82b4e6432c5238b8db36f660a91afcd3cd39443cb10b9285d82",
+  "size_bytes": 49637997
+}

@@ -1,0 +1,66 @@
+{
+  "array_shape": [
+    2,
+    196,
+    1,
+    1
+  ],
+  "axis": "per_feature_bin",
+  "dtype": "float32",
+  "epsilon": 1e-08,
+  "feature_blocks": [
+    [
+      "mfcc",
+      0,
+      40
+    ],
+    [
+      "delta",
+      40,
+      80
+    ],
+    [
+      "delta2",
+      80,
+      120
+    ],
+    [
+      "logmel",
+      120,
+      184
+    ],
+    [
+      "chroma",
+      184,
+      196
+    ]
+  ],
+  "feature_order": [
+    "mfcc",
+    "delta",
+    "delta2",
+    "logmel",
+    "chroma"
+  ],
+  "feature_shape": [
+    196,
+    128,
+    1
+  ],
+  "fit_sample_count": 2035,
+  "fold": 2,
+  "mean_shape": [
+    196,
+    1,
+    1
+  ],
+  "normalizer_path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_2/norm_stats_main_dbl.npy",
+  "normalizer_sha256": "b7649b5f0813e09cb6f6ea2badffb0d0f8590e032fa45c3ee5c856b8a8e9f143",
+  "preprocessing_version": "cryinsight_stage2_features_v3",
+  "run_id": "20260821T164332Z_490383ff",
+  "std_shape": [
+    196,
+    1,
+    1
+  ]
+}

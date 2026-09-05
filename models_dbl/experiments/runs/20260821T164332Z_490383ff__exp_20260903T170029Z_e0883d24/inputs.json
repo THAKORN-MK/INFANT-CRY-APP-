@@ -1,0 +1,27 @@
+{
+  "heldout_test_used_for_selection": false,
+  "label_orders": {
+    "stage1": [
+      "baby",
+      "not_baby"
+    ],
+    "stage2": [
+      "belly_pain",
+      "burping",
+      "discomfort",
+      "hungry",
+      "tired"
+    ]
+  },
+  "pipeline_run_id": "20260821T164332Z_490383ff",
+  "project_root": "/mnt/d/INFANT CRY",
+  "record_counts": {
+    "stage1": 2432,
+    "stage2": 1045
+  },
+  "schema_version": "1.0",
+  "stage_data_roots": {
+    "stage1": "/mnt/d/INFANT CRY/data_set_dbl_split/train",
+    "stage2": "/mnt/d/INFANT CRY/data_set_dbl_split/train"
+  }
+}

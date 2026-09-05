@@ -1,0 +1,3151 @@
+{
+  "fold": 4,
+  "mixup_rows": [],
+  "schema_version": "1.0",
+  "waveform_rows": [
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:afcf4d0fc581ae87291f8e7297b29fef884faf9251b0e9b8314a6916b57b3bd7",
+      "parameters": {
+        "noise_factor": 0.004259121
+      },
+      "partition": "train",
+      "sample_id": "aug_3a2d33a433bbe65101cb",
+      "seed": 6802746621619967495,
+      "source_record_id": "rec_aafa3341c5fa1ecbe434",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a5e0e3325a517e18c8dc703abc524bdb1722d288f38ad4b83f43a4961fa378b5",
+      "parameters": {
+        "steps": 1.011038
+      },
+      "partition": "train",
+      "sample_id": "aug_3ff222a7a8d224794ddd",
+      "seed": 15103123641202324041,
+      "source_record_id": "rec_aef5992e5f42844e0dda",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:5962311aa4f9ea75501cfc4b8fd3d4bd1a95031f1796294cc5ee20d171909f21",
+      "parameters": {
+        "steps": -1.041179
+      },
+      "partition": "train",
+      "sample_id": "aug_e277c591ae71a2e6d5c0",
+      "seed": 15797031191135825168,
+      "source_record_id": "rec_7335dcde7a27046c15f5",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:9a0a542959b4fac2a1b917c6c8aac9de50c3f96940a324052a7dc662043da336",
+      "parameters": {
+        "rate": 1.104887
+      },
+      "partition": "train",
+      "sample_id": "aug_4d48b845f860d78254e0",
+      "seed": 4789586023964318163,
+      "source_record_id": "rec_fe0571440bbcdcb5c944",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:bae968692719c8b34033cb1ffb767cc3bf4810669ce54c8cb625f818154cad23",
+      "parameters": {
+        "rate": 0.909772
+      },
+      "partition": "train",
+      "sample_id": "aug_d9c7fd8b5ec2db786684",
+      "seed": 9532004788415081784,
+      "source_record_id": "rec_c18d49327c6e50d1e569",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:50a9ba34e829cf9fcce814337fc5e5dcccb431b6ef346193863b4bf0bfe990a7",
+      "parameters": {
+        "fraction": 0.0702211
+      },
+      "partition": "train",
+      "sample_id": "aug_8a4d8f036199f8f290bb",
+      "seed": 3958193856654373554,
+      "source_record_id": "rec_2c14edaf86afba716162",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:cef893ab16a894305b2fedb5dbb3aa1ad0914e4e8977148fe7c1a307bdf635b0",
+      "parameters": {
+        "noise_factor": 0.00229947
+      },
+      "partition": "train",
+      "sample_id": "aug_7fbdcef78c88f9bbe604",
+      "seed": 16374042172669483427,
+      "source_record_id": "rec_69a30e7d7377d2349a7e",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:0652cac9764f49ee987c04e3b01a87fb9eac4ac4ed99d9dbe77ce44d25ade3f9",
+      "parameters": {
+        "steps": 2.195652
+      },
+      "partition": "train",
+      "sample_id": "aug_747821a12ed06f638ecb",
+      "seed": 11248969544125512411,
+      "source_record_id": "rec_74b7b7b269cccff509b6",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:32fdf8d166a5c52e9218dffb01f189b7e2b199e2eab098e76bda38187d6d1dfa",
+      "parameters": {
+        "steps": -1.850984
+      },
+      "partition": "train",
+      "sample_id": "aug_ca5d01072c7fdaca6dfa",
+      "seed": 3342462531085047486,
+      "source_record_id": "rec_c5e06aded79f647ac036",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:498177d4b6661bb796d07bc6abeb8257d967ef0f9cc5a55c3bebfb11108e41c0",
+      "parameters": {
+        "rate": 1.223671
+      },
+      "partition": "train",
+      "sample_id": "aug_d24d93d0c92e322c9153",
+      "seed": 14379828907741348769,
+      "source_record_id": "rec_d024232db85b2dd5abc3",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:42b3c99738a7b6b4d183c2549208be43783f4ce2d51d97a2905d09c7bc26109b",
+      "parameters": {
+        "rate": 0.823644
+      },
+      "partition": "train",
+      "sample_id": "aug_f12e84d46ab9bf6bafdf",
+      "seed": 10154827139054282413,
+      "source_record_id": "rec_1ea791cff25abaff0941",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:48f3147c8edac60c0de58dbe2b5152ed6db3a562744f6a204b5efaaad2ca0847",
+      "parameters": {
+        "noise_factor": 0.004570394
+      },
+      "partition": "train",
+      "sample_id": "aug_c8daf3968984ad3d94a1",
+      "seed": 12313885788574808870,
+      "source_record_id": "rec_b4327cfdcef8a6d08926",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:1df157c70c1c5a153efa06c6639e6dbd8f5cb0caaf6f6f807d8a02c5e9940f6a",
+      "parameters": {
+        "steps": 0.91594
+      },
+      "partition": "train",
+      "sample_id": "aug_7e0d97bd699e48274bc5",
+      "seed": 13070207206187482771,
+      "source_record_id": "rec_0bf28df218daf1ccd7d4",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:047b9f83a5a74c2d146e172b1cfa7ea3958fb1a8196884f65843be7595764ec5",
+      "parameters": {
+        "steps": -1.046225
+      },
+      "partition": "train",
+      "sample_id": "aug_70045598a30b16be8c32",
+      "seed": 168869663996232329,
+      "source_record_id": "rec_7f7f270a8553f730c1c9",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:6a556a53e981c03965ac39abe7c3cc166b4005ced8bf32f0c6a02c28e2d79aa3",
+      "parameters": {
+        "rate": 1.078397
+      },
+      "partition": "train",
+      "sample_id": "aug_2e1e6db0b5e115abbae9",
+      "seed": 11338649760392764466,
+      "source_record_id": "rec_f5e1b15d65ce873732bc",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:2175d95aa0ff4baa4ef2dec20dc9d2cbd1b8e384f866bc26b67f5739475733e8",
+      "parameters": {
+        "rate": 0.891067
+      },
+      "partition": "train",
+      "sample_id": "aug_404c122e793362cf943d",
+      "seed": 9255184196822667112,
+      "source_record_id": "rec_9bd40eced9885796e2fa",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:b8416f32dd2450d924895191068594d34e5c963310aeb9f8cfb5e0d8bb40d92d",
+      "parameters": {
+        "fraction": -0.0773495
+      },
+      "partition": "train",
+      "sample_id": "aug_9f9eaf294dffbdf00348",
+      "seed": 15890590034389591331,
+      "source_record_id": "rec_cea741eee726c573f835",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:6bc38b9d403174682237bddf276b0324d8012977537635873e41d7e975daab8f",
+      "parameters": {
+        "noise_factor": 0.002835685
+      },
+      "partition": "train",
+      "sample_id": "aug_f8690d6daa638d32b9c8",
+      "seed": 9218901615523603695,
+      "source_record_id": "rec_c7ab84dc1e25a511f089",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:85e9e88b1b67a02a229b99baaf38c0aaf62ec6e01a3ecab2660df33a717c6ef8",
+      "parameters": {
+        "steps": 2.070786
+      },
+      "partition": "train",
+      "sample_id": "aug_2573a20c62eb12d6b128",
+      "seed": 9253723412360735118,
+      "source_record_id": "rec_9897d60d93c5b1f8c62b",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:1ccdd89e72b8e8b0bccb47d3c081d75ee36c1fc8864ef86620cbc8a15f58868f",
+      "parameters": {
+        "steps": -1.926855
+      },
+      "partition": "train",
+      "sample_id": "aug_e80b945fa79f1a3d4d61",
+      "seed": 16572886945787535514,
+      "source_record_id": "rec_4a0fcd7abf5c9475fdd9",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3a4fdffc46deab4f880252a1541a8be359faf7c3051995febfffac7d291b3cdb",
+      "parameters": {
+        "rate": 1.207077
+      },
+      "partition": "train",
+      "sample_id": "aug_f72e0317be87df0d7449",
+      "seed": 951197902022964786,
+      "source_record_id": "rec_0d4c7e9d16ffe8d1bbff",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:47808540c2a1b74b6bc15169986af43e256a3a0c2cd348a756d7cddc7af3fc36",
+      "parameters": {
+        "rate": 0.792592
+      },
+      "partition": "train",
+      "sample_id": "aug_901fc6e2f8a1de2fcd6a",
+      "seed": 5588781773583135483,
+      "source_record_id": "rec_b650c425c68f30aad60f",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:d5640d8ae7faa50a4fbf118e4598227702f8ebfb26eb257516a458ade087e765",
+      "parameters": {
+        "noise_factor": 0.005471586
+      },
+      "partition": "train",
+      "sample_id": "aug_d5da67e0e5ada4af8e18",
+      "seed": 8836858377253417872,
+      "source_record_id": "rec_1fa57e7d8390c3562932",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c98684c4a49ecb823e4ce108c119f9df4c6022db98727cc4b09c5d5776ec7a33",
+      "parameters": {
+        "steps": 1.137397
+      },
+      "partition": "train",
+      "sample_id": "aug_e077eacb7a3dd28bf27d",
+      "seed": 5279269599993944745,
+      "source_record_id": "rec_71dd61ec0a843f9ecf0c",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3d06a247d1c62d99e1d22b2a80d2328ba3eec98f15b4cdc31afa9d27c06c5b34",
+      "parameters": {
+        "steps": -1.133467
+      },
+      "partition": "train",
+      "sample_id": "aug_1f375e45aa5041fb9835",
+      "seed": 15613658615343620104,
+      "source_record_id": "rec_9007bb06e8ab85215018",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:49ebff472f9f6e4036a9429e3b819179b29c38301b5386b1e5ceb896810fe22c",
+      "parameters": {
+        "rate": 1.113664
+      },
+      "partition": "train",
+      "sample_id": "aug_742116d33b561f590a8c",
+      "seed": 6096778904229368734,
+      "source_record_id": "rec_d7bffc68a844008a7914",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:e5b30435906cdd5c727047976d84e52f3601721907f41ed7c3290c05cd2d1e29",
+      "parameters": {
+        "rate": 0.914485
+      },
+      "partition": "train",
+      "sample_id": "aug_d11acedfa1aa3b4b3b1f",
+      "seed": 8240673853237515771,
+      "source_record_id": "rec_2f44b2a29b63c403f247",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:ef935196a5d5c3888adcc945bc943a1aa5a90f1b5d7b937c5033707fbffe3c99",
+      "parameters": {
+        "fraction": 0.0331733
+      },
+      "partition": "train",
+      "sample_id": "aug_3e1024d7f7846f397edb",
+      "seed": 1231458005019025615,
+      "source_record_id": "rec_02ded2dafd9c65710523",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:d28d9e4c68256b66210d99120ecff1421d8c760a14741adbe91f3c36c092cb5b",
+      "parameters": {
+        "noise_factor": 0.002561927
+      },
+      "partition": "train",
+      "sample_id": "aug_ce0252634bc9fc5904bc",
+      "seed": 2256282151456741557,
+      "source_record_id": "rec_f41948bd07dd16eabe09",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:dbc17e00f7f6dc09c0003c3c6a8a06303416b164368603d5bce0a574ab838713",
+      "parameters": {
+        "steps": 1.96466
+      },
+      "partition": "train",
+      "sample_id": "aug_7774181af29dced1342b",
+      "seed": 17253359928213026025,
+      "source_record_id": "rec_0440b5b8fdc242e78a3d",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a8287e446d209ac180d335be47aec425df01c6c70dece20e37b651eab3e870a4",
+      "parameters": {
+        "steps": -1.857902
+      },
+      "partition": "train",
+      "sample_id": "aug_2fdf2a3950f762afff1d",
+      "seed": 1206125211879380090,
+      "source_record_id": "rec_809d51c7c9687c71cd25",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:28e36805810caac46fdb3f5c9098606f303e01dead832b92af1aff97b730a3d9",
+      "parameters": {
+        "rate": 1.189618
+      },
+      "partition": "train",
+      "sample_id": "aug_d2dd8a22182773fb42a4",
+      "seed": 8044547691289711210,
+      "source_record_id": "rec_93046bbf5c1dea64bf5e",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:28542a30db724b5b3b4e6e72557f7dc3c8b1511e4b845eb38e704ede5c67e155",
+      "parameters": {
+        "rate": 0.777268
+      },
+      "partition": "train",
+      "sample_id": "aug_f25bc5694136484371a4",
+      "seed": 16770496162885951514,
+      "source_record_id": "rec_e1b10e6688978884e8d9",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3f33f888d5cd511267e18e297989aa1ed86adedfe69e16be6d1374bd61e84ffe",
+      "parameters": {
+        "noise_factor": 0.005061686
+      },
+      "partition": "train",
+      "sample_id": "aug_8543f503c1222c082c62",
+      "seed": 2087265568977174090,
+      "source_record_id": "rec_d4bba21d40cf89469609",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:79fb7fce520d39a2373d6d6baf8120e9927631024cd8a25b40c4639f8ca1f7dc",
+      "parameters": {
+        "steps": 0.915807
+      },
+      "partition": "train",
+      "sample_id": "aug_291691294b8a87aa2f8c",
+      "seed": 9096890121965642993,
+      "source_record_id": "rec_3dff757b4adba1651a52",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:f4c93fae8a6112f4da01a169289a7b2e42637b49fc670532ce0b5adc66030cdd",
+      "parameters": {
+        "steps": -0.940719
+      },
+      "partition": "train",
+      "sample_id": "aug_c33c0be53b78913201d6",
+      "seed": 4865986227667558153,
+      "source_record_id": "rec_ac7c6723d17cc624863f",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:994fd9b98ee7114391e5e8a05f96b175b7fb08da784aeb4e8ca41c4d5c338834",
+      "parameters": {
+        "rate": 1.118181
+      },
+      "partition": "train",
+      "sample_id": "aug_a0c8bdf2d4e3a6e168a8",
+      "seed": 16653343420317308788,
+      "source_record_id": "rec_f4fd052ddfb5de0888a3",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:87ca9f79ec38ca0b6d95de729882a447d9d4765066af70151b300fd87cb201a5",
+      "parameters": {
+        "rate": 0.905426
+      },
+      "partition": "train",
+      "sample_id": "aug_ce29209e5e5766ce8024",
+      "seed": 513589281903021741,
+      "source_record_id": "rec_b95e828869b8020bd53c",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:cfcb1c396f928a7db0054247a6766148beb1b11ac18f384a651b66959b68dd7e",
+      "parameters": {
+        "fraction": 0.0604706
+      },
+      "partition": "train",
+      "sample_id": "aug_3ebc27d80783265bb49c",
+      "seed": 7684481038092529207,
+      "source_record_id": "rec_3c400a3cd8526f5968e2",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:43e0181db45cc9daf83f61a13bc048513bdb8c694425e8fe60aa19e9e157c40e",
+      "parameters": {
+        "noise_factor": 0.002658483
+      },
+      "partition": "train",
+      "sample_id": "aug_fa80f9b3656f33a79377",
+      "seed": 8645289853347167125,
+      "source_record_id": "rec_882f5933f85be627e548",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:ff50650762c3b1d1842ff03588c477ad4443b96d05b8c4e92e688545e5b4b2a6",
+      "parameters": {
+        "steps": 2.033864
+      },
+      "partition": "train",
+      "sample_id": "aug_0206b34a3b8004c3192d",
+      "seed": 2058194518669730223,
+      "source_record_id": "rec_bc25d1ebb8434b66682a",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3f8890e71625278ea94f90591d0d04c1f5e0cb3a5f196b926519e2a3c106891d",
+      "parameters": {
+        "steps": -1.803067
+      },
+      "partition": "train",
+      "sample_id": "aug_636021946f0a33ef58fa",
+      "seed": 16389925051168576482,
+      "source_record_id": "rec_463180d5d281fe991930",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3e297f55ca497c1d745a97131ae14c16bb04c757dc0b3fa3ef26e9622bfa9c61",
+      "parameters": {
+        "rate": 1.210504
+      },
+      "partition": "train",
+      "sample_id": "aug_0126b0a0ac16045b8459",
+      "seed": 12383863662898432987,
+      "source_record_id": "rec_cc7bf851b717582daedd",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:e0fef5edea1b0180e8b42ffd453909a07da1cbebc28c7f5ec2675bad1af58e68",
+      "parameters": {
+        "rate": 0.814972
+      },
+      "partition": "train",
+      "sample_id": "aug_89a2e022228d676a7617",
+      "seed": 6057257645677789963,
+      "source_record_id": "rec_eaa84801d321692db46e",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:655f5663073380ecb9aa42eb945f1047a64aea2a3433c0695a96c7ae0ee6581f",
+      "parameters": {
+        "noise_factor": 0.005387089
+      },
+      "partition": "train",
+      "sample_id": "aug_48650816291e6e3cad6c",
+      "seed": 6347697110280062302,
+      "source_record_id": "rec_3a68fa909839439de2d2",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:12a4447e7dc1b6d47f37915c5449dfdd132208c35ca819269e09834b1b20b592",
+      "parameters": {
+        "steps": 1.012161
+      },
+      "partition": "train",
+      "sample_id": "aug_3e177665775dd1beb9c0",
+      "seed": 5702383845343833692,
+      "source_record_id": "rec_f671c2c6395fe494c784",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:5f429fa46064b3e066d1eaeee25dd9a5809f8fdb3696debfb2a5428a9a26e2cc",
+      "parameters": {
+        "steps": -1.030565
+      },
+      "partition": "train",
+      "sample_id": "aug_3ac97aaec79610e7b1d9",
+      "seed": 1815883264521828639,
+      "source_record_id": "rec_f7774bcc7a3cbcbb2de7",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:06e8b84f0b30b4a9d80a2570e7701f859e6aa6d09985b83a40b011486a2966dc",
+      "parameters": {
+        "rate": 1.101501
+      },
+      "partition": "train",
+      "sample_id": "aug_f7963d29f3b78d1c1617",
+      "seed": 1732515256763539264,
+      "source_record_id": "rec_ab271c0dd4cc9e6e5493",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:abe1daa0601bbebc19f8468b67e6186f28becbdbadb1b01cc6b92babb69ba422",
+      "parameters": {
+        "rate": 0.877599
+      },
+      "partition": "train",
+      "sample_id": "aug_636ef7644e528c4b05ef",
+      "seed": 7634197721708585190,
+      "source_record_id": "rec_2e36429433aa062ce6ab",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:88f60da07055c74228559de5161a78c6f2136827dc7e6ca907a6b60523fb09c4",
+      "parameters": {
+        "fraction": -0.0184928
+      },
+      "partition": "train",
+      "sample_id": "aug_7c8c22aadd97f6b0ec33",
+      "seed": 6348102315013567745,
+      "source_record_id": "rec_fc9986972c06dede6fb5",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:fce954eadaf605875056a76a995e1b778eeb910983a3207a276f99236b9526c9",
+      "parameters": {
+        "noise_factor": 0.002281405
+      },
+      "partition": "train",
+      "sample_id": "aug_d1bcff35a467cb45881f",
+      "seed": 9687164374238266466,
+      "source_record_id": "rec_545a14847418aadce545",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:5b4064350d82be8341441f4bca966f0238e0f86bba116216b14f5194aa071b85",
+      "parameters": {
+        "steps": 1.852843
+      },
+      "partition": "train",
+      "sample_id": "aug_a75adf25707bfeb2ab0f",
+      "seed": 6197274460187490092,
+      "source_record_id": "rec_ea3161ab2c4c40e51365",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:e44b9fc6ecf405f8ab3ca7aa5c691143ddbd967800c062adaeeed7ae11642588",
+      "parameters": {
+        "steps": -2.016725
+      },
+      "partition": "train",
+      "sample_id": "aug_2b7b6f3729420c11e809",
+      "seed": 14246811452274813168,
+      "source_record_id": "rec_6f6b4910a46d0f5c9466",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:65fe44a1711ed4dfbf10ebb61a492952ced6238ba73bce47edc5a67ecfdc59f1",
+      "parameters": {
+        "rate": 1.188787
+      },
+      "partition": "train",
+      "sample_id": "aug_97276f410eea350a4dba",
+      "seed": 2921895750079179772,
+      "source_record_id": "rec_6275d4015e933dcebf10",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:55ee6e143b4bfa4dd0988393b59f5b234248ebd11e3d87b2696ce37e4e8c86f9",
+      "parameters": {
+        "rate": 0.817159
+      },
+      "partition": "train",
+      "sample_id": "aug_a85437a90062eac8f3de",
+      "seed": 1422299836281692325,
+      "source_record_id": "rec_ce6d33d9d80a390b5de1",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:820434abaf129f4b56e7ab1af8aeb483ac4f5e6822c70c66641271d1aa4f5b4f",
+      "parameters": {
+        "noise_factor": 0.00486009
+      },
+      "partition": "train",
+      "sample_id": "aug_312f2f58cf5a4989c237",
+      "seed": 1577791254937363741,
+      "source_record_id": "rec_84d2dc1b33b9549f9b1c",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:1becf5bccd63bdc11420b398ebe68c0dc1b9afc008e931387790d78e15be5d80",
+      "parameters": {
+        "steps": 0.888539
+      },
+      "partition": "train",
+      "sample_id": "aug_e2197f9cf632a5218559",
+      "seed": 11786423859439374342,
+      "source_record_id": "rec_55f5a47b5c81789d39ab",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:549e9b745a147b976d901c8f187e396b1905c2296a027b2c77f9a7f42d286d36",
+      "parameters": {
+        "steps": -0.835125
+      },
+      "partition": "train",
+      "sample_id": "aug_cf5db25d29e693640b19",
+      "seed": 9002130887699007298,
+      "source_record_id": "rec_70045edcafc51ac832ef",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:bce9bc7dfd7a660cf9bec5d194db7f503ca86d7625a85042471d5287dad455f9",
+      "parameters": {
+        "rate": 1.093543
+      },
+      "partition": "train",
+      "sample_id": "aug_819a45e33802cb2a649f",
+      "seed": 6666316242805711204,
+      "source_record_id": "rec_246e21d1f4b12af163dd",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:fc20ee4bb80a46bf47ac95699cfcdad0d159f9cefdb9c60b6f483257b1120947",
+      "parameters": {
+        "rate": 0.900146
+      },
+      "partition": "train",
+      "sample_id": "aug_811e587a653aadc76e4f",
+      "seed": 13230381892682978046,
+      "source_record_id": "rec_19ca95fa0e9cc6f77602",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:fc0ddf97ccc9a120820e478d0ee49381d6c73521b7d51be3c4a13469505ba2b8",
+      "parameters": {
+        "fraction": -0.0106346
+      },
+      "partition": "train",
+      "sample_id": "aug_063d3a83da645c180742",
+      "seed": 15373994438125779272,
+      "source_record_id": "rec_02ea82f3316cb050f905",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3eef11efef2d997cd36b7e7d857c14e88717eadff6dd191861bb30aeb99d1a71",
+      "parameters": {
+        "noise_factor": 0.002641184
+      },
+      "partition": "train",
+      "sample_id": "aug_ea1f1ff512c04f3c8325",
+      "seed": 15920869144121955351,
+      "source_record_id": "rec_8c0705fd9b6663835196",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:ef4003f1eb9998a16f6d4d50556e0274342e4593ed4bb71a78170098872cec82",
+      "parameters": {
+        "steps": 1.885327
+      },
+      "partition": "train",
+      "sample_id": "aug_bb88f2a484472b6d78ba",
+      "seed": 3217177089795471693,
+      "source_record_id": "rec_76a42152121fc3becc5b",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:606e993011f06c0de67168b072a471e7ee759f0c122e40fbde65ec0de01f66c1",
+      "parameters": {
+        "steps": -1.842929
+      },
+      "partition": "train",
+      "sample_id": "aug_6ff3430dd5d61c59682f",
+      "seed": 8306949292229970431,
+      "source_record_id": "rec_e25b8259cdfa135f6d37",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:48ac6b7f7f9e4d8a411029052d25fce1d36dd1595360c00b419fe2e186764f7f",
+      "parameters": {
+        "rate": 1.19796
+      },
+      "partition": "train",
+      "sample_id": "aug_c7805a0eab96468923c5",
+      "seed": 729506394887207082,
+      "source_record_id": "rec_5106fcf6ddf390f7140b",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:e31fd31777f872ec0993fed336bfae71b1d7bc3af3d02449193e2a3cb82f3e13",
+      "parameters": {
+        "rate": 0.813781
+      },
+      "partition": "train",
+      "sample_id": "aug_6b61ed15d4d5d09e3a15",
+      "seed": 16302536482877551661,
+      "source_record_id": "rec_3ad7dddafe6b010bfb74",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:f93a9c39efa580d0dc51613e87b387de74a3ccd1871ab80ccaea51544c164494",
+      "parameters": {
+        "noise_factor": 0.005373922
+      },
+      "partition": "train",
+      "sample_id": "aug_59738002829b00d61583",
+      "seed": 11440078471437710434,
+      "source_record_id": "rec_f727cf87adcf68c78684",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:13a56a7a111a4668a2510d21fa34d2fdf7d4cbc5cc473c2253831fb2836a8f81",
+      "parameters": {
+        "steps": 1.179436
+      },
+      "partition": "train",
+      "sample_id": "aug_92f3962856461cdc2395",
+      "seed": 15389812110692026596,
+      "source_record_id": "rec_3ca5af599f5e2d718692",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:487e3eb23e700a93ef569d9848ce1bafcf2e4e468e007031a8b0b6283a5e8bee",
+      "parameters": {
+        "steps": -0.943252
+      },
+      "partition": "train",
+      "sample_id": "aug_c7a2e669d21c59f5e417",
+      "seed": 14481342568451220123,
+      "source_record_id": "rec_db0170c6e9143b76c98f",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:33cbbe4bc948b49c3a0461cba6e16609a8c1df9f63d1e28b6b69e933a0388bb1",
+      "parameters": {
+        "rate": 1.107841
+      },
+      "partition": "train",
+      "sample_id": "aug_d5ca2f5bf2a85ac20991",
+      "seed": 18434825010108418828,
+      "source_record_id": "rec_6d9d231d966abe189dcf",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:46a2055827fb3a90f0163d6526f0255e74ee2a0387f7f4d7d71eacf57c2e217a",
+      "parameters": {
+        "rate": 0.898108
+      },
+      "partition": "train",
+      "sample_id": "aug_af5b88a1d8c8ca4f4df9",
+      "seed": 9290325675919328059,
+      "source_record_id": "rec_1c7e39d96927984d4d6f",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:16f2fda14a77ba41116ba065cd1f9eca987341a6b8fa96cf41018921e88c5441",
+      "parameters": {
+        "fraction": 0.0247689
+      },
+      "partition": "train",
+      "sample_id": "aug_44a85242c780a1dae75c",
+      "seed": 5264647263030321272,
+      "source_record_id": "rec_c486f7a4a819eb438fe8",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:59fd3681f53155b7f3316a976ce6938e2f195bb38b3cf02e838ba47ff130dcb3",
+      "parameters": {
+        "noise_factor": 0.002247134
+      },
+      "partition": "train",
+      "sample_id": "aug_2866345f6a5ce55bd37b",
+      "seed": 1953181269060861384,
+      "source_record_id": "rec_9cac5ed43c5a7d7d1eff",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:4146efe34917dbd6a03064e85e2ea43f70fde87e0a5fd5c800c01ea69f71b5b6",
+      "parameters": {
+        "steps": 1.833693
+      },
+      "partition": "train",
+      "sample_id": "aug_6800908973537bc740f0",
+      "seed": 16664492455981195700,
+      "source_record_id": "rec_ebd08ea16ea698c45306",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:360328c4f90bd65406dae9c7ae0a71c505ee02e6c3a8d414ef7d8f7deaeebe9b",
+      "parameters": {
+        "steps": -1.996864
+      },
+      "partition": "train",
+      "sample_id": "aug_fe01b5278733ab4c150c",
+      "seed": 16515595043783309403,
+      "source_record_id": "rec_fdf6fac981d89bd04593",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:6db650b5ed425ba10cdfedf4717a78ed14c2e9b0a29258f079097db34f6d0492",
+      "parameters": {
+        "rate": 1.219516
+      },
+      "partition": "train",
+      "sample_id": "aug_e55f817a24180deac787",
+      "seed": 4098474344441464761,
+      "source_record_id": "rec_372ed40ca92e5e14733f",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:8304456c390a84f17430306377883a4529785e24f9b0459a5fe673c91877a955",
+      "parameters": {
+        "rate": 0.8131
+      },
+      "partition": "train",
+      "sample_id": "aug_b80121970d941527a1e0",
+      "seed": 9327830705551865804,
+      "source_record_id": "rec_059855a7dd9bebe2345c",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3612c6e713d6fa175f01fc0fdda22cbf69645195a98c99ce5117adb320cdfdb5",
+      "parameters": {
+        "noise_factor": 0.005583045
+      },
+      "partition": "train",
+      "sample_id": "aug_fd4f5277870bace29ffe",
+      "seed": 946040365027228068,
+      "source_record_id": "rec_a13b92fdc5317e0a51d9",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:4aefb574b66e26210f7814e88826959577ca75e345ee5a9a40c33961fe62eeb2",
+      "parameters": {
+        "steps": 1.137015
+      },
+      "partition": "train",
+      "sample_id": "aug_c022fe54be5722136988",
+      "seed": 4778522244721941369,
+      "source_record_id": "rec_f6e860c75ce7b1ebce05",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:361ba4820ca7fb721844d99b85e6a4044641cfbc1a6f2834c7b0bca97f0ce8f1",
+      "parameters": {
+        "steps": -0.955756
+      },
+      "partition": "train",
+      "sample_id": "aug_9a35f1279774b2649d3a",
+      "seed": 9772230771379103068,
+      "source_record_id": "rec_256c67b71693302f5eed",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:b9d8f7192623004bc826cbd5966f70e05261eaa1f05e9853e970b6172eeca0f9",
+      "parameters": {
+        "rate": 1.097101
+      },
+      "partition": "train",
+      "sample_id": "aug_e633dfe709e10221291b",
+      "seed": 3702309088798226236,
+      "source_record_id": "rec_68fb76bcaf4df28e1d35",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:55e29633195bbcc79d114bf533e5fecd511fd410c7f76676057d7cbc1998aa8c",
+      "parameters": {
+        "rate": 0.920607
+      },
+      "partition": "train",
+      "sample_id": "aug_b82eccf0a3c6ea595749",
+      "seed": 16301729412037830891,
+      "source_record_id": "rec_af2b5d80db9b39b769a8",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:e87ed97f05407a47ecdf59cda1584809fb5639e604f23b341eb3a52a2b74c848",
+      "parameters": {
+        "fraction": -0.0753176
+      },
+      "partition": "train",
+      "sample_id": "aug_729ff1ae6bc53594aca1",
+      "seed": 16437681070127635917,
+      "source_record_id": "rec_e8a9586413272e49c626",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:085f6dfc3ac0511f9405de4304fc2d7623c14e5238ca066deeac2b111383349b",
+      "parameters": {
+        "noise_factor": 0.002634555
+      },
+      "partition": "train",
+      "sample_id": "aug_4ce84bba7b234b0d338e",
+      "seed": 10992773928750336682,
+      "source_record_id": "rec_4c812f62677ec209a552",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:5653d67d21720ec9bec3765b4ba53a62cc3bf168c894eaed4d7fad4cb33284f7",
+      "parameters": {
+        "steps": 1.815582
+      },
+      "partition": "train",
+      "sample_id": "aug_02c2ecbde77157e3cd2b",
+      "seed": 12446765294609857433,
+      "source_record_id": "rec_c2d0c914aa634399fe02",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:46fab932c94441592374d293fd06f2a0cc912dd59588b26526839b3e067cd844",
+      "parameters": {
+        "steps": -2.061415
+      },
+      "partition": "train",
+      "sample_id": "aug_a2eaaf5f6e8dab14eb30",
+      "seed": 1321442804427668749,
+      "source_record_id": "rec_30dd61c9506d4c0ad6d5",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:7812887439e020c1b3c105ef2d4aed77f6b54279ba332d211cbc1ca2c041b36f",
+      "parameters": {
+        "rate": 1.191071
+      },
+      "partition": "train",
+      "sample_id": "aug_ca0b504f3b48d1f5485e",
+      "seed": 3976448471436031844,
+      "source_record_id": "rec_23b5546de1432ceacbfd",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3f3df70b40aaa7332736c472ced6f86b06244bdc86934477bdd93c6cb1d80540",
+      "parameters": {
+        "rate": 0.812939
+      },
+      "partition": "train",
+      "sample_id": "aug_661f4c0c9a79aab023bb",
+      "seed": 7370498796169473405,
+      "source_record_id": "rec_e4a56aeebd6a02551e95",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:897e10fc891184fea67b55a1d6172c82716c3eded3311b0daf1d890d2ec3585f",
+      "parameters": {
+        "noise_factor": 0.004538222
+      },
+      "partition": "train",
+      "sample_id": "aug_1c80bfc07c4eb57d1ce5",
+      "seed": 11351244943683560588,
+      "source_record_id": "rec_984c63597c96f9a7a5eb",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:f4740346f5ef5342eb49e6ee63a50419ed4633871c733f32191a8acc58552c73",
+      "parameters": {
+        "steps": 0.997123
+      },
+      "partition": "train",
+      "sample_id": "aug_79c2aa1c08dd07d289d6",
+      "seed": 3766299669020095884,
+      "source_record_id": "rec_c7a85c1f7fa8fac8faef",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:6c3b6654b154c4672acc21795efa55d28935ea5809f57e6cb214ea2f942e95b3",
+      "parameters": {
+        "steps": -1.048509
+      },
+      "partition": "train",
+      "sample_id": "aug_1b97b72aa4531e220236",
+      "seed": 10152679080123381485,
+      "source_record_id": "rec_8d5f2d47c0474322ccc8",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:59f26d398c8d75cac875d3dadf48b580f1b9b2c69582929bba7a11539183dd17",
+      "parameters": {
+        "rate": 1.091945
+      },
+      "partition": "train",
+      "sample_id": "aug_73626c8e2d5ecf89ab8f",
+      "seed": 8254658040165746121,
+      "source_record_id": "rec_86e990c657f137ebbf87",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:7dcdc572dc5148ea35b56c2e756db40b0394c8143fd21034415456762873aa5a",
+      "parameters": {
+        "rate": 0.891157
+      },
+      "partition": "train",
+      "sample_id": "aug_a63b035fbd61f52d68c5",
+      "seed": 10446950254587863745,
+      "source_record_id": "rec_aad52c19bc1afac39845",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:eff6f3f12c2b2a77a8da3b2ce3cd514b49503568131174cf03bf9c967e14030c",
+      "parameters": {
+        "fraction": 0.0618395
+      },
+      "partition": "train",
+      "sample_id": "aug_9e875313c50b2faeeda7",
+      "seed": 5525960290273006980,
+      "source_record_id": "rec_30cbe93e75857a181f3d",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:1250b99240a1b507a14b7d33386a9a569e0f76052d34c0a25c6cc6cdc76c3672",
+      "parameters": {
+        "noise_factor": 0.002534861
+      },
+      "partition": "train",
+      "sample_id": "aug_e70adeaaa86f515c23b1",
+      "seed": 4948613885706714186,
+      "source_record_id": "rec_c5c7cc4019b6615df3ec",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:8d0fdf323af57b8c4af4a7ab5f64887b7e5d80e580ded94a5d1db06752a80cf6",
+      "parameters": {
+        "steps": 1.879993
+      },
+      "partition": "train",
+      "sample_id": "aug_784ecd9934f8613b6f36",
+      "seed": 14083889242401003700,
+      "source_record_id": "rec_2ff671b1852890e69b00",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:2e68f8c8fc9e5d8638c693b9ced1edb03abab9906feab07a8f25355ae277567f",
+      "parameters": {
+        "steps": -2.06284
+      },
+      "partition": "train",
+      "sample_id": "aug_f11ce33e72d41bd3dbba",
+      "seed": 16460249194010705862,
+      "source_record_id": "rec_cd9af9038aec195d62ce",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c4486daaa9004953ee0fcd3b6e7b0b71181d8c2d42570d15d0f2d744139be34c",
+      "parameters": {
+        "rate": 1.181462
+      },
+      "partition": "train",
+      "sample_id": "aug_dde4247aa35a618473a3",
+      "seed": 13029600007663871238,
+      "source_record_id": "rec_7f539cdc99c86f56f54a",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c85814665c128518f5502fac1c54b853b4caaa3422b267f452b68680cf13dce5",
+      "parameters": {
+        "rate": 0.795748
+      },
+      "partition": "train",
+      "sample_id": "aug_cdfe114d6b6468564bb3",
+      "seed": 5805004155589667996,
+      "source_record_id": "rec_6d53ea377585cd358595",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:b77d541510e2984d220f05d4be9efe103523cfe6c66f4f8962bb89c5d52341af",
+      "parameters": {
+        "noise_factor": 0.005379299
+      },
+      "partition": "train",
+      "sample_id": "aug_cd0a8e6bc4d39ac6155c",
+      "seed": 6376670712752519824,
+      "source_record_id": "rec_128a836f9d7c0c3800f8",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a4aa673b6e979cc927669c90a855494ac2d988782815f0483289b83bd0db52cf",
+      "parameters": {
+        "steps": 0.895163
+      },
+      "partition": "train",
+      "sample_id": "aug_67bd99e9c50ae2ef9bca",
+      "seed": 11511825281552068809,
+      "source_record_id": "rec_7f5f72cffacee5752ddb",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:08c90d01125e24730ff6b2324d002417b27390a1ccdadec6989ea98ab956759c",
+      "parameters": {
+        "steps": -1.01132
+      },
+      "partition": "train",
+      "sample_id": "aug_e71728c47ec0be086685",
+      "seed": 17750789489697021946,
+      "source_record_id": "rec_0ecdc0cd17162e55aad8",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:74f6e85cf6acba50c9b10f0fba04895ac3d52884d3ddfa02d62c66cd1c192c9d",
+      "parameters": {
+        "rate": 1.109154
+      },
+      "partition": "train",
+      "sample_id": "aug_df66a1f69742795abef9",
+      "seed": 16881004441420909480,
+      "source_record_id": "rec_1afbccae7952244c5251",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:58e32de290cbc2c2ae9183b3f61d794d50015fae708d7b1b43e4a9189835b1f4",
+      "parameters": {
+        "rate": 0.894876
+      },
+      "partition": "train",
+      "sample_id": "aug_707dbe4e9cd1a038c4f0",
+      "seed": 13119293462431231829,
+      "source_record_id": "rec_71a7c45341ab66e94da9",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:03366fb643596a1f5608e2ef81a79d14091b15f09404e9f31ccd86ff3f3fff16",
+      "parameters": {
+        "fraction": 0.0253994
+      },
+      "partition": "train",
+      "sample_id": "aug_1d4e00a739f5fe49476e",
+      "seed": 197549447803694176,
+      "source_record_id": "rec_2e1c8666b4883b69abb9",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:052020682b964183e4e2e6e4147c3145ead734559d926e41538f0ab1b69f9582",
+      "parameters": {
+        "noise_factor": 0.002287039
+      },
+      "partition": "train",
+      "sample_id": "aug_9ad3496824bd6c4479f5",
+      "seed": 1125202955178463839,
+      "source_record_id": "rec_f1512d9f2308ce2edb13",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:9d0ed106d054a3bcb0c5cf37d3c34f40aac26f4ee13ce0f545d3cb897eb5aef8",
+      "parameters": {
+        "steps": 1.808772
+      },
+      "partition": "train",
+      "sample_id": "aug_18bcf0c197012936a346",
+      "seed": 7836553559695036303,
+      "source_record_id": "rec_34bfab5d0ccf9bb47126",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:70423e7702f31a644fd8efea2be20bcd5ede000dc7977bdf8e5fbcb72a26533b",
+      "parameters": {
+        "steps": -1.908949
+      },
+      "partition": "train",
+      "sample_id": "aug_d3bb22dddc12dc4d7a57",
+      "seed": 12995725046376090303,
+      "source_record_id": "rec_e890ba788c3dcf653f72",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:2fbe45f439997095072f4cadfaf2a2e437e9f5602d0ccc45828bc3d9d097691d",
+      "parameters": {
+        "rate": 1.221854
+      },
+      "partition": "train",
+      "sample_id": "aug_f359a845883e55861594",
+      "seed": 11379864627658347689,
+      "source_record_id": "rec_ffcb5317b070e323f976",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:80496141a8ddb8f4b696031db4b6792b003c53008af8409e20cb865619c1c704",
+      "parameters": {
+        "rate": 0.817535
+      },
+      "partition": "train",
+      "sample_id": "aug_7cf2c482033cd41bf840",
+      "seed": 4112886220168888537,
+      "source_record_id": "rec_1b847cfb573f21d20e31",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:d55313ab3d46de45270234eb3e67380359262bdce416809e8bdb0f2e4dbc34f2",
+      "parameters": {
+        "noise_factor": 0.005185376
+      },
+      "partition": "train",
+      "sample_id": "aug_6fca40de8821c46b842c",
+      "seed": 6651890972085004395,
+      "source_record_id": "rec_f47fdec0113833178c5a",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:fabe986975f82fd9c521d501a117cc3847905fc94d671be383141bdc06c2ada5",
+      "parameters": {
+        "steps": 0.863297
+      },
+      "partition": "train",
+      "sample_id": "aug_b2314e13944e7f01be31",
+      "seed": 7110530998658358194,
+      "source_record_id": "rec_a6c2687f77e0cf79aef3",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:2ffae04de236c7819dc8c7f5ba82c29784dcf18f40411bea719bc4fce98b05c0",
+      "parameters": {
+        "steps": -1.02691
+      },
+      "partition": "train",
+      "sample_id": "aug_22aa437cb7b8cb628681",
+      "seed": 8877326879178617912,
+      "source_record_id": "rec_dc065ea30d88d9440e77",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a2dd62708e8e8b59ec70782bf8929321f46959a750f49c9c8cdbec91ef496435",
+      "parameters": {
+        "rate": 1.091434
+      },
+      "partition": "train",
+      "sample_id": "aug_5803168b687d9fd61ee3",
+      "seed": 10420307795280100014,
+      "source_record_id": "rec_0219106d49c86a8ef26c",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:d64a00b82f94c6a58db89df52afabe99d9464019ba00dc276a690ef602e8eb54",
+      "parameters": {
+        "rate": 0.875629
+      },
+      "partition": "train",
+      "sample_id": "aug_20f8f1a41c77fccab524",
+      "seed": 13492985239291476356,
+      "source_record_id": "rec_76c476f521e31ec4c31a",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:86afd628c62172ddf26ad56569382fedab3b778faac003305476b06e927d4b7c",
+      "parameters": {
+        "fraction": 0.0205491
+      },
+      "partition": "train",
+      "sample_id": "aug_1fb5ab1e634832106e80",
+      "seed": 6314181961269307419,
+      "source_record_id": "rec_43d212cc278f3fa7f39d",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:d33cab38c8d62e9019b9a463fb5c3bac6ec5801bb0fabe7213a25a4dadfb786a",
+      "parameters": {
+        "noise_factor": 0.002215763
+      },
+      "partition": "train",
+      "sample_id": "aug_7338712f51ebd3bad20a",
+      "seed": 6235491022886623987,
+      "source_record_id": "rec_a18df63203ea8f412f0b",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:6f99988b5aad21265fa029808ad7b47ef8ee334f0005df62fcf0f7f03dc0be78",
+      "parameters": {
+        "steps": 2.004481
+      },
+      "partition": "train",
+      "sample_id": "aug_a56f076bb992c26e037f",
+      "seed": 2833429780591813786,
+      "source_record_id": "rec_3d80de6b25878c755eb3",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:95597ad55e9d5a9982ee329885a9d90bac353ebc4f0d7b387f68b66dedaff5b3",
+      "parameters": {
+        "steps": -2.103151
+      },
+      "partition": "train",
+      "sample_id": "aug_7fbef56de56d25f01979",
+      "seed": 15363929905787311004,
+      "source_record_id": "rec_bce82d3a688f323db743",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c260dfd7f3fb503bdf69d1ffca61ecc25f2ec68d46433f6f097e2b40ebce0837",
+      "parameters": {
+        "rate": 1.220181
+      },
+      "partition": "train",
+      "sample_id": "aug_520cc62f644689141cbd",
+      "seed": 6235109572896935308,
+      "source_record_id": "rec_87323d3270f1b8f6e507",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:fb59ff63dd024c195cabf21ee0317affe6da07c4ccf05e3dc10c7fbff7f4e645",
+      "parameters": {
+        "rate": 0.823509
+      },
+      "partition": "train",
+      "sample_id": "aug_5250b3b49b88bf0ee5e6",
+      "seed": 4048439222696345974,
+      "source_record_id": "rec_04d8723e876919f7d0c5",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:8a0fd4d270d8968db0dc768dbce9e49371caa704e9b176edbd7f24b9b2397e0e",
+      "parameters": {
+        "noise_factor": 0.005719079
+      },
+      "partition": "train",
+      "sample_id": "aug_09bfd0cf3cf9c2e12fc6",
+      "seed": 12386021267972719241,
+      "source_record_id": "rec_8f7de144e8f4af7f262e",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:b51e673bad1fee64ab06e314e95104d2ba9921134c2ce2362bc6294d4a636a79",
+      "parameters": {
+        "steps": 1.145972
+      },
+      "partition": "train",
+      "sample_id": "aug_5e4833e898d5ccf5779d",
+      "seed": 5366274066816504487,
+      "source_record_id": "rec_47ad8a2ec8f931f1904d",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:82c384ccc3466abebb85be31d404df7a25d1663c73498bb46263a7b08546c433",
+      "parameters": {
+        "steps": -0.816389
+      },
+      "partition": "train",
+      "sample_id": "aug_ea1e58657d1379c6ce92",
+      "seed": 17712946723641814249,
+      "source_record_id": "rec_260456113c1d376bbc61",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:e2cdafb6cec71ac00d2df6b292b2f3468537b2c186ff3e80f1e1068c9536edd1",
+      "parameters": {
+        "rate": 1.077385
+      },
+      "partition": "train",
+      "sample_id": "aug_a1b3d0348ed16a498790",
+      "seed": 12314108531363257271,
+      "source_record_id": "rec_6a6e66f89a8a4d5d6593",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:abf17194995d30ba4cab65658760f8bab3004d430ad8e2cd8e46437ae37e954f",
+      "parameters": {
+        "rate": 0.915741
+      },
+      "partition": "train",
+      "sample_id": "aug_3023a2d8b342b1b5e280",
+      "seed": 10029787665187384091,
+      "source_record_id": "rec_2e6b9cce63bb62c81682",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c26b44279431f42c349cf79784dcea6de03cbb0342cde5868894d0f95de82205",
+      "parameters": {
+        "fraction": 0.0280403
+      },
+      "partition": "train",
+      "sample_id": "aug_3cc4cadd20bb303c7f81",
+      "seed": 17845480420343466814,
+      "source_record_id": "rec_774e95ea65e8ccac1202",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:2b8156c19233ae3e5f3907973f69cee84ac16f190f380fa34daf76b1c2091b77",
+      "parameters": {
+        "noise_factor": 0.002507187
+      },
+      "partition": "train",
+      "sample_id": "aug_7a2c777f4774508c6c72",
+      "seed": 655653472100354477,
+      "source_record_id": "rec_f964905ba2326c2bbf71",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:140d12bd2fb28a6eda864f1d2c0760a80039e4fd0b6aeeca9da75cba965c5536",
+      "parameters": {
+        "steps": 2.090116
+      },
+      "partition": "train",
+      "sample_id": "aug_06dceb20052cff6c114a",
+      "seed": 10563986099200715536,
+      "source_record_id": "rec_df69cdb63344e54c48f9",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:7623594e45392444b4bea1d6977a4a200705db4bbcaa465515d51d8903b278fb",
+      "parameters": {
+        "steps": -1.885934
+      },
+      "partition": "train",
+      "sample_id": "aug_05304bbc5ffa6e3e0196",
+      "seed": 6617205481778398241,
+      "source_record_id": "rec_695acf24f6b621bf6938",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:00a8ffe6b4c08d777dac4a273caa8458a7b27d01828900e0620113b24ed3518c",
+      "parameters": {
+        "rate": 1.188643
+      },
+      "partition": "train",
+      "sample_id": "aug_d5098fcaa05328b423fd",
+      "seed": 6864775076496420389,
+      "source_record_id": "rec_0c8740c205058cc13c73",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:47b7a39e50b18133d87fb770cf2f0f0dad83febce29676bfdfb0989b0dba8fb5",
+      "parameters": {
+        "rate": 0.798676
+      },
+      "partition": "train",
+      "sample_id": "aug_03ccfcd312ab1e468750",
+      "seed": 11049515691421255991,
+      "source_record_id": "rec_6648c1af441391d2b314",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a79e79453842b7491c0ec793e4bfe32ddf2796404fd2b2ae15b5811375ac25e2",
+      "parameters": {
+        "noise_factor": 0.004355842
+      },
+      "partition": "train",
+      "sample_id": "aug_b4ecc464ee86963514fa",
+      "seed": 5426985340437134124,
+      "source_record_id": "rec_38916b588bfc277e0233",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a60f7d56c079df0998cb92c4754cccee4af565a615bdc3543bd244bafc14911d",
+      "parameters": {
+        "steps": 1.042806
+      },
+      "partition": "train",
+      "sample_id": "aug_748e93fd66f1bd64eeb4",
+      "seed": 13154130004033653037,
+      "source_record_id": "rec_40337147c7cdb9b1f04e",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:845f1a3e67155053914e55213b552cd3bf7187f782aa038f3617d68109a41771",
+      "parameters": {
+        "steps": -0.800878
+      },
+      "partition": "train",
+      "sample_id": "aug_7e87b9f2105a55efa78e",
+      "seed": 10233063041809231698,
+      "source_record_id": "rec_6e8b01d0c6ea27bce163",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:b05cadc0b50f16fa2b38972e9a5fc958282e4ac3768473f511488093bcc8f59f",
+      "parameters": {
+        "rate": 1.117427
+      },
+      "partition": "train",
+      "sample_id": "aug_e103f5d0bb4163c9f1d0",
+      "seed": 4401668349346883602,
+      "source_record_id": "rec_116326ebfd88ba6b8be5",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:01875d6c3239aed26b4e82f3694b767f6ad04233b52befb0c7ce2453f571aff8",
+      "parameters": {
+        "rate": 0.916869
+      },
+      "partition": "train",
+      "sample_id": "aug_9976ddce9962b69a0a58",
+      "seed": 13379176170619913629,
+      "source_record_id": "rec_4a9719556db09a472543",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:fd5623d949aa95584faca464bba67866ca8f5f4428e221faaf428ebd331bee45",
+      "parameters": {
+        "fraction": -0.046089
+      },
+      "partition": "train",
+      "sample_id": "aug_1ba56fc2c28134f41f0f",
+      "seed": 127461658274319796,
+      "source_record_id": "rec_130b876cf3e8042dbaaf",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:0095470fcdb006139632e063d9691c40ab0930f4842eddaea7f6b5017d164a19",
+      "parameters": {
+        "noise_factor": 0.00249322
+      },
+      "partition": "train",
+      "sample_id": "aug_8b734c94cb79b1755356",
+      "seed": 1759654391268703032,
+      "source_record_id": "rec_1ce241cf7686f94b3a25",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:f1b02e2772508dba326d22aebf2cd242a03686fa68f0ba1de57248aaaaa76b5a",
+      "parameters": {
+        "steps": 2.147844
+      },
+      "partition": "train",
+      "sample_id": "aug_a0550e84fd41b7af4eb4",
+      "seed": 7681857337642008043,
+      "source_record_id": "rec_99c997cbc56d30a6f86a",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:fa872f7d738aaf9b8c6cd2b37c2edb2f1c14d673cd2efa58571cbc5b1c10622f",
+      "parameters": {
+        "steps": -1.818423
+      },
+      "partition": "train",
+      "sample_id": "aug_14e0b9e869431c49ce5c",
+      "seed": 15095515454007872466,
+      "source_record_id": "rec_9dbc2015e2c3c96c5f39",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:756ecdaf21d16527f4a6012041e38139a2e5bcb18683be48f09ae2c0530563f1",
+      "parameters": {
+        "rate": 1.183806
+      },
+      "partition": "train",
+      "sample_id": "aug_381fcb09e8cd3b10c467",
+      "seed": 10748675604845383531,
+      "source_record_id": "rec_cdcf04a52b20c44770ea",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:e38230e7ecba58c4344b0c2e9c6b1d05877708495096d2709ba35ee3201fbad1",
+      "parameters": {
+        "rate": 0.778098
+      },
+      "partition": "train",
+      "sample_id": "aug_b835174df301bb5f0fb2",
+      "seed": 16438582205035121504,
+      "source_record_id": "rec_c73ad4264ea9db9dbabe",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:7f1bb60aa90557f7f45082f04fcfaa9ee88dd3c04b70c509a5559b1453e79f29",
+      "parameters": {
+        "noise_factor": 0.004465211
+      },
+      "partition": "train",
+      "sample_id": "aug_88c8e2e8b5667c3bcd60",
+      "seed": 14806262699206484748,
+      "source_record_id": "rec_a61b1c034874488205af",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3fe5651b054bb62686baac36b07cf3474eb69ae6cba3af0ba96a618d23940e0f",
+      "parameters": {
+        "steps": 0.966194
+      },
+      "partition": "train",
+      "sample_id": "aug_f6c30ac5ed193bce6aeb",
+      "seed": 11749549373755538013,
+      "source_record_id": "rec_c28fa0cb46f2cf6051d8",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:e782c28dec02304259fa6ee04f4e949a924fdcd76fd245031e3262200bc9acfd",
+      "parameters": {
+        "steps": -0.808869
+      },
+      "partition": "train",
+      "sample_id": "aug_6459ddf79064e99befef",
+      "seed": 14327156005256069641,
+      "source_record_id": "rec_89524fba889339fcfdc7",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:417ca087709adbf6b2d79c6c2d56e6089ada87fa923b8d45c0987d3b8c90ed82",
+      "parameters": {
+        "rate": 1.079612
+      },
+      "partition": "train",
+      "sample_id": "aug_a15bd936ca0943e009c6",
+      "seed": 786270706053341198,
+      "source_record_id": "rec_8da7ea2cb2103f154e91",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:d0f1b8ee00d8ddea9c1c03d68d4e6a86778dd6beda0cc759e93c7a1ec3e8d20d",
+      "parameters": {
+        "rate": 0.898397
+      },
+      "partition": "train",
+      "sample_id": "aug_6c4d32065ff23011e54e",
+      "seed": 9363604190781876618,
+      "source_record_id": "rec_60e6e25320e8f3474fe6",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:7fed99a8d5a8d8c2bb91a9ef4da7bf3be81b8ef6bf0f0be12daafc1c756a7c0c",
+      "parameters": {
+        "fraction": 0.0289385
+      },
+      "partition": "train",
+      "sample_id": "aug_6880219bf5aee0b01040",
+      "seed": 7119742506262522154,
+      "source_record_id": "rec_1cf6d615bdb53b7cda0c",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:8cb6e9722f06515421b3467b02e295f9a861b2645f1af9981655678077e8a36f",
+      "parameters": {
+        "noise_factor": 0.002736778
+      },
+      "partition": "train",
+      "sample_id": "aug_1f0fcc75dab0c9ad5772",
+      "seed": 1766066910971924715,
+      "source_record_id": "rec_7a69b7ca95cf42701d0b",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:0cf8f22204fd0cc6d43e33cce731359352d7b914de9d2a1df5a17a17e244233d",
+      "parameters": {
+        "steps": 2.149262
+      },
+      "partition": "train",
+      "sample_id": "aug_a8e9a59c39ab27b26d36",
+      "seed": 6991652432118834569,
+      "source_record_id": "rec_af8725fa49b24a73dcd1",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:9d2f54fa6424d45722f78a23d52bbb429fe9f5585a7b4be19c189fb859167d9b",
+      "parameters": {
+        "steps": -2.020945
+      },
+      "partition": "train",
+      "sample_id": "aug_b84417946bde4681cc78",
+      "seed": 679599487397037210,
+      "source_record_id": "rec_dabc4e82a87f09753719",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:fc0f059127148a8138f5db85d0e0a58e2f0abb61f0a96784fda948744ca05e70",
+      "parameters": {
+        "rate": 1.201012
+      },
+      "partition": "train",
+      "sample_id": "aug_dc43379fda105e48323b",
+      "seed": 10394317534708894993,
+      "source_record_id": "rec_e176af9e7c2419458609",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:4f7282f37de41a137ddd3c07bcab8f5d45114c421df2ab395170f63d1fdeb42c",
+      "parameters": {
+        "rate": 0.800646
+      },
+      "partition": "train",
+      "sample_id": "aug_92f9bd5e8764e000c2e0",
+      "seed": 2712292197477590733,
+      "source_record_id": "rec_4e0d2d6b7b612f0925cc",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:937e15bfa6394425418b13f4713f2139857f3ad3a610ce5c0b8be6693295fca6",
+      "parameters": {
+        "noise_factor": 0.005611484
+      },
+      "partition": "train",
+      "sample_id": "aug_31ec50c553e181b5d9b4",
+      "seed": 10014292584699858591,
+      "source_record_id": "rec_fe69a6caa1104cbc03b5",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:6f9a7df1216ecd394f1bd10bded1731df5f19d889377b45b5b4a978c6b23d975",
+      "parameters": {
+        "steps": 1.111973
+      },
+      "partition": "train",
+      "sample_id": "aug_82beebdc3126cccdc7e6",
+      "seed": 6244481122277427623,
+      "source_record_id": "rec_e1f86ed57a4cce9a58ab",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:1746eae8c464c72b2186a2f22bcb7faf1a39fb2c5e08cf76ff14a0968938cd86",
+      "parameters": {
+        "steps": -1.125695
+      },
+      "partition": "train",
+      "sample_id": "aug_be264ea573b689bf0467",
+      "seed": 4633998983844689615,
+      "source_record_id": "rec_fefa338d580873c2cd3e",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:52889b18b9294f242a22c16708ba2a07809cecfcb882fa7c8e094945f3d79034",
+      "parameters": {
+        "rate": 1.087856
+      },
+      "partition": "train",
+      "sample_id": "aug_8957b3dc32e7ceee015a",
+      "seed": 10939343536431260271,
+      "source_record_id": "rec_06e84e6f511e879851ca",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:5852cafd57e3213acd26e45eff8169e95c7f84c980fb66a1133fefe15408790a",
+      "parameters": {
+        "rate": 0.879435
+      },
+      "partition": "train",
+      "sample_id": "aug_856ad5796a1c2e3ac786",
+      "seed": 9879751497689884224,
+      "source_record_id": "rec_51b8c1e6675046875e68",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:5580be18cc26814e82f3cdb4bf307682a41cbe920a0a2c9df85630ac14f1d633",
+      "parameters": {
+        "fraction": -0.0278631
+      },
+      "partition": "train",
+      "sample_id": "aug_09f06dbb6bf4848b1879",
+      "seed": 14085675002723315476,
+      "source_record_id": "rec_ade9d37215e105627b75",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c79a43f303940c667182b92be021b17b5e2df3d6514d51cfe63ba25b1f160d13",
+      "parameters": {
+        "noise_factor": 0.002733631
+      },
+      "partition": "train",
+      "sample_id": "aug_3b855f1ec535d55326fb",
+      "seed": 14880474625337531146,
+      "source_record_id": "rec_b1faaccffc3ade33a6de",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:75f1981944e666889743efa10e8461490c9a40a1b0c600459bfedfdab44ecc12",
+      "parameters": {
+        "steps": 1.878281
+      },
+      "partition": "train",
+      "sample_id": "aug_6aef87ac56278f9a0adb",
+      "seed": 16663872334381556651,
+      "source_record_id": "rec_74b947283511c8751b65",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:1eccaa3bd4cdb0737870727823dbfd59114714a88f1514450d9ea2ab7ca1ac0b",
+      "parameters": {
+        "steps": -1.868856
+      },
+      "partition": "train",
+      "sample_id": "aug_2c89a83f4ac5de5fe911",
+      "seed": 10580295900860722139,
+      "source_record_id": "rec_db04a08c8cb045de0940",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:f148463e190dc6431dce64037e622c28b8ce35225599b8dcb38f78320ef63618",
+      "parameters": {
+        "rate": 1.188896
+      },
+      "partition": "train",
+      "sample_id": "aug_e6c34599e75dccdf549a",
+      "seed": 14107918178751424577,
+      "source_record_id": "rec_d115cba322b06fb55589",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:4c13f1b8bfc47bf5d36cdcf6143a62b9024806a1125f6bca63f63534fde4ed4f",
+      "parameters": {
+        "rate": 0.78526
+      },
+      "partition": "train",
+      "sample_id": "aug_79ff6e8fc7ef43ec49eb",
+      "seed": 3712756699327446897,
+      "source_record_id": "rec_42d0b57afb248a9ec117",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:bf9bd3fc4bcff70e01899a30429991ceae8ae6a2c70534fc1170a87194656bee",
+      "parameters": {
+        "noise_factor": 0.005248712
+      },
+      "partition": "train",
+      "sample_id": "aug_1be5abce75569bbabaf0",
+      "seed": 17679754223465943323,
+      "source_record_id": "rec_90ff81a514cc71351efc",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:d204b1c96703905395cb60beb1f7c1d8aff3d5a7c652b87c2c3fce0ddc0cfff8",
+      "parameters": {
+        "steps": 1.17751
+      },
+      "partition": "train",
+      "sample_id": "aug_7cd0ff4f52b6acacf051",
+      "seed": 3810278926733982805,
+      "source_record_id": "rec_b1207cfc484bb3ba4c5b",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:2a38639e1773b18e221f7a04b2d7a07e4c44ade412f5e9805f5c07991c4fd5ea",
+      "parameters": {
+        "steps": -0.819892
+      },
+      "partition": "train",
+      "sample_id": "aug_862521ae4fecd4283f4b",
+      "seed": 5546988727183195923,
+      "source_record_id": "rec_9bc21230f02ca1056bac",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c392c74a0367839564d5a5daf80187583c745200d319ddd985f20a619c10309a",
+      "parameters": {
+        "rate": 1.113041
+      },
+      "partition": "train",
+      "sample_id": "aug_bb54afe9f270922b5662",
+      "seed": 7463404004448501353,
+      "source_record_id": "rec_8c41c5b0acdc8a731703",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:8a1b2cb3fabecb1f5a2f41017a277065fd50ddcbf37241bdd413da632d1a25a9",
+      "parameters": {
+        "rate": 0.87983
+      },
+      "partition": "train",
+      "sample_id": "aug_0ca93b35a08353fc9575",
+      "seed": 3830943195952502323,
+      "source_record_id": "rec_e9e8fdffcda448daddc9",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:263af157241e844d6bb5727c36a3496e485ee163180b951b863e0c6b5c9c610d",
+      "parameters": {
+        "fraction": 0.0199154
+      },
+      "partition": "train",
+      "sample_id": "aug_12ac734e61fcc588c043",
+      "seed": 3787862084818001138,
+      "source_record_id": "rec_f73e60c624491b4f6adc",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3c11511aa2aca6cffaf290fbdd2542ea6d350ae044f19f311ba289e0c4b09540",
+      "parameters": {
+        "noise_factor": 0.002637095
+      },
+      "partition": "train",
+      "sample_id": "aug_5542d12d819b96a3763f",
+      "seed": 5127197608094613469,
+      "source_record_id": "rec_a5ec4310f567f29fe0e6",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:7f39c221a49579ad0df497062347c3802a73a136410653c0d25b2bca328b59a0",
+      "parameters": {
+        "steps": 1.805335
+      },
+      "partition": "train",
+      "sample_id": "aug_472c21ccfcf0e044aefa",
+      "seed": 6772536775299663312,
+      "source_record_id": "rec_8b1d545801964600f8e5",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:954c7460c51155a5002d4efa106f64ad792f0e3301a1f7c648957bfee9c4a246",
+      "parameters": {
+        "steps": -1.8613
+      },
+      "partition": "train",
+      "sample_id": "aug_c757114ccc24116da33c",
+      "seed": 5551655329233420983,
+      "source_record_id": "rec_158ce180cdd2526ffa91",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:f329353d359487403f183ab1cc96e697fa7683e3b800f5a849a02b79a3e2a6c6",
+      "parameters": {
+        "rate": 1.182216
+      },
+      "partition": "train",
+      "sample_id": "aug_98ee6168cd92ab6896c6",
+      "seed": 11808619208064073583,
+      "source_record_id": "rec_1113b5c1927b463e6187",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a601737e313fffb7daa4ba8c6c4d2704934b286c5a461dbf55e5c114716ce136",
+      "parameters": {
+        "rate": 0.792543
+      },
+      "partition": "train",
+      "sample_id": "aug_b4fb6e8dd08f45e9ac70",
+      "seed": 4651707279003995836,
+      "source_record_id": "rec_c6253d9d506a1765e396",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:657b32af5cf1a5e1bc960bf6d3a64bdc49c4ca3e2c482e8d71d9ef755f4cfbab",
+      "parameters": {
+        "noise_factor": 0.004770868
+      },
+      "partition": "train",
+      "sample_id": "aug_48d7b75d2e9167bfd9b4",
+      "seed": 12010104445842397508,
+      "source_record_id": "rec_f4d28e0fc9542a590b34",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:1f38fa7b6780513ee0cfdb905a58cb8f684e6ce03363baa799af2f7f3ae33bc5",
+      "parameters": {
+        "steps": 0.869589
+      },
+      "partition": "train",
+      "sample_id": "aug_8621d59f046c520d0589",
+      "seed": 15447845471356599276,
+      "source_record_id": "rec_dc82cc7fca4fce70a058",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:dddd06308056912d46afc81cea792c160e31db580a75f89c75d66457f96339db",
+      "parameters": {
+        "steps": -1.028325
+      },
+      "partition": "train",
+      "sample_id": "aug_d3fa87a00ae7ce3b1ec9",
+      "seed": 6986043322942608399,
+      "source_record_id": "rec_1fc595f5a9fa8e61bb2a",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:8585d00c79bab3dfec7f375718bc26ea475eeaf0f74bb98c5953c4ffa3380261",
+      "parameters": {
+        "rate": 1.088022
+      },
+      "partition": "train",
+      "sample_id": "aug_f0c3a15436c542b6f647",
+      "seed": 71194641989149880,
+      "source_record_id": "rec_bdcdd560bdde23d75dcf",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:804ed44fe3409c84edad9d5b7d7910e5f080e43815177aeb5714e425cb68b4b1",
+      "parameters": {
+        "rate": 0.899209
+      },
+      "partition": "train",
+      "sample_id": "aug_e6090ac6845c94cb1f43",
+      "seed": 17668604570967067281,
+      "source_record_id": "rec_9aea41696fde8eacba64",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:ee8e5f3fff4f2700a00748bfdffb282ddd4ebdb494e7918b26fcc632d76c1e4b",
+      "parameters": {
+        "fraction": -0.0424293
+      },
+      "partition": "train",
+      "sample_id": "aug_0ac6848c137fdc6d6c12",
+      "seed": 9706447303038203940,
+      "source_record_id": "rec_7d34a6ff4cab4dc795fd",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:8dad9d9ae6f746dcca70d42d5893f20751aa87f70a42fcae47944339d9b8c654",
+      "parameters": {
+        "noise_factor": 0.002470204
+      },
+      "partition": "train",
+      "sample_id": "aug_dc570ef0ffcb13473412",
+      "seed": 11833501346082676142,
+      "source_record_id": "rec_e0b99c082ada88b0aa3b",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:4c214e7a30287da1fb948f5adc25c34b0d736c1cf2e44a3d4df7a8c42c472629",
+      "parameters": {
+        "steps": 2.124811
+      },
+      "partition": "train",
+      "sample_id": "aug_5364178ca65fa8961e1c",
+      "seed": 10713950260049250082,
+      "source_record_id": "rec_220befadf709127c5056",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:b4e2b831a474a89fb230ec4008345665d0e525c2b3f1cd88deb34ba318b95c94",
+      "parameters": {
+        "steps": -1.88196
+      },
+      "partition": "train",
+      "sample_id": "aug_32a68f8bcda01d324a77",
+      "seed": 7167619903353754398,
+      "source_record_id": "rec_63a5ffd4b62830708b3e",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:8bf104a23216b9946bea7db9f8aa057e0ab1677e4d2d845ee10410751a79934e",
+      "parameters": {
+        "rate": 1.18908
+      },
+      "partition": "train",
+      "sample_id": "aug_7da2826ec2739ea97e52",
+      "seed": 3390992901846463639,
+      "source_record_id": "rec_fecba998d290d42023e8",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3dd2e83526d145dbb7fff6a688e1cf5f75c2509d79613166ff42c915007e920c",
+      "parameters": {
+        "rate": 0.809034
+      },
+      "partition": "train",
+      "sample_id": "aug_058ed4435da42dba975a",
+      "seed": 4391979687375899988,
+      "source_record_id": "rec_0ebec3765679d0d21c7c",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:2b806d8ab20724d8c2ae668ba94a20b324f696a9981be20fb3945fd0aa13f356",
+      "parameters": {
+        "noise_factor": 0.004839487
+      },
+      "partition": "train",
+      "sample_id": "aug_997ae8fa956948edcd5c",
+      "seed": 7987705091685684564,
+      "source_record_id": "rec_752d61792b951ffa2071",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:f02101e72012844b36cd37f78a95ead77560fc486c4fdadaaa0aeefa9df2145d",
+      "parameters": {
+        "steps": 0.913695
+      },
+      "partition": "train",
+      "sample_id": "aug_bb11ad76f1abfa3a6846",
+      "seed": 4067927942793427353,
+      "source_record_id": "rec_aa622ce0d0bae1228e63",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:9810042bbc43ae0a284496ae3a7729759ce40e938323a058c5380776b3d64445",
+      "parameters": {
+        "steps": -1.181005
+      },
+      "partition": "train",
+      "sample_id": "aug_2524d57d5ed56682d073",
+      "seed": 7448077554698031173,
+      "source_record_id": "rec_8fa03b0b1122bc99fa71",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c4f4a1548a19501b1d751ad9e0d2b6251522cb1de1ce7392a002730db46b8c4d",
+      "parameters": {
+        "rate": 1.11422
+      },
+      "partition": "train",
+      "sample_id": "aug_dd7b8581717c54c7b0b7",
+      "seed": 3707438137020680127,
+      "source_record_id": "rec_5e6be8ab7bbd234bfa10",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a770569817f090643f99d553a0318b472bea996931c71c84eb443da9d888d870",
+      "parameters": {
+        "rate": 0.912566
+      },
+      "partition": "train",
+      "sample_id": "aug_1fcb9398c34984c7f4e8",
+      "seed": 13881588467217399262,
+      "source_record_id": "rec_2074b86eecde9140b59b",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:fe0fc23da423b9852477fc29b7be4587f8fce30545f3e1ca4ce92098771f0f2d",
+      "parameters": {
+        "fraction": 0.0221646
+      },
+      "partition": "train",
+      "sample_id": "aug_118982992de31cf06043",
+      "seed": 15803096887754793067,
+      "source_record_id": "rec_d063c5f9742a23575dbd",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:58bc77e2ace62286950d0b59e42f42eca4760fe8525cee04c7bdf5fcdaf12bfc",
+      "parameters": {
+        "noise_factor": 0.002675297
+      },
+      "partition": "train",
+      "sample_id": "aug_ad0cf261e7a9d0a97fd7",
+      "seed": 418104462892413086,
+      "source_record_id": "rec_3a4f0fe4fd6a0cff506f",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c98158cfe65366a9a974891dbc8e546dce0dc55a333ba680b95bfeb078464798",
+      "parameters": {
+        "steps": 1.869911
+      },
+      "partition": "train",
+      "sample_id": "aug_adc12eaab2582f4011be",
+      "seed": 753555952016657695,
+      "source_record_id": "rec_b0ac810c71cf73db1ee2",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:dec397cb777060436d930a96392b0e2cdb3174b953772635215266a5b9b8e136",
+      "parameters": {
+        "steps": -1.836448
+      },
+      "partition": "train",
+      "sample_id": "aug_e9a1d85e4baded8217a6",
+      "seed": 2661845600851140375,
+      "source_record_id": "rec_33873b0c0a625be21a8e",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:cd650081ee6e8356ab9b7d9a05c72e0c48e31159da92083373d80887218ec3fe",
+      "parameters": {
+        "rate": 1.178772
+      },
+      "partition": "train",
+      "sample_id": "aug_a1e675e96223a0627bd9",
+      "seed": 4306765186864204050,
+      "source_record_id": "rec_c59bc1d7f247cb566f41",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:11a10a6d60666d73852caa5b054cdc9ad8e0e53c5674409b3e50dc48fb09b8a7",
+      "parameters": {
+        "rate": 0.800854
+      },
+      "partition": "train",
+      "sample_id": "aug_7a58fbc360574503c653",
+      "seed": 14304164239017898252,
+      "source_record_id": "rec_829c72de849282995758",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:699f3614c78492ce1cab6aa710695221c86ce0b3321e21214442e71963de3f13",
+      "parameters": {
+        "noise_factor": 0.004346789
+      },
+      "partition": "train",
+      "sample_id": "aug_f431a0c73d39b4355d74",
+      "seed": 2062084351357776954,
+      "source_record_id": "rec_116a54085a97e5e34e00",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:783123616cdb96cd8027bf4e630396e6d36b4e125d3cf07e2a12564d39d21ee0",
+      "parameters": {
+        "steps": 1.104805
+      },
+      "partition": "train",
+      "sample_id": "aug_739d64a374e72d821a3c",
+      "seed": 7314445273747128650,
+      "source_record_id": "rec_21e4eb802981d3244577",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:60149a878668571e284b8b257965d148d23768434d32a330991ba2db7e3b1e3e",
+      "parameters": {
+        "steps": -0.816198
+      },
+      "partition": "train",
+      "sample_id": "aug_6fba980205b95ad0b2b8",
+      "seed": 18292558669767180415,
+      "source_record_id": "rec_4f5f3b672a3334ab6010",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:770eef33e5c1b78fca3e21e56b3813cdadc6953fc2674d8f3dc63f4d41d80db1",
+      "parameters": {
+        "rate": 1.114176
+      },
+      "partition": "train",
+      "sample_id": "aug_3baba2f738f4814c9078",
+      "seed": 18341194700422313074,
+      "source_record_id": "rec_c7f20a59a25680b1fe26",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a8d6812ff62aa7a2eb50f39adbc4b0f0d4b119799b1fa4e2b21977e287f2b9e1",
+      "parameters": {
+        "rate": 0.876504
+      },
+      "partition": "train",
+      "sample_id": "aug_b834b0dd5dc3c94d65c9",
+      "seed": 11868363660054164042,
+      "source_record_id": "rec_82fe1c8ae9c2efafe311",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:beb9a6718b80f0a157554a9d5b620888544dd6fb7a242952b018a1fa811f2234",
+      "parameters": {
+        "fraction": 0.0290817
+      },
+      "partition": "train",
+      "sample_id": "aug_b236fc47341a050573c8",
+      "seed": 6716543922707523898,
+      "source_record_id": "rec_7e8a78def33e979ca783",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a9264bc22ea5a59abcbc9e534854aae447a1532ee7154745b54cb37d6dfad18d",
+      "parameters": {
+        "noise_factor": 0.002571741
+      },
+      "partition": "train",
+      "sample_id": "aug_ab98ee1b2de6dfa7bc39",
+      "seed": 16404774165652997465,
+      "source_record_id": "rec_cb791979b42c6631a24b",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:56b3f4c1f74778e42892b692b68ea25b91fdd16d905856ba600bab014ed5b35e",
+      "parameters": {
+        "steps": 2.050236
+      },
+      "partition": "train",
+      "sample_id": "aug_dba3ed266893dd8609ad",
+      "seed": 9774826248032609511,
+      "source_record_id": "rec_aef16fe4b73818181ee3",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:9fde7aede32b5320f792a545ddab382f6ff2f83e44d7609fd5c01e44dd8becfa",
+      "parameters": {
+        "steps": -2.041525
+      },
+      "partition": "train",
+      "sample_id": "aug_2fbda6f0a0dfa7be6153",
+      "seed": 452662946061048605,
+      "source_record_id": "rec_50da61b23db30480db84",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a9314659e80a3b4719bf3055c879d1524c25db0596b6dd32472e04108edb889b",
+      "parameters": {
+        "rate": 1.187933
+      },
+      "partition": "train",
+      "sample_id": "aug_7a84d1225184ad48ac72",
+      "seed": 15000614282616109387,
+      "source_record_id": "rec_7c9fa2018ccd9fa62207",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c4dd31085491fcac478954373ed0b61c18481364ceae041793da9518a16b2f64",
+      "parameters": {
+        "rate": 0.793839
+      },
+      "partition": "train",
+      "sample_id": "aug_1a583a6b1337a1a650a8",
+      "seed": 12618683423997900126,
+      "source_record_id": "rec_b6b66fb3f3de74db9ab8",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:aede4ea8284d524a1af632adabe475fcf87c86ed825abe44bd2dbe18c0ffe671",
+      "parameters": {
+        "noise_factor": 0.004745566
+      },
+      "partition": "train",
+      "sample_id": "aug_00f03af7a9e64987ab3f",
+      "seed": 5066190249793883932,
+      "source_record_id": "rec_391431d9e36aba58d034",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:6bbcd95f37c0056fc3be5697a94ef871285dc1075267219c7a2564dd3525ea63",
+      "parameters": {
+        "steps": 1.048579
+      },
+      "partition": "train",
+      "sample_id": "aug_40005d3cf9964764cd5d",
+      "seed": 5926432353113926049,
+      "source_record_id": "rec_866de97ef20add08af82",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3aee28552080d0db55ac45d25e6d46ebae7467cc388c524b13faf129bf003010",
+      "parameters": {
+        "steps": -1.141329
+      },
+      "partition": "train",
+      "sample_id": "aug_df7048414535a3cb5683",
+      "seed": 8778531930264696059,
+      "source_record_id": "rec_fcc4c169f306104793fd",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:3fc6d71e2da6c30e162771b1bebdd452fed1689baf623395b987aca747aaacd3",
+      "parameters": {
+        "rate": 1.111489
+      },
+      "partition": "train",
+      "sample_id": "aug_698964e59ea607c2f544",
+      "seed": 6872075209420020310,
+      "source_record_id": "rec_8e1af1b14f5eefa2208e",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:2859b957f0a98febd4138bf69b5db9ccd2c1d0836296d13a8557743d092e9da9",
+      "parameters": {
+        "rate": 0.880189
+      },
+      "partition": "train",
+      "sample_id": "aug_b5fd0ece5f33da823bd0",
+      "seed": 13916162336874316804,
+      "source_record_id": "rec_a3faf476ef2f1bd092ba",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:808f071f9bd60224013b50e6cf508d8a0ea2e1174a627af06398d498898aab9f",
+      "parameters": {
+        "fraction": -0.0747057
+      },
+      "partition": "train",
+      "sample_id": "aug_10e3e84b31e04e6c6642",
+      "seed": 293214122606308937,
+      "source_record_id": "rec_815fbbf7a4029d0e7b3f",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a9fb4c9c65cd214af03c7acf7670c89e8eac105a1235741f7a3fcabd4410ddf1",
+      "parameters": {
+        "noise_factor": 0.002300993
+      },
+      "partition": "train",
+      "sample_id": "aug_7a24a63207b666b3391d",
+      "seed": 3059147813632344844,
+      "source_record_id": "rec_c7455d306ae46d35e2fd",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:d0f4706235582cf5e92c6cc91bb29e6ec7bff21b4073444f0ba654c9e9a923f8",
+      "parameters": {
+        "steps": 2.078181
+      },
+      "partition": "train",
+      "sample_id": "aug_2a2852429529fa9c987b",
+      "seed": 13911295328245945624,
+      "source_record_id": "rec_459bb2953e87065146b1",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:5699bdb29b4198e1918f06edb59c72b265693c8b2e9df55a3bca430f442b0b5f",
+      "parameters": {
+        "steps": -1.890776
+      },
+      "partition": "train",
+      "sample_id": "aug_aa38a92862cdd45f39e5",
+      "seed": 931122582967751156,
+      "source_record_id": "rec_86e6760be24886dd3199",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:f2d6859d0d472c101de3c5a92fe715beee7846a948e821201b694ffa095da5c4",
+      "parameters": {
+        "rate": 1.193369
+      },
+      "partition": "train",
+      "sample_id": "aug_bb486d4d500cdf5b1c3e",
+      "seed": 2556643858168632343,
+      "source_record_id": "rec_cd3db73b14a06bcaf977",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:18c8648b23456a9c3f720d089a4e9ef0c68113b3256bb55e7bafb58c04445480",
+      "parameters": {
+        "rate": 0.791844
+      },
+      "partition": "train",
+      "sample_id": "aug_dd0033c0cd79f2342e39",
+      "seed": 13330048146780173188,
+      "source_record_id": "rec_7d6aa6a7af750f0245fb",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:38802f44a188fda11fc4bd015c2569346e4f3f2b25fd2df13b2b2bd136913ac4",
+      "parameters": {
+        "noise_factor": 0.004842928
+      },
+      "partition": "train",
+      "sample_id": "aug_c4b290a6c38fe7fc4c55",
+      "seed": 389482712147765779,
+      "source_record_id": "rec_9a177e94e657deab253d",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:b9acd86c44e7a37c97382c515435ab53825308662ab78effd5910cedfbc2a0d3",
+      "parameters": {
+        "steps": 0.985084
+      },
+      "partition": "train",
+      "sample_id": "aug_e3199209b3e4ec515713",
+      "seed": 12520465549691567845,
+      "source_record_id": "rec_a3b246b844a903219afc",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:425b39296cd46bd1fd0bbbebae3665a3e4bb71c31ebf671767d6c4d0fd70ceb7",
+      "parameters": {
+        "steps": -1.029411
+      },
+      "partition": "train",
+      "sample_id": "aug_7fe12ad7ddd1784e4a1a",
+      "seed": 16179050061673106139,
+      "source_record_id": "rec_a9a998b8b102f1ba4290",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:003a9b326de80bb4dc7b330cab406df39b5eb322b6e0a0541212af103ec099c1",
+      "parameters": {
+        "rate": 1.103373
+      },
+      "partition": "train",
+      "sample_id": "aug_c28da21a3c2db314c13a",
+      "seed": 16969582475713911778,
+      "source_record_id": "rec_adebcb991948cd5e3658",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a5cc0c95f7abe6d8f5a3c24f7534b763bb4eb8aa1ec35511b0c4536a932ce4e4",
+      "parameters": {
+        "rate": 0.894103
+      },
+      "partition": "train",
+      "sample_id": "aug_d4e8fab0d1d033045d28",
+      "seed": 2861273147219937204,
+      "source_record_id": "rec_ca5f15d2b28002cc6999",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:d8c8790706ecec824591249265c91ae6aa1c434d3ecaca445448bcb5cbc0617c",
+      "parameters": {
+        "fraction": 0.0321575
+      },
+      "partition": "train",
+      "sample_id": "aug_3484ece328540735c13f",
+      "seed": 4932988536314165153,
+      "source_record_id": "rec_7e5566a7008783e46843",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:aa5d1025d45eaf0a2068b46220c5c8e7be2dde8404668c9ecbf0356015f5ce44",
+      "parameters": {
+        "noise_factor": 0.002275933
+      },
+      "partition": "train",
+      "sample_id": "aug_8b50491a80c75e8c99ff",
+      "seed": 12387454824766335104,
+      "source_record_id": "rec_18d9850a2ad7c58b08a3",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:8452cb3dab4f2be1640ee40ae1990df62e2df7e806809ea0d2098947d8127898",
+      "parameters": {
+        "steps": 2.108775
+      },
+      "partition": "train",
+      "sample_id": "aug_cfe98d9430186033c689",
+      "seed": 458224207132791547,
+      "source_record_id": "rec_eebb212fc609ed557451",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:9ed94cfd8ea664ed4bd338f0770933dc141ed5857241df45fa204c78e759d40d",
+      "parameters": {
+        "steps": -1.838564
+      },
+      "partition": "train",
+      "sample_id": "aug_24aa5be353091984874f",
+      "seed": 2321665440412353817,
+      "source_record_id": "rec_5429422754517263ee73",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:95e61baf5c0ced2a0e2ea77c7f11e0ccc9851e47866f5c4c64c03a3f9d2579ea",
+      "parameters": {
+        "rate": 1.198538
+      },
+      "partition": "train",
+      "sample_id": "aug_e418b396bc03c968acdd",
+      "seed": 13734814933680040326,
+      "source_record_id": "rec_a6bae959a6f324900e75",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:105bbf74d33a2c7a9b7ecff93a0335ca785aa31aea0c2c322815ffcefd1bfda4",
+      "parameters": {
+        "rate": 0.779894
+      },
+      "partition": "train",
+      "sample_id": "aug_3384083eb119775448bd",
+      "seed": 2675176066156387610,
+      "source_record_id": "rec_e6d5a53ef5c2a42cae1f",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:65241fd13acf438416464657ccd276d1e75e05c481c9ee2d435913cc75cab595",
+      "parameters": {
+        "noise_factor": 0.004763838
+      },
+      "partition": "train",
+      "sample_id": "aug_81075982e9c9e469b61a",
+      "seed": 3526794349638586661,
+      "source_record_id": "rec_1c58cbabee035ccc3d2f",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:da1abd88ca5ed6fad7892ea218f1f326cb92a9f91085683a339c65f44b2f4bed",
+      "parameters": {
+        "steps": 0.864181
+      },
+      "partition": "train",
+      "sample_id": "aug_64463fc40b95b6916cb0",
+      "seed": 1627686355096861439,
+      "source_record_id": "rec_db35c613515374caf95f",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c3dea00222599d49d57fe8193035082e86625cfc0fafbc0515c3e2b8c2c6be51",
+      "parameters": {
+        "steps": -1.092092
+      },
+      "partition": "train",
+      "sample_id": "aug_d282c5f6949c5a5cfb7f",
+      "seed": 7010921147722552992,
+      "source_record_id": "rec_5a1f57001a9a5cb17ad8",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:e5586b45c66216c95aa93cc4928b28d6ffdccb9ff2dd686afd63ea73d78982b5",
+      "parameters": {
+        "rate": 1.095638
+      },
+      "partition": "train",
+      "sample_id": "aug_b51e93027c0809aba2ca",
+      "seed": 13543469623317053209,
+      "source_record_id": "rec_95ecc93388c308db3fbd",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:58ffe4253bb4013018d129bc11c52f97be6a8ee327a04f2b3a21d4fcb42735f4",
+      "parameters": {
+        "rate": 0.880613
+      },
+      "partition": "train",
+      "sample_id": "aug_c7b8d04cff16a13419a3",
+      "seed": 1680341892172368204,
+      "source_record_id": "rec_8fb0a7696007be9b34c3",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:ee88073524834bdca165fa2854649a1915783d51378c671e8b0877fa6b50e339",
+      "parameters": {
+        "fraction": -0.02042
+      },
+      "partition": "train",
+      "sample_id": "aug_016e7f3108d0e345df8a",
+      "seed": 15121549999321198273,
+      "source_record_id": "rec_dd2ecfc5b21bcd086e19",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:7861889db8e50bab4200a04da467bd0db6150146587d396922ce2bb78b0bb706",
+      "parameters": {
+        "noise_factor": 0.002756764
+      },
+      "partition": "train",
+      "sample_id": "aug_a6d12d15367f376a58e0",
+      "seed": 5428148213157351448,
+      "source_record_id": "rec_81fef69644989c4602c2",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:fedb2f8be484c091b0235f6203935bb810cbc52303d46e5e92ad98c965d3a84a",
+      "parameters": {
+        "steps": 1.89195
+      },
+      "partition": "train",
+      "sample_id": "aug_f051795aaa1dfba42a7e",
+      "seed": 2629326105759769999,
+      "source_record_id": "rec_9185eef7e2aecebfb720",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:b3130cc67025a37985b65bc0789767274bbc51fa5807c11d8fc88b376765be21",
+      "parameters": {
+        "steps": -1.99691
+      },
+      "partition": "train",
+      "sample_id": "aug_56d84600551a3060df94",
+      "seed": 16344603992570165075,
+      "source_record_id": "rec_2df803f30d57bddf6f05",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:b3a6344a1fca73de87be6a15c9dd359654c809b9d4aa2326db918680f882e290",
+      "parameters": {
+        "rate": 1.184304
+      },
+      "partition": "train",
+      "sample_id": "aug_fdf6150d1aad1c495b61",
+      "seed": 590744259553243728,
+      "source_record_id": "rec_964f64cc6976bb04f9ed",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:6a3868b9299da38316a58fc349aa7395a387c4770ed6280a431e823200a435d4",
+      "parameters": {
+        "rate": 0.786894
+      },
+      "partition": "train",
+      "sample_id": "aug_b1b02daed4c79d80445c",
+      "seed": 18417224237834825092,
+      "source_record_id": "rec_36dc78bde405c4a98143",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:7c72ee380b941e571e3ba043d2016fe1b867369dd714c32c31cfb32d4471f573",
+      "parameters": {
+        "noise_factor": 0.004820966
+      },
+      "partition": "train",
+      "sample_id": "aug_95d2f799410eeaa5b1aa",
+      "seed": 10475809317067104412,
+      "source_record_id": "rec_c69119cf6403614feab1",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:f5c3ead3aef7b04bf62bb0778a2869f37675e041019f640a4202110fb09d3d3b",
+      "parameters": {
+        "steps": 1.045024
+      },
+      "partition": "train",
+      "sample_id": "aug_6d1f5ae0b66bf6d1ef8a",
+      "seed": 4106532955438573803,
+      "source_record_id": "rec_1744f789c8836ae844cb",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:ccb1f46f0f7cb13188b168570d0515229ad6a7eda7735e90615b37024171361a",
+      "parameters": {
+        "steps": -1.053273
+      },
+      "partition": "train",
+      "sample_id": "aug_867d9b52d5208c4e0f52",
+      "seed": 814068732546975239,
+      "source_record_id": "rec_97cf07c2c7b61a716812",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:30eedff31f2917f34dc4054f1e1fede294438f92fcc11eff83382d0630bed578",
+      "parameters": {
+        "rate": 1.092082
+      },
+      "partition": "train",
+      "sample_id": "aug_a6e98c8a028ce2731ce2",
+      "seed": 11502408501213730459,
+      "source_record_id": "rec_88e4a7633c64c24b0e2a",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:87d1bf51e68e970e611483992f1c26f3f63ecd6c89e65939d7ef91262e67df6a",
+      "parameters": {
+        "rate": 0.91879
+      },
+      "partition": "train",
+      "sample_id": "aug_0e3ae8a6b9130a56ac6c",
+      "seed": 16892178261888614672,
+      "source_record_id": "rec_27d5d632e1e1c98d5156",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:745142c696dc27171b5296ba1cfbd2cff291d97fa810a2e3f444c695d29c8855",
+      "parameters": {
+        "fraction": -0.0295978
+      },
+      "partition": "train",
+      "sample_id": "aug_a74666afca8cc2f7873b",
+      "seed": 5998721030072652580,
+      "source_record_id": "rec_aeb79fc9b0c45b64f93c",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:4b96e23058cbcd1c5a1534f51040e18f59916d1391a46b9d8b8501d487fe80b5",
+      "parameters": {
+        "noise_factor": 0.002174236
+      },
+      "partition": "train",
+      "sample_id": "aug_6ae52a29b457d00eb61d",
+      "seed": 874072246406817595,
+      "source_record_id": "rec_319780f53524cae3ddb4",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:597134a3cfa22d9bed8f4755b4d6772de24fd852710de6aac2bf5e0c3b0e016b",
+      "parameters": {
+        "steps": 2.031475
+      },
+      "partition": "train",
+      "sample_id": "aug_514da937553fe027f325",
+      "seed": 7227979146794542859,
+      "source_record_id": "rec_5a00ca260f8129914b9f",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:0ce1279d917848cb418e9c0aeef154e65f14785e96409e0f872dab2a2b5c2130",
+      "parameters": {
+        "steps": -2.07253
+      },
+      "partition": "train",
+      "sample_id": "aug_28a505719bdbe3d5ce28",
+      "seed": 16925373125719008143,
+      "source_record_id": "rec_3302345d89eba27a1c22",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:b2ecffbf5e6d006dbad1a7aecd4797684d77889670e438a29f15e684ed0d1163",
+      "parameters": {
+        "rate": 1.205684
+      },
+      "partition": "train",
+      "sample_id": "aug_1bcfb8a63e191015fbf4",
+      "seed": 10814246932346546326,
+      "source_record_id": "rec_e1ef8e972326ca893fbc",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:7dd6a6d0a076ee4cf0afa73c9afefc3ac27f095ccdff1b56f3eedd40824a9e8a",
+      "parameters": {
+        "rate": 0.784881
+      },
+      "partition": "train",
+      "sample_id": "aug_24ea9924ef9bb1d4d15c",
+      "seed": 11815402097081838908,
+      "source_record_id": "rec_809cdb5395444ae140c5",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:0fe33f3314926ce1c3cc090b9a585b62c26bbbd8dc7295ca81b52fda444991cc",
+      "parameters": {
+        "noise_factor": 0.005556042
+      },
+      "partition": "train",
+      "sample_id": "aug_4df30454946ef4ebaa20",
+      "seed": 11521822139121470364,
+      "source_record_id": "rec_755d79cdfd94584a1189",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:c2e3f437cf89aeae81dc0445266d5fec564bf01a710bb3987eb8038533a746ad",
+      "parameters": {
+        "steps": 0.949996
+      },
+      "partition": "train",
+      "sample_id": "aug_d343e6041679facc2b84",
+      "seed": 1626723882012863558,
+      "source_record_id": "rec_ee37b9147c4d0199eb94",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:222cd810288c773f42dfe0cd96d3c5c324e616abb4acf0a82bc7b1ee867793a8",
+      "parameters": {
+        "steps": -0.970376
+      },
+      "partition": "train",
+      "sample_id": "aug_dc8672b46def75649dc3",
+      "seed": 5634825260154721946,
+      "source_record_id": "rec_1b6634529dffa814cb2a",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:dd916847f8d4d4d0e040b0283daeae6811e23869b9c31db031349c4290445fc6",
+      "parameters": {
+        "rate": 1.097753
+      },
+      "partition": "train",
+      "sample_id": "aug_4b28b49d6522d057b077",
+      "seed": 3802201071369146354,
+      "source_record_id": "rec_142eab8d535fe4c092f4",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:8369ebc4d904e2a276e11444cfb69ddf225b68831028ba638532f6f1a746af32",
+      "parameters": {
+        "rate": 0.884708
+      },
+      "partition": "train",
+      "sample_id": "aug_a84b123d7a80607a6cad",
+      "seed": 16812999568811730992,
+      "source_record_id": "rec_2b58e61cd1f7b6392733",
+      "type": "time_stretch"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:aca3a9ad5cce2747a5afb5a41af2a8791cf2277c638e3ff2725322dc8c357498",
+      "parameters": {
+        "fraction": 0.0957636
+      },
+      "partition": "train",
+      "sample_id": "aug_2ae276559b3816213d3c",
+      "seed": 5481977300838440364,
+      "source_record_id": "rec_7e95604e128c80eeb3c1",
+      "type": "time_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:98c9c1ac8cee31454649873912971dc66a1ebe7ae296070412f3572070358651",
+      "parameters": {
+        "noise_factor": 0.00236608
+      },
+      "partition": "train",
+      "sample_id": "aug_7e82a8d6ecd5cec2b140",
+      "seed": 66518802318756849,
+      "source_record_id": "rec_5b29661d9ab4ae4541b2",
+      "type": "gaussian_noise"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:cade3dba1ee58bcfcf613c311275b5decf8561d6cc1ffd7f9c94053bb3d0635d",
+      "parameters": {
+        "steps": 1.826374
+      },
+      "partition": "train",
+      "sample_id": "aug_334ec3be901382002f3b",
+      "seed": 2462364176410145638,
+      "source_record_id": "rec_2e0608ae3276e423cd26",
+      "type": "pitch_shift"
+    },
+    {
+      "fold": 4,
+      "group_id": "infant_sha256:a9f58baf55f7e15e7f1ccf6b462d55dfae5a8a983f391679fa513bc2f12bdd13",
+      "parameters": {
+        "steps": -2.094933
+      },
+      "partition": "train",
+      "sample_id": "aug_a2cebbe6c97c9f429f0e",
+      "seed": 18196285481617406057,
+      "source_record_id": "rec_8015717db2b99a0f188f",
+      "type": "pitch_shift"
+    }
+  ]
+}

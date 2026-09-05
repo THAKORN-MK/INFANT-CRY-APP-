@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0",
+  "wave": "C",
+  "seeds": [42, 123, 2026],
+  "selection_metric": "oof_macro_f1",
+  "candidate_source": "parent_top_2",
+  "continue_on_candidate_failure": true,
+  "candidates": [],
+  "parameters": {}
+}

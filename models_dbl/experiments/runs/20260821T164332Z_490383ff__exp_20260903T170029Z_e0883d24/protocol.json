@@ -1,0 +1,32 @@
+{
+  "assignment_hashes": {
+    "stage1": "ed933f76d4e381786fd2082c94b97ccd9ab1f9c976af43c4fb3d2fe471573a5d",
+    "stage2": "c32468c254cf170c9eab26c4c0b712b2b6e8d773af5ae908623d84a0c7b19595"
+  },
+  "config": {
+    "candidate_source": "explicit",
+    "candidates": [
+      "stage1_majority",
+      "stage1_mfcc_svm",
+      "stage1_logmel_small_cnn"
+    ],
+    "continue_on_candidate_failure": true,
+    "parameters": {
+      "device": "gpu",
+      "mixed_precision": true,
+      "require_gpu": true
+    },
+    "schema_version": "1.0",
+    "seeds": [
+      42
+    ],
+    "selection_metric": "oof_macro_f1",
+    "wave": "stage1_baselines"
+  },
+  "config_sha256": "23423e4ed756ba4a4ac6ed8fe4ddb8034ab90595153de0220d90a286f6d79315",
+  "experiment_run_id": "20260821T164332Z_490383ff__exp_20260903T170029Z_e0883d24",
+  "heldout_test_available_for_ranking": false,
+  "pipeline_run_id": "20260821T164332Z_490383ff",
+  "schema_version": "1.0",
+  "selection_scope": "grouped_oof_only"
+}

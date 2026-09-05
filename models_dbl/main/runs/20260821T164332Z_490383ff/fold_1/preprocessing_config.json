@@ -1,0 +1,57 @@
+{
+  "delta_width": 9,
+  "dtype": "float32",
+  "feature_blocks": [
+    [
+      "mfcc",
+      0,
+      40
+    ],
+    [
+      "delta",
+      40,
+      80
+    ],
+    [
+      "delta2",
+      80,
+      120
+    ],
+    [
+      "logmel",
+      120,
+      184
+    ],
+    [
+      "chroma",
+      184,
+      196
+    ]
+  ],
+  "feature_order": [
+    "mfcc",
+    "delta",
+    "delta2",
+    "logmel",
+    "chroma"
+  ],
+  "feature_shape": [
+    196,
+    128,
+    1
+  ],
+  "hop_length": 512,
+  "max_frames": 128,
+  "minimum_waveform_samples": 4096,
+  "mono": true,
+  "n_chroma": 12,
+  "n_fft": 2048,
+  "n_mels": 64,
+  "n_mfcc": 40,
+  "normalization_epsilon": 1e-08,
+  "normalize_waveform": true,
+  "sample_rate": 22050,
+  "short_audio_policy": "right_zero_pad_to_delta_width",
+  "trim_top_db": 20,
+  "version": "cryinsight_stage2_features_v3"
+}

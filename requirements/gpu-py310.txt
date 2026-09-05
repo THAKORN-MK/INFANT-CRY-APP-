@@ -1,0 +1,7 @@
+# WSL2 Ubuntu 22.04 / Python 3.10 / TensorFlow GPU
+tensorflow[and-cuda]==2.21.0
+numpy==2.2.6
+librosa==0.11.0
+scikit-learn==1.7.2
+matplotlib==3.10.9
+soundfile==0.14.0

@@ -1,0 +1,115 @@
+{
+  "bootstrap_intervals": {},
+  "classification_report": {
+    "accuracy": 0.9573170731707317,
+    "baby": {
+      "f1-score": 0.950354609929078,
+      "precision": 0.9392523364485982,
+      "recall": 0.9617224880382775,
+      "support": 209.0
+    },
+    "macro avg": {
+      "f1-score": 0.9564607274244321,
+      "precision": 0.955237679015666,
+      "recall": 0.9578930461392801,
+      "support": 492.0
+    },
+    "not_baby": {
+      "f1-score": 0.9625668449197861,
+      "precision": 0.9712230215827338,
+      "recall": 0.9540636042402827,
+      "support": 283.0
+    },
+    "weighted avg": {
+      "f1-score": 0.9573791272103186,
+      "precision": 0.9576419785074608,
+      "recall": 0.9573170731707317,
+      "support": 492.0
+    }
+  },
+  "fold_summary": {
+    "accuracy": {
+      "fold_count": 1.0,
+      "mean": 0.9573170731707317,
+      "sd": 0.0
+    },
+    "balanced_accuracy": {
+      "fold_count": 1.0,
+      "mean": 0.9578930461392801,
+      "sd": 0.0
+    },
+    "brier_score": {
+      "fold_count": 1.0,
+      "mean": 0.06273105548734693,
+      "sd": 0.0
+    },
+    "expected_calibration_error": {
+      "fold_count": 1.0,
+      "mean": 0.016274310269096693,
+      "sd": 0.0
+    },
+    "log_loss": {
+      "fold_count": 1.0,
+      "mean": 0.11634046699240087,
+      "sd": 0.0
+    },
+    "macro_f1": {
+      "fold_count": 1.0,
+      "mean": 0.9564607274244321,
+      "sd": 0.0
+    },
+    "macro_precision": {
+      "fold_count": 1.0,
+      "mean": 0.955237679015666,
+      "sd": 0.0
+    },
+    "macro_recall": {
+      "fold_count": 1.0,
+      "mean": 0.9578930461392801,
+      "sd": 0.0
+    },
+    "roc_auc": {
+      "fold_count": 1.0,
+      "mean": 0.9911407171961384,
+      "sd": 0.0
+    },
+    "sensitivity": {
+      "fold_count": 1.0,
+      "mean": 0.9540636042402827,
+      "sd": 0.0
+    },
+    "specificity": {
+      "fold_count": 1.0,
+      "mean": 0.9617224880382775,
+      "sd": 0.0
+    },
+    "weighted_f1": {
+      "fold_count": 1.0,
+      "mean": 0.9573791272103186,
+      "sd": 0.0
+    }
+  },
+  "limitations": [
+    "This study reports model development and corrected internal validation.",
+    "Independent/external validation has not yet been performed.",
+    "Fold estimates are correlated and are not independent experiments."
+  ],
+  "max_probability_sum_deviation": 4.440892098500626e-16,
+  "pooled_metrics": {
+    "accuracy": 0.9573170731707317,
+    "balanced_accuracy": 0.9578930461392801,
+    "brier_score": 0.06273105548734693,
+    "evaluation_scope": "corrected_grouped_internal_validation",
+    "expected_calibration_error": 0.016274310269096693,
+    "independent_external_validation_performed": false,
+    "log_loss": 0.11634046699240087,
+    "macro_f1": 0.9564607274244321,
+    "macro_precision": 0.955237679015666,
+    "macro_recall": 0.9578930461392801,
+    "roc_auc": 0.9911407171961384,
+    "sensitivity": 0.9540636042402827,
+    "specificity": 0.9617224880382775,
+    "support_original_records": 492,
+    "weighted_f1": 0.9573791272103186
+  }
+}

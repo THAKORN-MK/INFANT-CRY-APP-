@@ -1,0 +1,51 @@
+{
+  "adapter": "classical",
+  "candidate_id": "stage1_majority",
+  "class_recall": {
+    "baby": 0.0,
+    "not_baby": 1.0
+  },
+  "fold_parameter_counts": {
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0
+  },
+  "folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "heldout_test_used_for_selection": false,
+  "minimum_class_recall": 0.0,
+  "oof_support": 2432,
+  "parameter_count": 0.0,
+  "parameter_count_max": 0,
+  "parameter_count_mean": 0.0,
+  "parameter_count_min": 0,
+  "pooled_metrics": {
+    "accuracy": 0.569078947368421,
+    "balanced_accuracy": 0.5,
+    "brier_score": 0.8618421052631579,
+    "evaluation_scope": "corrected_grouped_internal_validation",
+    "expected_calibration_error": 0.430921052631579,
+    "independent_external_validation_performed": false,
+    "log_loss": 15.53196905912614,
+    "macro_f1": 0.36268343815513626,
+    "macro_precision": 0.2845394736842105,
+    "macro_recall": 0.5,
+    "roc_auc": 0.5,
+    "sensitivity": 1.0,
+    "specificity": 0.0,
+    "support_original_records": 2432,
+    "weighted_f1": 0.41279101842656957
+  },
+  "probability_max_sum_deviation_before_normalization": 0.0,
+  "probability_tolerance": 1e-05,
+  "schema_version": "1.0",
+  "seed": 42,
+  "status": "complete"
+}

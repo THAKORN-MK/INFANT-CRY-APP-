@@ -1,0 +1,51 @@
+{
+  "adapter": "neural",
+  "candidate_id": "stage1_logmel_small_cnn",
+  "class_recall": {
+    "baby": 0.9446564885496184,
+    "not_baby": 0.9111271676300579
+  },
+  "fold_parameter_counts": {
+    "1": 10754,
+    "2": 10754,
+    "3": 10754,
+    "4": 10754,
+    "5": 10754
+  },
+  "folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "heldout_test_used_for_selection": false,
+  "minimum_class_recall": 0.9111271676300579,
+  "oof_support": 2432,
+  "parameter_count": 10754.0,
+  "parameter_count_max": 10754,
+  "parameter_count_mean": 10754.0,
+  "parameter_count_min": 10754,
+  "pooled_metrics": {
+    "accuracy": 0.9255756578947368,
+    "balanced_accuracy": 0.927891828089838,
+    "brier_score": 0.10498401465362689,
+    "evaluation_scope": "corrected_grouped_internal_validation",
+    "expected_calibration_error": 0.01639536936396621,
+    "independent_external_validation_performed": false,
+    "log_loss": 0.18163858051420662,
+    "macro_f1": 0.9246399231114657,
+    "macro_precision": 0.92275758201202,
+    "macro_recall": 0.927891828089838,
+    "roc_auc": 0.9818178308255747,
+    "sensitivity": 0.9111271676300579,
+    "specificity": 0.9446564885496184,
+    "support_original_records": 2432,
+    "weighted_f1": 0.9258000961268867
+  },
+  "probability_max_sum_deviation_before_normalization": 1.1920928955078125e-07,
+  "probability_tolerance": 1e-05,
+  "schema_version": "1.0",
+  "seed": 42,
+  "status": "complete"
+}

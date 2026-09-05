@@ -1,0 +1,64 @@
+{
+  "artefact_role": "final_refit",
+  "feature_shape": [
+    120,
+    128,
+    1
+  ],
+  "files": {
+    "augmentation_manifest": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/binary/runs/20260821T164332Z_490383ff/best_model/augmentation_manifest.csv",
+      "sha256": "50d6e11e30fafd7181ccfa4cd83af1c63fc55abd75c9938aa2dcffc63c4467b0"
+    },
+    "class_counts": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/binary/runs/20260821T164332Z_490383ff/best_model/class_counts.json",
+      "sha256": "9b36223fa8efda465c83210ef8e8486cb784b0279875bb9b5f1d735f4d7b26dd"
+    },
+    "history": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/binary/runs/20260821T164332Z_490383ff/best_model/history.csv",
+      "sha256": "ab329764949ade494cf931c75b3d45b5f4301473a3fec2b7aad5aafb35182554"
+    },
+    "labels": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/binary/runs/20260821T164332Z_490383ff/best_model/labels_binary_dbl.json",
+      "sha256": "43236580949626a62a064c12591be344d53abce6754c6f9bbe00af94c580182f"
+    },
+    "model": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/binary/runs/20260821T164332Z_490383ff/best_model/best_model_binary_dbl.keras",
+      "sha256": "485ba96c1f72a543c58022f3819974dc47cc7bd45a2206ea4d5db3686312a944"
+    },
+    "normalizer": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/binary/runs/20260821T164332Z_490383ff/best_model/norm_stats_binary_dbl.npy",
+      "sha256": "4940640b3a690e49e5ed81fece964b4110762cff27f2bc08a630aac26144d941"
+    },
+    "normalizer_metadata": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/binary/runs/20260821T164332Z_490383ff/best_model/norm_stats_binary_dbl.npy.metadata.json",
+      "sha256": "6e65fdb05e349ebf95f0446583e85cc9bcdc9988ca3d5bd9ab44d5fc02559a55"
+    },
+    "preprocessing_config": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/binary/runs/20260821T164332Z_490383ff/best_model/preprocessing_config.json",
+      "sha256": "e8252befb7690e2078bc7d20981fe2d2726bedbafb5223929f17a307797744ac"
+    }
+  },
+  "final_epoch": 28,
+  "fold_best_epochs": [
+    28,
+    20,
+    44,
+    9,
+    28
+  ],
+  "heldout_test_used_for_selection": false,
+  "label_order": [
+    "not_baby",
+    "baby"
+  ],
+  "normalizer_fit_scope": "all_final_refit_training_features_only",
+  "run_id": "20260821T164332Z_490383ff",
+  "schema_version": "1.0",
+  "selection_rule": "median_fold_best_epoch",
+  "selection_source": "internal_fold_validation_only",
+  "source_snapshot_identifier": "source_sha256:6942c576c586d1182d7549995bf1c4b2475d7cc2d2cd981c9bb8da5b781e3ffe",
+  "stage": "stage1_binary_baby_gate",
+  "training_augmented_count": 336,
+  "training_original_count": 2432
+}

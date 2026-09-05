@@ -1,0 +1,15 @@
+{
+  "artefact_sha256": {
+    "fold_result": "556af8aef27aebd9afc0669bf23612dd03a60fe6b2ab7495c6e571bcd017aeb3",
+    "manifest": "9f3e6ba02c8b6ecbdecd66e6fa98c2f1057bb2dd0ad3d0f97a32b8153821e7f7",
+    "metrics": "689f5b4188d403f04e8e846fe9176ea7c057ac60d37526f540922cfb5ce69473",
+    "model": "cf69e054181a519f868903596f934d3dfdbf1539277d8cd60677b13fa81521c2",
+    "predictions": "ef15f8773b39164bcc6741d023c4ec08ed2aa5956ed071511515c7fff7828c26"
+  },
+  "candidate_id": "stage1_mfcc_svm",
+  "fold": 3,
+  "fold_result_path": "attempt_1/fold_result.json",
+  "schema_version": "1.0",
+  "seed": 42,
+  "status": "complete"
+}

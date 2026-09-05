@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "wave": "A",
+  "seeds": [42],
+  "selection_metric": "oof_macro_f1",
+  "candidate_source": "explicit",
+  "continue_on_candidate_failure": true,
+  "candidates": [
+    "stage2_majority",
+    "stage2_mfcc_svm",
+    "stage2_logmel_small_cnn",
+    "stage2_yamnet_linear",
+    "stage2_yamnet_mlp",
+    "stage2_cnn_only",
+    "stage2_cnn_bilstm",
+    "stage2_corrected_attention",
+    "stage2_multi_branch_attention"
+  ],
+  "parameters": {}
+}

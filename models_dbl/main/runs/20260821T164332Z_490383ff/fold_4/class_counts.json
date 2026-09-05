@@ -1,0 +1,33 @@
+{
+  "class_weight_enabled": false,
+  "final_pre_mixup_training_by_label": {
+    "belly_pain": 407,
+    "burping": 407,
+    "discomfort": 407,
+    "hungry": 407,
+    "tired": 407
+  },
+  "generated_training_by_label": {
+    "belly_pain": 316,
+    "burping": 261,
+    "discomfort": 335,
+    "hungry": 286,
+    "tired": 0
+  },
+  "mixup_samples": 500,
+  "original_training_by_label": {
+    "belly_pain": 91,
+    "burping": 146,
+    "discomfort": 72,
+    "hungry": 121,
+    "tired": 407
+  },
+  "target_samples_per_class": 407,
+  "validation_original_by_label": {
+    "belly_pain": 26,
+    "burping": 29,
+    "discomfort": 25,
+    "hungry": 24,
+    "tired": 104
+  }
+}

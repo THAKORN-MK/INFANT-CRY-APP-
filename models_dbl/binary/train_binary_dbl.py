@@ -30,14 +30,24 @@ from cryinsight.audio.features import (  # noqa: E402
     extract_fold_tensors,
     extract_original_tensors,
 )
+from cryinsight.runtime.device import configure_tensorflow_runtime  # noqa: E402
+from cryinsight.models.attention import attention_layer_class  # noqa: E402
+from cryinsight.models.stage1_model import build_stage1_model  # noqa: E402
+from cryinsight.training.feature_cache import FeatureCache  # noqa: E402
+from cryinsight.evaluation.curves import (  # noqa: E402
+    compute_roc_pr_tables,
+    write_curve_csvs,
+    write_curve_pngs,
+)
 from cryinsight.training.artefacts import (  # noqa: E402
-    NormalizerStats,
     OofPrediction,
+    apply_normalizer,
     aggregate_heldout_metrics,
     aggregate_oof_metrics,
     build_fold_manifest,
     create_run_directory,
     heldout_metrics_payload,
+    fit_normalizer,
     load_normalizer,
     oof_metrics_payload,
     render_confusion_matrix_png,
@@ -80,8 +90,8 @@ DEFAULT_SEED = 42
 DEFAULT_TRAIN_DATA_DIR = PROJECT_ROOT / "data_set_dbl_split" / "train"
 DEFAULT_TEST_DATA_DIR = PROJECT_ROOT / "data_set_dbl_split" / "test"
 DEFAULT_STAGE_ROOT = Path(__file__).resolve().parent
+DEFAULT_FEATURE_CACHE_DIR = PROJECT_ROOT / ".cache" / "cryinsight_features"
 CHECKPOINT_MONITOR = "val_loss"
-_ATTENTION_LAYER_CLASS: Any | None = None
 
 
 def _tensorflow():
@@ -96,100 +106,13 @@ def _tensorflow():
 
 
 def _attention_layer_class(tf: Any):
-    global _ATTENTION_LAYER_CLASS
-    if _ATTENTION_LAYER_CLASS is not None:
-        return _ATTENTION_LAYER_CLASS
-
-    @tf.keras.utils.register_keras_serializable(package="CryInsight")
-    class AttentionLayer(tf.keras.layers.Layer):
-        def build(self, input_shape):
-            width = int(input_shape[-1])
-            self.W = self.add_weight(
-                shape=(width, width),
-                initializer="glorot_uniform",
-                trainable=True,
-                name="attn_W",
-            )
-            self.b = self.add_weight(
-                shape=(width,),
-                initializer="zeros",
-                trainable=True,
-                name="attn_b",
-            )
-            self.u = self.add_weight(
-                shape=(width,),
-                initializer="glorot_uniform",
-                trainable=True,
-                name="attn_u",
-            )
-            super().build(input_shape)
-
-        def call(self, inputs):
-            score = tf.nn.tanh(tf.tensordot(inputs, self.W, axes=1) + self.b)
-            score = tf.tensordot(score, self.u, axes=1)
-            weights = tf.nn.softmax(score, axis=1)
-            return tf.reduce_sum(inputs * tf.expand_dims(weights, -1), axis=1)
-
-        def get_config(self):
-            return super().get_config()
-
-    _ATTENTION_LAYER_CLASS = AttentionLayer
-    return AttentionLayer
+    return attention_layer_class(tf)
 
 
 def build_binary_model(input_shape: Sequence[int], num_classes: int = 2):
-    """Build the audited legacy Stage 1 CNN/BiLSTM/Attention topology."""
+    """Build corrected Conv2D + Bidirectional LSTM + AttentionLayer Stage 1."""
 
-    tf = _tensorflow()
-    layers = tf.keras.layers
-    AttentionLayer = _attention_layer_class(tf)
-
-    inputs = layers.Input(shape=tuple(input_shape))
-    x = layers.Conv2D(32, (3, 3), padding="same")(inputs)
-    x = layers.BatchNormalization()(x)
-    x = layers.Activation("relu")(x)
-    x = layers.Conv2D(32, (3, 3), padding="same")(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.Activation("relu")(x)
-    x = layers.MaxPooling2D((2, 2))(x)
-    x = layers.Dropout(0.25)(x)
-
-    x = layers.Conv2D(64, (3, 3), padding="same")(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.Activation("relu")(x)
-    x = layers.Conv2D(64, (3, 3), padding="same")(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.Activation("relu")(x)
-    x = layers.MaxPooling2D((2, 2))(x)
-    x = layers.Dropout(0.25)(x)
-
-    x = layers.Conv2D(128, (3, 3), padding="same")(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.Activation("relu")(x)
-    x = layers.Conv2D(128, (3, 3), padding="same")(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.Activation("relu")(x)
-    x = layers.MaxPooling2D((2, 2))(x)
-    x = layers.Dropout(0.30)(x)
-
-    shape = x.shape
-    x = layers.Reshape((int(shape[1]), int(shape[2]) * int(shape[3])))(x)
-    x = layers.Bidirectional(layers.LSTM(128, return_sequences=True))(x)
-    x = layers.Dropout(0.30)(x)
-    x = layers.Bidirectional(layers.LSTM(64, return_sequences=True))(x)
-    x = layers.Dropout(0.30)(x)
-    x = AttentionLayer()(x)
-    x = layers.Dense(128, activation="relu")(x)
-    x = layers.BatchNormalization()(x)
-    x = layers.Dropout(0.40)(x)
-    x = layers.Dense(64, activation="relu")(x)
-    x = layers.Dropout(0.40)(x)
-    outputs = layers.Dense(num_classes, activation="softmax")(x)
-    return tf.keras.Model(
-        inputs,
-        outputs,
-        name="Binary_CNN_MFCC_BiLSTM_Attention",
-    )
+    return build_stage1_model(_tensorflow(), input_shape, num_classes)
 
 
 def audit_stage1(data_dir: Path) -> tuple[CohortResolution, dict[str, Any]]:
@@ -247,6 +170,11 @@ def _source_snapshot() -> dict[str, Any]:
         PROJECT_ROOT / "cryinsight" / "training" / "protocol.py",
         PROJECT_ROOT / "cryinsight" / "training" / "artefacts.py",
         PROJECT_ROOT / "cryinsight" / "audio" / "features.py",
+        PROJECT_ROOT / "cryinsight" / "models" / "attention.py",
+        PROJECT_ROOT / "cryinsight" / "models" / "stage1_model.py",
+        PROJECT_ROOT / "cryinsight" / "runtime" / "device.py",
+        PROJECT_ROOT / "cryinsight" / "training" / "feature_cache.py",
+        PROJECT_ROOT / "cryinsight" / "evaluation" / "curves.py",
     )
     hashes = {str(path.relative_to(PROJECT_ROOT)): sha256_file(path) for path in files}
     digest = __import__("hashlib").sha256(
@@ -286,6 +214,10 @@ def _create_prepared_run(
         "fold_assignment_unit": "eligible_original_record",
         "augmentation_scope": "training_partition_only",
         "normalizer_fit_scope": "fold_training_features_only",
+        "normalization_mode": "per_feature_bin",
+        "sequence_axis": "time_after_explicit_permute",
+        "pooling": [[2, 2], [2, 2], [2, 1]],
+        "feature_cache_integrity": "sha256_verified_immutable",
         "checkpoint_monitor": CHECKPOINT_MONITOR,
         "oof_support": "original_validation_records_only_exactly_once",
         "class_weight_enabled": False,
@@ -321,9 +253,21 @@ def _create_prepared_run(
         "bootstrap_iterations": args.bootstrap_iterations,
         "bootstrap_seed": args.bootstrap_seed,
         "source_snapshot": source_snapshot,
+        "runtime": {
+            "device": args.device,
+            "require_gpu": args.require_gpu,
+            "mixed_precision": args.mixed_precision,
+        },
+        "feature_cache": {
+            "enabled": not args.no_feature_cache,
+            "directory": str(args.feature_cache_dir),
+            "integrity": "sha256_verified_immutable",
+        },
     }
     write_json_atomic(run_dir / "protocol.json", protocol_payload)
     write_json_atomic(run_dir / "run_config.json", run_config)
+    if getattr(args, "runtime_environment", None) is not None:
+        write_json_atomic(run_dir / "environment.json", args.runtime_environment)
     write_json_atomic(run_dir / "dataset_audit.json", audit_payload)
     write_json_atomic(run_dir / "heldout_dataset_audit.json", heldout_audit_payload)
     write_json_atomic(run_dir / "heldout_reservation.json", heldout_reservation)
@@ -363,6 +307,10 @@ def _one_hot(labels: Sequence[str]) -> np.ndarray:
     except KeyError as exc:
         raise ValueError(f"Unknown Stage 1 label: {exc.args[0]!r}") from exc
     return np.eye(len(LABEL_ORDER), dtype=np.float32)[indices]
+
+
+def _feature_cache(args: argparse.Namespace) -> FeatureCache | None:
+    return None if args.no_feature_cache else FeatureCache(args.feature_cache_dir)
 
 
 def _fold_records(
@@ -440,19 +388,17 @@ def train_final_model(
         augmentation_plan.rows,
         config=preprocessing,
         allow_empty_validation=True,
+        feature_cache=_feature_cache(args),
     )
-    mean = float(tensors.train_features.mean(dtype=np.float64))
-    std = float(tensors.train_features.std(dtype=np.float64))
     save_normalizer(
         normalizer_path,
-        NormalizerStats(
-            mean=mean,
-            std=std,
+        fit_normalizer(
+            tensors.train_features,
             epsilon=preprocessing.normalization_epsilon,
-            axis="global_scalar",
-            feature_shape=preprocessing.feature_shape,
-            dtype="float32",
-            fit_sample_count=int(tensors.train_features.shape[0]),
+            axis="per_feature_bin",
+            feature_order=preprocessing.feature_order,
+            feature_blocks=preprocessing.feature_blocks,
+            preprocessing_version=preprocessing.version,
             run_id=run_dir.name,
             fold="final_refit",
         ),
@@ -462,13 +408,7 @@ def train_final_model(
         expected_run_id=run_dir.name,
         expected_fold="final_refit",
     )
-    x_train = np.asarray(
-        (tensors.train_features - persisted_normalizer.mean)
-        / persisted_normalizer.std,
-        dtype=np.float32,
-    )
-    if not np.isfinite(x_train).all():
-        raise ValueError("Final-refit normalization produced non-finite values")
+    x_train = apply_normalizer(tensors.train_features, persisted_normalizer)
     y_train = _one_hot(tensors.train_labels)
 
     tf.keras.backend.clear_session()
@@ -567,14 +507,9 @@ def train_final_model(
         heldout_resolution.eligible,
         config=preprocessing,
         partition_name="Locked internal held-out test",
+        feature_cache=_feature_cache(args),
     )
-    x_heldout = np.asarray(
-        (heldout_tensors.features - persisted_normalizer.mean)
-        / persisted_normalizer.std,
-        dtype=np.float32,
-    )
-    if not np.isfinite(x_heldout).all():
-        raise ValueError("Final held-out normalization produced non-finite values")
+    x_heldout = apply_normalizer(heldout_tensors.features, persisted_normalizer)
     probabilities = np.asarray(
         selected_model.predict(x_heldout, batch_size=args.batch_size, verbose=0),
         dtype=np.float64,
@@ -687,6 +622,7 @@ def run_training(
 ) -> dict[str, Any]:
     tf = _tensorflow()
     seed_evidence = _set_determinism(tf, args.seed)
+    feature_cache = _feature_cache(args)
     all_oof: list[OofPrediction] = []
     fold_metric_rows: list[dict[str, Any]] = []
 
@@ -733,17 +669,15 @@ def run_training(
             validation,
             augmentation_plan.rows,
             config=preprocessing,
+            feature_cache=feature_cache,
         )
-        mean = float(tensors.train_features.mean(dtype=np.float64))
-        std = float(tensors.train_features.std(dtype=np.float64))
-        normalizer = NormalizerStats(
-            mean=mean,
-            std=std,
+        normalizer = fit_normalizer(
+            tensors.train_features,
             epsilon=preprocessing.normalization_epsilon,
-            axis="global_scalar",
-            feature_shape=preprocessing.feature_shape,
-            dtype="float32",
-            fit_sample_count=int(tensors.train_features.shape[0]),
+            axis="per_feature_bin",
+            feature_order=preprocessing.feature_order,
+            feature_blocks=preprocessing.feature_blocks,
+            preprocessing_version=preprocessing.version,
             run_id=run_dir.name,
             fold=fold,
         )
@@ -753,14 +687,10 @@ def run_training(
             expected_run_id=run_dir.name,
             expected_fold=fold,
         )
-        mean = persisted_normalizer.mean
-        std = persisted_normalizer.std
-        x_train = np.asarray((tensors.train_features - mean) / std, dtype=np.float32)
-        x_validation = np.asarray(
-            (tensors.validation_features - mean) / std, dtype=np.float32
+        x_train = apply_normalizer(tensors.train_features, persisted_normalizer)
+        x_validation = apply_normalizer(
+            tensors.validation_features, persisted_normalizer
         )
-        if not np.isfinite(x_train).all() or not np.isfinite(x_validation).all():
-            raise ValueError(f"Fold {fold} normalization produced non-finite values")
         y_train = _one_hot(tensors.train_labels)
         y_validation = _one_hot(tensors.validation_labels)
 
@@ -980,6 +910,15 @@ def run_training(
         title="Stage 1 corrected grouped OOF confusion matrix",
     )
     write_fold_metrics_csv(fold_metrics_path, fold_metric_rows)
+    curve_dir = run_dir / "oof_curves"
+    curve_tables = compute_roc_pr_tables(
+        [row.label for row in all_oof],
+        np.asarray([row.scores for row in all_oof], dtype=np.float64),
+        LABEL_ORDER,
+    )
+    curve_paths = write_curve_csvs(curve_dir, curve_tables) + write_curve_pngs(
+        curve_dir, curve_tables, title_prefix="Stage 1 grouped OOF"
+    )
     final_result = train_final_model(
         run_dir=run_dir,
         source_snapshot=source_snapshot,
@@ -1009,6 +948,11 @@ def run_training(
         "oof_confusion_matrix_csv": confusion_csv_path,
         "oof_confusion_matrix_png": confusion_png_path,
         "fold_metrics": fold_metrics_path,
+        **{
+            f"oof_curve_{index}": path
+            for index, path in enumerate(curve_paths, start=1)
+        },
+        "environment": run_dir / "environment.json",
         "final_test_predictions": final_test_paths["predictions"],
         "final_test_metrics": final_test_paths["metrics"],
         "final_test_confusion_matrix_csv": final_test_paths[
@@ -1104,6 +1048,33 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--lr-patience", type=int, default=10)
     parser.add_argument("--bootstrap-iterations", type=int, default=2000)
     parser.add_argument("--bootstrap-seed", type=int, default=DEFAULT_SEED)
+    parser.add_argument(
+        "--device",
+        choices=("auto", "gpu", "cpu"),
+        default="auto",
+        help="TensorFlow device policy used only with --train.",
+    )
+    parser.add_argument(
+        "--require-gpu",
+        action="store_true",
+        help="Fail before creating a run when TensorFlow cannot use a GPU.",
+    )
+    parser.add_argument(
+        "--mixed-precision",
+        action="store_true",
+        help="Use mixed_float16 internally; classifier output remains float32.",
+    )
+    parser.add_argument(
+        "--feature-cache-dir",
+        type=Path,
+        default=DEFAULT_FEATURE_CACHE_DIR,
+        help="Content-addressed verified feature cache shared across folds.",
+    )
+    parser.add_argument(
+        "--no-feature-cache",
+        action="store_true",
+        help="Disable feature caching without changing feature values.",
+    )
     return parser
 
 
@@ -1114,6 +1085,8 @@ def _validate_args(parser: argparse.ArgumentParser, args: argparse.Namespace) ->
         parser.error("--bootstrap-iterations cannot be negative")
     if not 0.0 <= args.label_smoothing < 1.0:
         parser.error("--label-smoothing must be in [0, 1)")
+    if args.require_gpu and args.device == "cpu":
+        parser.error("--require-gpu cannot be combined with --device cpu")
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -1123,6 +1096,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args.train_data_dir = args.train_data_dir.resolve()
     args.test_data_dir = args.test_data_dir.resolve()
     args.stage_root = args.stage_root.resolve()
+    args.feature_cache_dir = args.feature_cache_dir.resolve()
 
     discovered_training, audit_payload = audit_stage1(args.train_data_dir)
     heldout_resolution, heldout_audit_payload = audit_stage1(args.test_data_dir)
@@ -1164,6 +1138,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     if args.audit_only:
         return 0
+
+    args.runtime_environment = None
+    if args.train:
+        args.runtime_environment = configure_tensorflow_runtime(
+            _tensorflow(),
+            device=args.device,
+            require_gpu=args.require_gpu,
+            mixed_precision=args.mixed_precision,
+        )
 
     # Assign eligible originals/groups before planning any Training derivative.
     split = assign_grouped_folds(

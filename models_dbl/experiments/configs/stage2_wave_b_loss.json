@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "wave": "B_loss",
+  "seeds": [42],
+  "selection_metric": "oof_macro_f1",
+  "candidate_source": "parent_rank_1",
+  "continue_on_candidate_failure": true,
+  "candidates": [],
+  "parameters": {
+    "variants": {
+      "anchor": {},
+      "categorical_crossentropy": {"loss": "categorical_crossentropy"},
+      "class_balanced_crossentropy": {"loss": "class_balanced_crossentropy"},
+      "focal_gamma_2": {"loss": "focal", "parameters": {"focal_gamma": 2.0}}
+    }
+  }
+}

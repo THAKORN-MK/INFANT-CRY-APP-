@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "wave": "B_augmentation",
+  "seeds": [42],
+  "selection_metric": "oof_macro_f1",
+  "candidate_source": "parent_rank_1",
+  "continue_on_candidate_failure": true,
+  "candidates": [],
+  "parameters": {
+    "variants": {
+      "anchor": {},
+      "none": {"augmentation": "none"},
+      "waveform_only": {"augmentation": "waveform_only"},
+      "waveform_plus_mixup": {"augmentation": "waveform_plus_mixup"}
+    }
+  }
+}

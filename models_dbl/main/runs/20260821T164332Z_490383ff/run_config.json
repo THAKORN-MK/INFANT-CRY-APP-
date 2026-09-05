@@ -1,0 +1,65 @@
+{
+  "architecture": "corrected_single_branch",
+  "batch_size": 32,
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 42,
+  "checkpoint_staging": {
+    "environment_override": "CRYINSIGHT_CHECKPOINT_STAGING_DIR",
+    "mode": "native_local_mutable_then_verified_publish_once"
+  },
+  "early_stopping_patience": 30,
+  "epochs": 200,
+  "feature_cache": {
+    "directory": "/mnt/d/INFANT CRY/.cache/cryinsight_features",
+    "enabled": true,
+    "integrity": "sha256_verified_immutable"
+  },
+  "label_smoothing": 0.1,
+  "labels": [
+    "belly_pain",
+    "burping",
+    "discomfort",
+    "hungry",
+    "tired"
+  ],
+  "learning_rate": 0.001,
+  "lr_patience": 12,
+  "mixup_alpha": 0.3,
+  "mixup_samples": 500,
+  "n_folds": 5,
+  "paired_stage1_run": {
+    "created_at": "2026-08-21T16:43:33.035759+00:00",
+    "run_dir": "/mnt/d/INFANT CRY/Models_dbl/binary/runs/20260821T164332Z_490383ff",
+    "run_id": "20260821T164332Z_490383ff",
+    "verification_sha256": "076d3b08e8f32d64d9ae9ac626935f2c0591827acff96bf67a7bb5a547f508ad",
+    "verification_status": "complete"
+  },
+  "run_id": "20260821T164332Z_490383ff",
+  "runtime": {
+    "device": "gpu",
+    "mixed_precision": true,
+    "require_gpu": true
+  },
+  "schema_version": "1.0",
+  "seed": 42,
+  "source_snapshot": {
+    "files": {
+      "Models_dbl/Main/train_main_dbl.py": "a5ba44b4e62448bc57971fb828f2720fdf272f33a7caf6022981f0a9532eba35",
+      "cryinsight/audio/features.py": "da1f97448e9726cf8f500b0a867af884ea67bdae1f8a2fde27743ea131534ddb",
+      "cryinsight/evaluation/curves.py": "a4587f991479d3bb11825c7c8e0e4ad6278fa917811c0727b24c49a587dfea91",
+      "cryinsight/models/attention.py": "64f61959083d758db8230f135c12a517be6ae39135d51522c73217780de44833",
+      "cryinsight/models/stage2_model.py": "9131bdcf599e14cdfe8a22655a0c978dc857acb45e18d0099a421599e340e469",
+      "cryinsight/runtime/device.py": "313295b3d0d43c377dc32ca73966f8f6888e38da2e2993ce5f80aec436113646",
+      "cryinsight/training/artefacts.py": "287f1f1ccdfdede62bf4a85f24d66a3e4aaa69dd2c2300e578a818ad740a2169",
+      "cryinsight/training/checkpoint_staging.py": "d9f18f7c4220dbaf8f407efe8ce62b5e5e5eefafcb2af8b44ecf894c70bacf95",
+      "cryinsight/training/feature_cache.py": "cd9fc72762188e1ff95a56a3728595018818d1b04dd29e691a8a758335bbc1c8",
+      "cryinsight/training/protocol.py": "930f5d7aab2354b7e279ae18aebfe134f44e67d24788c403c416e23e8b379fe9",
+      "cryinsight/training/run_pairing.py": "50c3d9c1ff9d1ffdeb20afbea88c1f70847fb63122fc59b3107eb1482f16c8a7"
+    },
+    "identifier": "source_sha256:6991019d9f9eaad79d65d92c9b49d70316e4b1ee5bde8536dd4e03ee42fcf75f"
+  },
+  "stage_root": "/mnt/d/INFANT CRY/Models_dbl/Main",
+  "test_data_dir": "/mnt/d/INFANT CRY/data_set_dbl_split/test",
+  "train_data_dir": "/mnt/d/INFANT CRY/data_set_dbl_split/train",
+  "weight_decay": 0.0001
+}

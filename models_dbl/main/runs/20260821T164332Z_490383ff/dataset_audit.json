@@ -1,0 +1,45 @@
+{
+  "accuracy_status": "Corrected OOF accuracy is not available until all five folds are trained.",
+  "candidate_counts_by_source_label": {
+    "belly_pain": 136,
+    "burping": 224,
+    "discomfort": 134,
+    "hungry": 174,
+    "tired": 573
+  },
+  "candidate_original_count": 1241,
+  "data_root": "/mnt/d/INFANT CRY/data_set_dbl_split/train",
+  "duplicate_policy": {
+    "cross_label_exact_sha256": "exclude_entire_hash_group",
+    "same_label_exact_sha256": "keep_lexicographically_first_canonical"
+  },
+  "eligible_counts_by_label": {
+    "belly_pain": 117,
+    "burping": 175,
+    "discomfort": 97,
+    "hungry": 145,
+    "tired": 511
+  },
+  "eligible_original_count": 1045,
+  "eligible_original_count_before_heldout_reservation": 1125,
+  "evaluation_scope": "model_development_and_corrected_internal_validation",
+  "excluded_count": 196,
+  "exclusion_counts": {
+    "cross_label_exact_duplicate": 6,
+    "reserved_heldout_test_group": 80,
+    "same_label_exact_duplicate": 110
+  },
+  "group_rule": "exact_content_sha256",
+  "grouping_limitation": "No verified infant subject/session identifiers were found; grouping prevents exact-content families only, so interpretation remains clip-level corrected internal validation.",
+  "heldout_reservation": {
+    "group_overlap_after": 0,
+    "heldout_original_count": 303,
+    "removed_train_count": 80,
+    "sha256_overlap_after": 0,
+    "train_original_count_after": 1045,
+    "train_original_count_before": 1125
+  },
+  "independent_external_validation_performed": false,
+  "schema_version": "1.0",
+  "stage": "stage2_main_five_class"
+}

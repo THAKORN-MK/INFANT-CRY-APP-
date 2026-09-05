@@ -1,0 +1,19 @@
+{
+  "assignment_sha256": "ed933f76d4e381786fd2082c94b97ccd9ab1f9c976af43c4fb3d2fe471573a5d",
+  "candidate": {
+    "adapter": "classical",
+    "augmentation": "none",
+    "candidate_id": "stage1_mfcc_svm",
+    "family": "baseline",
+    "feature_view": "mfcc_summary",
+    "loss": "not_applicable",
+    "model": "rbf_svm",
+    "normalization": "standard_scaler_train_only",
+    "parameters": {},
+    "requires_gpu": false,
+    "selection_metric": "oof_macro_f1",
+    "stage": "stage1"
+  },
+  "config_sha256": "23423e4ed756ba4a4ac6ed8fe4ddb8034ab90595153de0220d90a286f6d79315",
+  "seed": 42
+}

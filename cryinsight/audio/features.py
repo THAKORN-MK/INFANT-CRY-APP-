@@ -10,6 +10,7 @@ from typing import Any, Iterable, Mapping, Sequence
 import numpy as np
 
 from cryinsight.training.protocol import AugmentationPlanRow, OriginalRecord
+from cryinsight.training.feature_cache import FeatureCache
 
 
 class AudioContractError(ValueError):
@@ -84,6 +85,23 @@ class PreprocessingConfig:
         return (self.feature_bins, self.max_frames, 1)
 
     @property
+    def feature_blocks(self) -> tuple[tuple[str, int, int], ...]:
+        widths = {
+            "mfcc": self.n_mfcc,
+            "delta": self.n_mfcc,
+            "delta2": self.n_mfcc,
+            "logmel": self.n_mels,
+            "chroma": self.n_chroma,
+        }
+        rows: list[tuple[str, int, int]] = []
+        start = 0
+        for name in self.feature_order:
+            end = start + widths[name]
+            rows.append((name, start, end))
+            start = end
+        return tuple(rows)
+
+    @property
     def minimum_waveform_samples(self) -> int:
         return (self.delta_width - 1) * self.hop_length
 
@@ -91,6 +109,7 @@ class PreprocessingConfig:
         payload = asdict(self)
         payload["feature_order"] = list(self.feature_order)
         payload["feature_shape"] = list(self.feature_shape)
+        payload["feature_blocks"] = [list(row) for row in self.feature_blocks]
         payload["minimum_waveform_samples"] = self.minimum_waveform_samples
         return payload
 
@@ -368,6 +387,39 @@ def extract_features(
     return features
 
 
+def _cache_key(
+    cache: FeatureCache,
+    record: OriginalRecord,
+    config: PreprocessingConfig,
+    augmentation: Mapping[str, Any] | None,
+) -> str:
+    return cache.key(
+        source_sha256=record.sha256,
+        preprocessing=config.to_dict(),
+        augmentation=augmentation,
+        dtype=config.dtype,
+        shape=config.feature_shape,
+    )
+
+
+def _original_features(
+    record: OriginalRecord,
+    *,
+    config: PreprocessingConfig,
+    cache: FeatureCache | None,
+) -> np.ndarray:
+    key = _cache_key(cache, record, config, None) if cache is not None else None
+    if cache is not None and key is not None:
+        cached = cache.get(key)
+        if cached is not None:
+            return np.asarray(cached, dtype=np.float32)
+    waveform, sample_rate = load_preprocessed_waveform(record.filepath, config=config)
+    features = extract_features(waveform, sample_rate=sample_rate, config=config)
+    if cache is not None and key is not None:
+        cache.put(key, features)
+    return features
+
+
 def assert_validation_originals_only(sample_kinds: Iterable[str]) -> None:
     kinds = tuple(sample_kinds)
     invalid = sorted({kind for kind in kinds if kind != "original"})
@@ -382,6 +434,7 @@ def extract_original_tensors(
     *,
     config: PreprocessingConfig | None = None,
     partition_name: str = "Held-out test",
+    feature_cache: FeatureCache | None = None,
 ) -> OriginalTensors:
     """Materialize original-only tensors for validation or held-out testing."""
 
@@ -395,11 +448,8 @@ def extract_original_tensors(
     sample_kinds: list[str] = []
     for record in originals:
         try:
-            waveform, sample_rate = load_preprocessed_waveform(
-                record.filepath, config=active
-            )
-            features = extract_features(
-                waveform, sample_rate=sample_rate, config=active
+            features = _original_features(
+                record, config=active, cache=feature_cache
             )
         except AudioContractError as exc:
             raise AudioContractError(
@@ -429,6 +479,7 @@ def extract_fold_tensors(
     *,
     config: PreprocessingConfig | None = None,
     allow_empty_validation: bool = False,
+    feature_cache: FeatureCache | None = None,
 ) -> FoldTensors:
     """Materialize one fold while enforcing training-only augmentation."""
 
@@ -469,9 +520,8 @@ def extract_fold_tensors(
     train_sample_kinds: list[str] = []
     for record in training:
         try:
-            waveform, sample_rate = load(record)
-            features = extract_features(
-                waveform, sample_rate=sample_rate, config=active
+            features = _original_features(
+                record, config=active, cache=feature_cache
             )
         except AudioContractError as exc:
             raise AudioContractError(
@@ -485,18 +535,35 @@ def extract_fold_tensors(
     for row in planned:
         source = train_by_id[row.original_record_id]
         try:
-            waveform, sample_rate = load(source)
-            derivative = apply_augmentation(
-                waveform,
-                sample_rate=sample_rate,
-                augmentation_type=row.augmentation_type,
-                augmentation_params_json=row.augmentation_params_json,
-                seed=row.seed,
-                config=active,
+            augmentation_identity = {
+                "type": row.augmentation_type,
+                "parameters_json": row.augmentation_params_json,
+                "seed": row.seed,
+                "sample_id": row.sample_id,
+            }
+            key = (
+                _cache_key(feature_cache, source, active, augmentation_identity)
+                if feature_cache is not None
+                else None
             )
-            features = extract_features(
-                derivative, sample_rate=sample_rate, config=active
-            )
+            cached = feature_cache.get(key) if feature_cache is not None and key else None
+            if cached is not None:
+                features = np.asarray(cached, dtype=np.float32)
+            else:
+                waveform, sample_rate = load(source)
+                derivative = apply_augmentation(
+                    waveform,
+                    sample_rate=sample_rate,
+                    augmentation_type=row.augmentation_type,
+                    augmentation_params_json=row.augmentation_params_json,
+                    seed=row.seed,
+                    config=active,
+                )
+                features = extract_features(
+                    derivative, sample_rate=sample_rate, config=active
+                )
+                if feature_cache is not None and key is not None:
+                    feature_cache.put(key, features)
         except AudioContractError as exc:
             raise AudioContractError(
                 "Training augmented audio failed "
@@ -514,9 +581,8 @@ def extract_fold_tensors(
     validation_kinds: list[str] = []
     for record in validation:
         try:
-            waveform, sample_rate = load(record)
-            features = extract_features(
-                waveform, sample_rate=sample_rate, config=active
+            features = _original_features(
+                record, config=active, cache=feature_cache
             )
         except AudioContractError as exc:
             raise AudioContractError(

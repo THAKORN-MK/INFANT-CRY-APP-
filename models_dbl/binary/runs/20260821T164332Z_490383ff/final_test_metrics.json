@@ -1,0 +1,167 @@
+{
+  "bootstrap_intervals": {
+    "accuracy": {
+      "confidence_level": 0.95,
+      "lower": 0.9871240023611298,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 0.9985714285714286,
+      "valid_iterations": 2000
+    },
+    "balanced_accuracy": {
+      "confidence_level": 0.95,
+      "lower": 0.9879779074347138,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 0.998759305210918,
+      "valid_iterations": 2000
+    },
+    "brier_score": {
+      "confidence_level": 0.95,
+      "lower": 0.0032772885612286063,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 0.023476311149542035,
+      "valid_iterations": 2000
+    },
+    "expected_calibration_error": {
+      "confidence_level": 0.95,
+      "lower": 0.009149204841055318,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 0.020211274819864816,
+      "valid_iterations": 2000
+    },
+    "log_loss": {
+      "confidence_level": 0.95,
+      "lower": 0.021655511690519033,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 0.059077174431118915,
+      "valid_iterations": 2000
+    },
+    "macro_f1": {
+      "confidence_level": 0.95,
+      "lower": 0.9869308441625161,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 0.9985510845496954,
+      "valid_iterations": 2000
+    },
+    "macro_precision": {
+      "confidence_level": 0.95,
+      "lower": 0.9865318756005138,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 0.9987406332670912,
+      "valid_iterations": 2000
+    },
+    "macro_recall": {
+      "confidence_level": 0.95,
+      "lower": 0.9879779074347138,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 0.998759305210918,
+      "valid_iterations": 2000
+    },
+    "roc_auc": {
+      "confidence_level": 0.95,
+      "lower": 0.9982622188660912,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 0.9999999999999999,
+      "valid_iterations": 2000
+    },
+    "sensitivity": {
+      "confidence_level": 0.95,
+      "lower": 0.9893617021276596,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 1.0,
+      "valid_iterations": 2000
+    },
+    "specificity": {
+      "confidence_level": 0.95,
+      "lower": 0.982051282051282,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 1.0,
+      "valid_iterations": 2000
+    },
+    "weighted_f1": {
+      "confidence_level": 0.95,
+      "lower": 0.9871323487052657,
+      "method": "group_percentile_bootstrap",
+      "requested_iterations": 2000,
+      "seed": 42,
+      "upper": 0.998571651139853,
+      "valid_iterations": 2000
+    }
+  },
+  "classification_report": {
+    "accuracy": 0.9942363112391931,
+    "baby": {
+      "f1-score": 0.993421052631579,
+      "precision": 0.9901639344262295,
+      "recall": 0.9966996699669967,
+      "support": 303.0
+    },
+    "macro avg": {
+      "f1-score": 0.9941464237516869,
+      "precision": 0.993796620169413,
+      "recall": 0.9945135178479485,
+      "support": 694.0
+    },
+    "not_baby": {
+      "f1-score": 0.9948717948717949,
+      "precision": 0.9974293059125964,
+      "recall": 0.9923273657289002,
+      "support": 391.0
+    },
+    "weighted avg": {
+      "f1-score": 0.9942384016458793,
+      "precision": 0.9942572489091827,
+      "recall": 0.9942363112391931,
+      "support": 694.0
+    }
+  },
+  "evaluated_model_role": "final_refit",
+  "evaluation_count": 1,
+  "heldout_test_used_for_model_selection": false,
+  "limitations": [
+    "The locked test partition is evaluated once after final refit.",
+    "Test results do not select epochs, hyperparameters, or the deployment model.",
+    "Train and test originate from the same corpus; this is not external validation.",
+    "The underlying corpus was available during legacy model development."
+  ],
+  "pooled_metrics": {
+    "accuracy": 0.9942363112391931,
+    "balanced_accuracy": 0.9945135178479485,
+    "brier_score": 0.011479324874920952,
+    "evaluation_scope": "locked_internal_heldout_test",
+    "expected_calibration_error": 0.015109867507142641,
+    "independent_external_validation_performed": false,
+    "log_loss": 0.03725368176390716,
+    "macro_f1": 0.9941464237516869,
+    "macro_precision": 0.993796620169413,
+    "macro_recall": 0.9945135178479485,
+    "roc_auc": 0.9993838258506157,
+    "sensitivity": 0.9966996699669967,
+    "specificity": 0.9923273657289002,
+    "support_original_records": 694,
+    "weighted_f1": 0.9942384016458793
+  },
+  "run_id": "20260821T164332Z_490383ff",
+  "stage": "stage1_binary_baby_gate"
+}

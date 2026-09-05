@@ -1,0 +1,48 @@
+{
+  "batch_size": 32,
+  "bootstrap_iterations": 2000,
+  "bootstrap_seed": 42,
+  "class_weight_enabled": false,
+  "early_stopping_patience": 25,
+  "epochs": 200,
+  "feature_cache": {
+    "directory": "/mnt/d/INFANT CRY/.cache/cryinsight_features",
+    "enabled": true,
+    "integrity": "sha256_verified_immutable"
+  },
+  "label_smoothing": 0.05,
+  "labels": [
+    "not_baby",
+    "baby"
+  ],
+  "learning_rate": 0.001,
+  "lr_patience": 10,
+  "mixup_samples": 0,
+  "n_folds": 5,
+  "run_id": "20260821T164332Z_490383ff",
+  "runtime": {
+    "device": "gpu",
+    "mixed_precision": true,
+    "require_gpu": true
+  },
+  "schema_version": "1.0",
+  "seed": 42,
+  "source_snapshot": {
+    "files": {
+      "Models_dbl/binary/train_binary_dbl.py": "a5e3c80f0b302ecd89c82dbb3b188928686716d0d0c622d1ff1b51e7d8afd235",
+      "cryinsight/audio/features.py": "da1f97448e9726cf8f500b0a867af884ea67bdae1f8a2fde27743ea131534ddb",
+      "cryinsight/evaluation/curves.py": "a4587f991479d3bb11825c7c8e0e4ad6278fa917811c0727b24c49a587dfea91",
+      "cryinsight/models/attention.py": "64f61959083d758db8230f135c12a517be6ae39135d51522c73217780de44833",
+      "cryinsight/models/stage1_model.py": "718e5d5c3531e087d5471f6360760c455412e1b13d29121c5fb29b03dbddccbb",
+      "cryinsight/runtime/device.py": "313295b3d0d43c377dc32ca73966f8f6888e38da2e2993ce5f80aec436113646",
+      "cryinsight/training/artefacts.py": "287f1f1ccdfdede62bf4a85f24d66a3e4aaa69dd2c2300e578a818ad740a2169",
+      "cryinsight/training/feature_cache.py": "cd9fc72762188e1ff95a56a3728595018818d1b04dd29e691a8a758335bbc1c8",
+      "cryinsight/training/protocol.py": "930f5d7aab2354b7e279ae18aebfe134f44e67d24788c403c416e23e8b379fe9"
+    },
+    "identifier": "source_sha256:6942c576c586d1182d7549995bf1c4b2475d7cc2d2cd981c9bb8da5b781e3ffe"
+  },
+  "stage_root": "/mnt/d/INFANT CRY/Models_dbl/binary",
+  "test_data_dir": "/mnt/d/INFANT CRY/data_set_dbl_split/test",
+  "train_data_dir": "/mnt/d/INFANT CRY/data_set_dbl_split/train",
+  "weight_decay": 0.0001
+}

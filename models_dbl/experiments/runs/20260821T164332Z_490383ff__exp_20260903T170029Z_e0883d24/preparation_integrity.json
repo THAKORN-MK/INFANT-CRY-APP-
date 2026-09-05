@@ -1,0 +1,10 @@
+{
+  "artefact_sha256": {
+    "inputs.json": "de1339fb644043d8d1a2cacba041dbff48d8f9f558880f3e71028e976645bb22",
+    "integrity.json": "ddfb0e2f711e83d58cb247807386407c2c1171df96bd679f9f2dc4254c18b66d",
+    "parent_provenance.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "record_snapshot.json": "a3cf8a7f6859ba32a444084bbadb2b228894902abecbccdcf23ec13696f79f2d",
+    "source_config.json": "b9a3d88302c83bb4bfa552ecd5fc8b222e3aa184a39b86758c15556209b1712d"
+  },
+  "schema_version": "1.0"
+}

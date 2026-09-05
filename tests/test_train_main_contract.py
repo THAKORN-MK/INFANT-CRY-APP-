@@ -76,6 +76,19 @@ class Stage2StaticContractTests(unittest.TestCase):
         self.assertIn("expected_fold=fold", self.source)
         self.assertIn("build_fold_manifest", self.source)
 
+    def test_mutable_keras_checkpoints_are_staged_before_immutable_publication(self) -> None:
+        module = load_script_module()
+        training_source = inspect.getsource(module.run_training)
+        final_source = inspect.getsource(module.train_final_model)
+
+        self.assertIn("CheckpointStaging(", training_source)
+        self.assertIn("filepath=str(checkpoint_staging.local_path)", training_source)
+        self.assertIn("checkpoint_staging.publish(model_path)", training_source)
+        self.assertNotIn("filepath=str(model_path)", training_source)
+        self.assertIn("CheckpointStaging(", final_source)
+        self.assertIn("model.save(str(checkpoint_staging.local_path))", final_source)
+        self.assertIn("checkpoint_staging.publish(model_path)", final_source)
+
     def test_publication_outputs_are_immutable_run_artifacts(self) -> None:
         self.assertIn("create_run_directory", self.source)
         self.assertIn("oof_predictions.csv", self.source)

@@ -1,0 +1,24 @@
+{
+  "pipeline_run_id": "20260821T164332Z_490383ff",
+  "schema_version": "1.0",
+  "stage1": {
+    "hashes": {
+      "fold_assignments_contract": "ed933f76d4e381786fd2082c94b97ccd9ab1f9c976af43c4fb3d2fe471573a5d",
+      "fold_assignments_file": "1db62e4f51d3732f00545c8124cf31cc3e7198e1b24e15f80d6f618b1ef2b47f",
+      "oof_metrics": "94810381d8f20eef7a010a402e0c002628334444e7bea67ec994e5143fe1b9d9",
+      "oof_predictions": "9ee66b50d7f6fceb25758e0ad86ca3977a88eacd4db89e265713d37ff80949bb",
+      "verification": "076d3b08e8f32d64d9ae9ac626935f2c0591827acff96bf67a7bb5a547f508ad"
+    },
+    "run_dir": "/mnt/d/INFANT CRY/Models_dbl/binary/runs/20260821T164332Z_490383ff"
+  },
+  "stage2": {
+    "hashes": {
+      "fold_assignments_contract": "c32468c254cf170c9eab26c4c0b712b2b6e8d773af5ae908623d84a0c7b19595",
+      "fold_assignments_file": "3545a6bbf660ea5e8552ca1f9e3818c7f06e88d15db2c17d5bb40f7d4ef41f8c",
+      "oof_metrics": "01c0be7a229f84b9546410d7b38a41a102cb3bbb157363c5c604faa06b3faf76",
+      "oof_predictions": "88d058d4699668c12969f78c65e42b0cd3b181cfc402494d2e7ca8794c4de436",
+      "verification": "1f66188d0d984755992436136c0438948fcaa93c14ea541d830c26a77d2a17dd"
+    },
+    "run_dir": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff"
+  }
+}

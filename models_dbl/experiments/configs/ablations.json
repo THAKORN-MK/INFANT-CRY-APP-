@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0",
+  "selection_scope": "grouped_oof_only",
+  "stage2": ["cnn_only", "cnn_bilstm", "corrected_attention", "feature_blocks", "normalization", "augmentation_mixup"]
+}

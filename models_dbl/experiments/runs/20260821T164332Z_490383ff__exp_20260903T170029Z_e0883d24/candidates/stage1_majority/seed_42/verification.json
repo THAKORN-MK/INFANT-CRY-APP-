@@ -1,0 +1,48 @@
+{
+  "artefact_sha256": {
+    "oof_metrics": "9436c150834de452a006069808346c238bfdc52a4a5b88e2611f7321da70bb7a",
+    "oof_predictions": "a9385dc6b81c2e6c43f1a266d1e5163b0ea3689c2cc835ea448099b223a3a98e",
+    "seed_summary": "deee44e834dcd33ed13567164a8064ae2a75f25492a63526489d071d9c79daaf"
+  },
+  "candidate_id": "stage1_majority",
+  "fold_artefact_sha256": {
+    "fold_1": {
+      "manifest": "47e180f162524bff4772dac77f27eb602fce537a7c97610f4998d9be6313062b",
+      "model": "1c7f188827cc7019927b1ca6084b5aaf2f02ae7f55dfdc53e778594f7bad5d2c"
+    },
+    "fold_2": {
+      "manifest": "2bc37984fd57b5f001c40a03eb4283759d9e04c940c983e86158984c2d4eb7f8",
+      "model": "fba50435776d70ff3b9fe5020bc51d34836b7e6cdb381c06810b95244f353248"
+    },
+    "fold_3": {
+      "manifest": "357a5cffa98299ba1fc236259d73e49720f71409c2f1a0ce4a9a91b64d6ba4dc",
+      "model": "6bdfdd475042d551c734bcf44fb30f394025b96b8d844ab55612eb35f0f616fe"
+    },
+    "fold_4": {
+      "manifest": "6463c2d6f3a97176be8a8aca97e1f40c6df6723e0fb04dc4d22f4b2e1febbea1",
+      "model": "83d8c92eebef1365b3ebbd3dec9dc1cdab755b2b28bcf233372f4da1c8dd0b3c"
+    },
+    "fold_5": {
+      "manifest": "80d065ed186552ec99ed6b73cf2bb3b4e1a335fe8c4aadba0cd1a97811fa2350",
+      "model": "4357b3c1d1df8f735f09d5627e7a43b6dbbcdff6df14b6434814eda99843d026"
+    }
+  },
+  "folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "heldout_test_used_for_selection": false,
+  "oof_support": 2432,
+  "probability_validation": {
+    "dtype": "float64",
+    "max_sum_deviation_before_normalization": 0.0,
+    "tolerance": 1e-05
+  },
+  "schema_version": "1.0",
+  "seed": 42,
+  "selection_scope": "corrected_grouped_internal_validation",
+  "status": "complete"
+}

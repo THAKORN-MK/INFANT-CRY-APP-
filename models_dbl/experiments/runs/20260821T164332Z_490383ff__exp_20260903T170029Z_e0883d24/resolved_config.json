@@ -1,0 +1,67 @@
+{
+  "candidate_specs": [
+    {
+      "adapter": "classical",
+      "augmentation": "none",
+      "candidate_id": "stage1_majority",
+      "family": "baseline",
+      "feature_view": "labels_only",
+      "loss": "not_applicable",
+      "model": "dummy_most_frequent",
+      "normalization": "none",
+      "parameters": {},
+      "requires_gpu": false,
+      "selection_metric": "oof_macro_f1",
+      "stage": "stage1"
+    },
+    {
+      "adapter": "classical",
+      "augmentation": "none",
+      "candidate_id": "stage1_mfcc_svm",
+      "family": "baseline",
+      "feature_view": "mfcc_summary",
+      "loss": "not_applicable",
+      "model": "rbf_svm",
+      "normalization": "standard_scaler_train_only",
+      "parameters": {},
+      "requires_gpu": false,
+      "selection_metric": "oof_macro_f1",
+      "stage": "stage1"
+    },
+    {
+      "adapter": "neural",
+      "augmentation": "waveform_only",
+      "candidate_id": "stage1_logmel_small_cnn",
+      "family": "baseline",
+      "feature_view": "log_mel",
+      "loss": "categorical_crossentropy",
+      "model": "small_cnn",
+      "normalization": "per_feature_bin",
+      "parameters": {},
+      "requires_gpu": true,
+      "selection_metric": "oof_macro_f1",
+      "stage": "stage1"
+    }
+  ],
+  "config": {
+    "candidate_source": "explicit",
+    "candidates": [
+      "stage1_majority",
+      "stage1_mfcc_svm",
+      "stage1_logmel_small_cnn"
+    ],
+    "continue_on_candidate_failure": true,
+    "parameters": {
+      "device": "gpu",
+      "mixed_precision": true,
+      "require_gpu": true
+    },
+    "schema_version": "1.0",
+    "seeds": [
+      42
+    ],
+    "selection_metric": "oof_macro_f1",
+    "wave": "stage1_baselines"
+  },
+  "schema_version": "1.0"
+}

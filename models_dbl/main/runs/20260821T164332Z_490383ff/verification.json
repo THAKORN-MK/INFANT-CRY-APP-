@@ -1,0 +1,233 @@
+{
+  "architecture": "corrected_single_branch",
+  "artefact_sha256": {
+    "dataset_audit": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/dataset_audit.json",
+      "sha256": "345fb389374103675044dc8cbe672286a0711f02b2efa4de42735c6ed679467b"
+    },
+    "deployment_labels": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/best_model/labels_main_dbl.json",
+      "sha256": "404ffdd91141a6e0d6b46f98a9b55da655a29e0c0f1a464db203cde7ba6c6431"
+    },
+    "deployment_manifest": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/best_model/deployment_manifest.json",
+      "sha256": "1b76516f6da11d3bc1d1b4070076e71c168c7ce9ee21162aff91a1dd2ffd5de1"
+    },
+    "deployment_model": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/best_model/best_model_main_dbl.keras",
+      "sha256": "4a505a7a9a136af358ec6e81d476b9cdebdac6c78e5374f78997327a07d14ee3"
+    },
+    "deployment_normalizer": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/best_model/norm_stats_main_dbl.npy",
+      "sha256": "20070260ba6646d85ee28aaef9a40c2fd1822445ebd84bf2c9aed28c53caec78"
+    },
+    "deployment_preprocessing": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/best_model/preprocessing_config.json",
+      "sha256": "8b6f8e778431b57acf455608ae3069bf66960f1701c52e94c53cf89057c529ff"
+    },
+    "environment": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/environment.json",
+      "sha256": "f858a12ed01cf90d2e7431696738177e3074cb2b7bf737a928b49177e3118e66"
+    },
+    "final_refit_manifest": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/best_model/final_refit_manifest.json",
+      "sha256": "a84a308e675ba162d72bcf9c670c2f70828c74c20eb137407175e851cb8ef52a"
+    },
+    "final_test_confusion_matrix_csv": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/final_test_confusion_matrix.csv",
+      "sha256": "8f1a22e3b49ea4466d4e5a68108271a45fac8479a503c97bf6d8d3fe90975d18"
+    },
+    "final_test_confusion_matrix_png": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/final_test_confusion_matrix.png",
+      "sha256": "82bb8e93735a589330bcaf5a2da1846c000bd87a80f145aced9d45bbc3b211a9"
+    },
+    "final_test_manifest": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/final_test_manifest.json",
+      "sha256": "a2cfa6bf2cdde742fa4ec080db46ceb9ac42ea428c45f5e5f46ac8e760b3a2e0"
+    },
+    "final_test_metrics": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/final_test_metrics.json",
+      "sha256": "085d53bbf3c77b553c069370458d48fcd015eb8b50d1295d8e2caef60e507a88"
+    },
+    "final_test_predictions": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/final_test_predictions.csv",
+      "sha256": "edb4a13970a37a1bd4bb56dfee7258216e4adf12e2b0e6086b3a55387bad33f5"
+    },
+    "fold_1_manifest": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_1/fold_manifest.json",
+      "sha256": "7aa5da349cc093fdd9c4f842095d46d799f1ab6a486b869931824a3daa7b5b92"
+    },
+    "fold_2_manifest": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_2/fold_manifest.json",
+      "sha256": "f357185f70effc17a14348723362d35a776fa2719ba02c253970fc2737751390"
+    },
+    "fold_3_manifest": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_3/fold_manifest.json",
+      "sha256": "580b09a9aa21d7b9602a70bd5744effc0fad9da9ea077851b49a36696bf2cc9a"
+    },
+    "fold_4_manifest": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_4/fold_manifest.json",
+      "sha256": "fddbba8b30697c6440e47a3132153f3fbe6197f2fe5167c32a978b8ef747daec"
+    },
+    "fold_5_manifest": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/fold_manifest.json",
+      "sha256": "8bc5ee544d06c3ca8a23b382b4daf75fdaaa9dc4e06a990bcbec60cd0ef5d8ef"
+    },
+    "fold_assignments": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_assignments.csv",
+      "sha256": "3545a6bbf660ea5e8552ca1f9e3818c7f06e88d15db2c17d5bb40f7d4ef41f8c"
+    },
+    "fold_metrics": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_metrics.csv",
+      "sha256": "6576dfe19cb9dc5c31addedd5ead2dec813a5ace2d457edddfa077cb25fb6fd7"
+    },
+    "heldout_dataset_audit": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/heldout_dataset_audit.json",
+      "sha256": "8d838128f92cbbf9b2e0555c4753e07d7ec180c0ec61887b16b395f4863dd84b"
+    },
+    "heldout_record_audit": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/heldout_record_audit.csv",
+      "sha256": "5e62d85a8f71ee3abd08883b0882e978e68f85f06229802ca2ef97c206bda62d"
+    },
+    "heldout_reservation": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/heldout_reservation.json",
+      "sha256": "92767cf94efe1e52ab72abf5dda552b52b0604a47fdfad6c91b6963a43e3f33e"
+    },
+    "oof_confusion_matrix_csv": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_confusion_matrix.csv",
+      "sha256": "ed0f7f77b24cc50b76f69b0bcc8e09da41f83843797cdf81744eca5b9ef0bbe4"
+    },
+    "oof_confusion_matrix_png": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_confusion_matrix.png",
+      "sha256": "76a93c73052612a361b1bd99893db43d8ab04735bdfab3177e9e1d22d821f2c5"
+    },
+    "oof_curve_1": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/roc_belly_pain.csv",
+      "sha256": "cfe9ead7f757c2ebe96140b5ce0a962305518df8eea8e24c75a06c7f5b3265fa"
+    },
+    "oof_curve_10": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/pr_tired.csv",
+      "sha256": "8112530fe2ec9416d3fbf7bc5579c9b9a16afea715c8dff1332351045e38a24d"
+    },
+    "oof_curve_11": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/roc_curves.png",
+      "sha256": "7608a87e030eaaa54e17f838bc0e6848da7d09b021a74ee9764f34e9994604e8"
+    },
+    "oof_curve_12": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/precision_recall_curves.png",
+      "sha256": "4328297b1d1893c856fb981ffbc159b22e45af42df9112655285dff882732ddb"
+    },
+    "oof_curve_2": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/pr_belly_pain.csv",
+      "sha256": "a22562e82f072de466302256049732a303f3367f83c1e7862a77c2939d2f4b80"
+    },
+    "oof_curve_3": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/roc_burping.csv",
+      "sha256": "8dbc374c235b93e8a350ad351088e62c9d0e174789ae2ac86b9e5fea7a466b85"
+    },
+    "oof_curve_4": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/pr_burping.csv",
+      "sha256": "0b14edac890505df6974495a1f4c2154704f6e2ab816356bfd711950cd5c699f"
+    },
+    "oof_curve_5": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/roc_discomfort.csv",
+      "sha256": "3ac5c21590c7eb9b7280347df823c7a9b20d4b973ab28877c34a6d7c970d95e0"
+    },
+    "oof_curve_6": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/pr_discomfort.csv",
+      "sha256": "9eaba3956090e05521c0a0380eb7473ee51b88d0c756ff744e802733b090e973"
+    },
+    "oof_curve_7": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/roc_hungry.csv",
+      "sha256": "961fb13b7bf1b6d26dd38e882a3c1d27ba00f8d0d5ee5022c252c9545be90891"
+    },
+    "oof_curve_8": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/pr_hungry.csv",
+      "sha256": "35844e458dd5929d7a5f66936c0a0418a3f787774ddc068a91457b98f020db72"
+    },
+    "oof_curve_9": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_curves/roc_tired.csv",
+      "sha256": "ebca59cb9689aa0f604fca4c1090f62c17858efb914a2ac28dc566b4bc59895a"
+    },
+    "oof_metrics": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_metrics.json",
+      "sha256": "01c0be7a229f84b9546410d7b38a41a102cb3bbb157363c5c604faa06b3faf76"
+    },
+    "oof_predictions": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/oof_predictions.csv",
+      "sha256": "88d058d4699668c12969f78c65e42b0cd3b181cfc402494d2e7ca8794c4de436"
+    },
+    "protocol": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/protocol.json",
+      "sha256": "218685d3b2daeb7be362f527a099fd632c3ff99e89b2569c5f9e8b17b509ebe6"
+    },
+    "record_audit": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/record_audit.csv",
+      "sha256": "78b219ac7536165dc70236539a41aeb2873db693b1b9a712fc76592f1b00d293"
+    },
+    "root_labels": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/labels_main_dbl.json",
+      "sha256": "404ffdd91141a6e0d6b46f98a9b55da655a29e0c0f1a464db203cde7ba6c6431"
+    },
+    "root_preprocessing_config": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/preprocessing_config.json",
+      "sha256": "8b6f8e778431b57acf455608ae3069bf66960f1701c52e94c53cf89057c529ff"
+    },
+    "run_config": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/run_config.json",
+      "sha256": "b29293f5f1fecd8ae1c66bec142700f3fb82a3173a190a514ac74eebab134bac"
+    }
+  },
+  "completed_at": "2026-08-21T18:45:57.247953+00:00",
+  "deployment_selection": {
+    "final_epoch": 50,
+    "fold_best_epochs": [
+      50,
+      32,
+      59,
+      54,
+      42
+    ],
+    "heldout_test_used_for_selection": false,
+    "selection_rule": "median_fold_best_epoch",
+    "selection_source": "internal_fold_validation_only",
+    "strategy": "final_refit"
+  },
+  "evaluation_scope": "corrected_grouped_internal_validation",
+  "folds_completed": 5,
+  "heldout_evaluation_scope": "locked_internal_heldout_test_once_after_final_refit",
+  "heldout_test_evaluation_count": 1,
+  "heldout_test_used_for_model_selection": false,
+  "independent_external_validation_performed": false,
+  "oof_coverage": {
+    "duplicate_count": 0,
+    "expected_count": 1045,
+    "missing_count": 0,
+    "predicted_count": 1045
+  },
+  "run_id": "20260821T164332Z_490383ff",
+  "schema_version": "1.0",
+  "seed_evidence": {
+    "numpy_seed": 42,
+    "python_random_seed": 42,
+    "tensorflow_deterministic_ops_enabled": true,
+    "tensorflow_seed": 42
+  },
+  "source_snapshot": {
+    "files": {
+      "Models_dbl/Main/train_main_dbl.py": "a5ba44b4e62448bc57971fb828f2720fdf272f33a7caf6022981f0a9532eba35",
+      "cryinsight/audio/features.py": "da1f97448e9726cf8f500b0a867af884ea67bdae1f8a2fde27743ea131534ddb",
+      "cryinsight/evaluation/curves.py": "a4587f991479d3bb11825c7c8e0e4ad6278fa917811c0727b24c49a587dfea91",
+      "cryinsight/models/attention.py": "64f61959083d758db8230f135c12a517be6ae39135d51522c73217780de44833",
+      "cryinsight/models/stage2_model.py": "9131bdcf599e14cdfe8a22655a0c978dc857acb45e18d0099a421599e340e469",
+      "cryinsight/runtime/device.py": "313295b3d0d43c377dc32ca73966f8f6888e38da2e2993ce5f80aec436113646",
+      "cryinsight/training/artefacts.py": "287f1f1ccdfdede62bf4a85f24d66a3e4aaa69dd2c2300e578a818ad740a2169",
+      "cryinsight/training/checkpoint_staging.py": "d9f18f7c4220dbaf8f407efe8ce62b5e5e5eefafcb2af8b44ecf894c70bacf95",
+      "cryinsight/training/feature_cache.py": "cd9fc72762188e1ff95a56a3728595018818d1b04dd29e691a8a758335bbc1c8",
+      "cryinsight/training/protocol.py": "930f5d7aab2354b7e279ae18aebfe134f44e67d24788c403c416e23e8b379fe9",
+      "cryinsight/training/run_pairing.py": "50c3d9c1ff9d1ffdeb20afbea88c1f70847fb63122fc59b3107eb1482f16c8a7"
+    },
+    "identifier": "source_sha256:6991019d9f9eaad79d65d92c9b49d70316e4b1ee5bde8536dd4e03ee42fcf75f"
+  },
+  "status": "complete"
+}

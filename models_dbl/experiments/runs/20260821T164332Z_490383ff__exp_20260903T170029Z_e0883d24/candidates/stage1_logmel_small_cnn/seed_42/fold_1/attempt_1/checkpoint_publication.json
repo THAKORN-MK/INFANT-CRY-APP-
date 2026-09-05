@@ -1,0 +1,10 @@
+{
+  "candidate_id": "stage1_logmel_small_cnn",
+  "checkpoint_monitor": "val_loss",
+  "fold": 1,
+  "publication_mode": "verified_copy_once",
+  "schema_version": "1.0",
+  "seed": 42,
+  "sha256": "72ef8179a9d86173f9f57c135d58cbdde0fe12d5db0c07ed474331dd505e2e4b",
+  "size_bytes": 162367
+}

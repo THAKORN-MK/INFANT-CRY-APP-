@@ -1,0 +1,16 @@
+{
+  "candidate_source": "explicit",
+  "candidates": [
+    "stage1_majority",
+    "stage1_mfcc_svm",
+    "stage1_logmel_small_cnn"
+  ],
+  "continue_on_candidate_failure": true,
+  "parameters": {},
+  "schema_version": "1.0",
+  "seeds": [
+    42
+  ],
+  "selection_metric": "oof_macro_f1",
+  "wave": "stage1_baselines"
+}

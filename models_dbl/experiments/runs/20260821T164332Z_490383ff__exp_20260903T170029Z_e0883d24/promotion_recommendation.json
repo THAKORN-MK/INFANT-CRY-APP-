@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "three_seed_confirmation": false
+  },
+  "failed_checks": [
+    "three_seed_confirmation"
+  ],
+  "heldout_test_used_for_selection": false,
+  "schema_version": "1.0",
+  "selection_scope": "corrected_grouped_internal_validation",
+  "status": "no_promotion_recommended"
+}

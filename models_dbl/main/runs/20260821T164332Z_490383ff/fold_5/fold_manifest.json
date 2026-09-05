@@ -1,0 +1,76 @@
+{
+  "best_epoch": 42,
+  "checkpoint_monitor": "val_loss",
+  "created_at": "2026-08-21T18:35:46.255822+00:00",
+  "feature_shape": [
+    196,
+    128,
+    1
+  ],
+  "files": {
+    "augmentation_manifest": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/augmentation_manifest.csv",
+      "sha256": "c3971fd56b2aaaa2ebe6e46afaf09a1e9cd589880de6ed70424d1e8cac0faf70"
+    },
+    "checkpoint_publication": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/checkpoint_publication.json",
+      "sha256": "7da150a9f169d5fda1368e1e8b7ead0a49a6f039787d45a9c566784776d4b28a"
+    },
+    "class_counts": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/class_counts.json",
+      "sha256": "4c636c5e6c22289485f732f5b972b7943dda441b0841b2dc8f1d3db8c1d67275"
+    },
+    "fold_assignments": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_assignments.csv",
+      "sha256": "3545a6bbf660ea5e8552ca1f9e3818c7f06e88d15db2c17d5bb40f7d4ef41f8c"
+    },
+    "history": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/history.csv",
+      "sha256": "9e712464d53de162080a6ef56169bb0456f6d70ce41c1b425416fc9363bd3462"
+    },
+    "labels": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/labels_main_dbl.json",
+      "sha256": "404ffdd91141a6e0d6b46f98a9b55da655a29e0c0f1a464db203cde7ba6c6431"
+    },
+    "metrics": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/metrics.json",
+      "sha256": "77931de0266d1d7daabdb2bd2d0c027128252d883829628ff33088ab3c12589e"
+    },
+    "model": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/fold_5_main_dbl.keras",
+      "sha256": "0f4bea8944b7cec79ab62705af99565008902704be368d6c57e3868f7e33b3bb"
+    },
+    "normalizer": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/norm_stats_main_dbl.npy",
+      "sha256": "2128f028735b47694d45162c70f9f219a28291f23b5baa6c5c19a0f4c86adf4f"
+    },
+    "normalizer_metadata": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/norm_stats_main_dbl.npy.metadata.json",
+      "sha256": "64ab2177452dcaaa276f2e66e20963678c5da090ec08269aa9962f56222d2c5c"
+    },
+    "preprocessing_config": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/preprocessing_config.json",
+      "sha256": "8b6f8e778431b57acf455608ae3069bf66960f1701c52e94c53cf89057c529ff"
+    },
+    "validation_predictions": {
+      "path": "/mnt/d/INFANT CRY/Models_dbl/Main/runs/20260821T164332Z_490383ff/fold_5/validation_predictions.csv",
+      "sha256": "856dd53dab06dcaf90340292d8aef393fde838dd2b1568d599d2bfa6a775b676"
+    }
+  },
+  "fold": 5,
+  "label_order": [
+    "belly_pain",
+    "burping",
+    "discomfort",
+    "hungry",
+    "tired"
+  ],
+  "run_id": "20260821T164332Z_490383ff",
+  "schema_version": "1.0",
+  "source_snapshot_identifier": "source_sha256:6991019d9f9eaad79d65d92c9b49d70316e4b1ee5bde8536dd4e03ee42fcf75f",
+  "split_seed": 42,
+  "splitter_name": "StratifiedGroupKFold",
+  "training_augmented_count": 1220,
+  "training_original_count": 835,
+  "validation_original_count": 210
+}
