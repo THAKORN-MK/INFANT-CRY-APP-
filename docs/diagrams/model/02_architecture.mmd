@@ -1,0 +1,24 @@
+%% Current model builders: cryinsight/models/stage1_model.py and stage2_model.py
+%% Stage 1 and Stage 2 are separate model factories; no cascade router is
+%% implemented in the current repository.
+flowchart TB
+    subgraph S1["build_stage1_model · Binary baby gate"]
+      A["Input (120, 128, 1)"] --> B["Conv2D blocks 32 → 64 → 128<br/>each: Conv2D ×2 · BatchNorm · ReLU<br/>MaxPool: (2,2), (2,2), (2,1) · Dropout"]
+      B --> C["Shape after CNN: (15, 32, 128)"]
+      C --> D["Permute (2,1,3) → time-major<br/>Reshape: (32, 15×128)"]
+      D --> E["Bidirectional LSTM 128<br/>Dropout 0.30"]
+      E --> F["Bidirectional LSTM 64<br/>Dropout 0.30"]
+      F --> G["AttentionLayer<br/>Dense 128 → BatchNorm → Dropout 0.40<br/>Dense 64 → Dropout 0.40"]
+      G --> H(["Dense softmax 2<br/>not_baby · baby"])
+    end
+
+    subgraph S2["build_stage2_model · default corrected_single_branch"]
+      I["Input (196, 128, 1)<br/>MFCC + Delta + Delta2 + Log-Mel + Chroma"] --> J["Conv2D blocks 32 → 64 → 128 → 256<br/>first 3: Conv2D ×2; last: Conv2D ×1<br/>MaxPool: (2,2), (2,2), (2,1), (2,1)"]
+      J --> K["Shape after CNN: (12, 32, 256)"]
+      K --> L["Permute (2,1,3) → time-major<br/>Reshape: (32, 12×256)"]
+      L --> M["Bidirectional LSTM 128 → Dropout 0.30<br/>Bidirectional LSTM 64 → Dropout 0.30"]
+      M --> N["AttentionLayer<br/>Dense 256 → BatchNorm → Dropout 0.40<br/>Dense 128 → BatchNorm → Dropout 0.40<br/>Dense 64 → Dropout 0.30"]
+      N --> O(["Dense softmax 5<br/>belly_pain · burping · discomfort · hungry · tired"])
+    end
+
+    R["build_stage2_model also accepts corrected_multi_branch<br/>as an alternate training candidate"] -.-> S2

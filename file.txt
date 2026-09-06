@@ -119,7 +119,7 @@ python Models_dbl/experiments/run_experiments.py --audit-only --config Models_db
 
 ตรวจสคริปต์รายตัวโดยไม่ Train:
 python Models_dbl/experiments/baselines/stage1/mfcc_svm.py --audit-only
-python Models_dbl/experiments/baselines/stage2/yamnet_transfer.py --audit-only
+python Models_dbl/experiments/baselines/stage2/logmel_cnn.py --audit-only
 python Models_dbl/experiments/ablations/feature_ablation.py --audit-only
 
 หมายเหตุ: definition_ready ไม่ใช่ผลการ Train และ metrics ยังคงเป็น not_run

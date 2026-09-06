@@ -14,8 +14,6 @@ Stage 1 baseline ของ Pipeline Run `20260821T164332Z_490383ff` ถูกเ
 | Stage 2 | Majority / most frequent | Labels only | `not_run` |
 | Stage 2 | SVM | MFCC summary | `not_run` |
 | Stage 2 | Small CNN | Log-Mel | `not_run` |
-| Stage 2 | Linear head | YAMNet embedding | `not_run` |
-| Stage 2 | MLP head | YAMNet embedding | `not_run` |
 
 กฎบังคับ:
 

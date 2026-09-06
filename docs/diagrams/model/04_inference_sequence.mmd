@@ -1,0 +1,30 @@
+%% Current implementation status: there is no production inference entry point
+%% or Stage 1 -> Stage 2 cascade class in this repository. This sequence shows
+%% the inference-like evaluation that the trainers actually implement.
+sequenceDiagram
+    participant T as Trainer
+    participant F as audio/features.py
+    participant C as FeatureCache (optional)
+    participant N as artefacts.py normalizer
+    participant M as Keras model
+    participant E as Evaluation artefacts
+
+    T->>F: extract_original_tensors(records, config)
+    F->>C: get(content-addressed key)
+    alt cache hit
+        C-->>F: verified tensor
+    else cache miss
+        F->>F: load_preprocessed_waveform(path)<br/>extract_features(waveform, config)
+        F->>C: put(tensor + SHA-256 metadata)
+        C-->>F: immutable cached tensor
+    end
+    F-->>T: original-only feature tensor + labels + record IDs
+    T->>N: load_normalizer(expected run_id/fold)
+    N-->>T: NormalizerStats
+    T->>N: apply_normalizer(features, stats)
+    N-->>T: normalized tensor
+    T->>M: model.predict(normalized tensor)
+    M-->>T: softmax scores
+    T->>E: OOF or final_test predictions and metrics
+
+    Note over T,E: A user-facing WAV inference sequence and Stage 1 → Stage 2 routing are not implemented here.

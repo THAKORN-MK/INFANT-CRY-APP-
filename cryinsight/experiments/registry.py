@@ -54,8 +54,6 @@ def experiment_registry() -> dict[str, CandidateSpec]:
         _candidate("stage2_majority", "stage2", "baseline", "labels_only", "classical", "dummy_most_frequent", "none", "none", "not_applicable"),
         _candidate("stage2_mfcc_svm", "stage2", "baseline", "mfcc_summary", "classical", "rbf_svm", "none", "standard_scaler_train_only", "not_applicable"),
         _candidate("stage2_logmel_small_cnn", "stage2", "baseline", "log_mel", "neural", "small_cnn", "waveform_only", "per_feature_bin", "categorical_crossentropy", requires_gpu=True),
-        _candidate("stage2_yamnet_linear", "stage2", "baseline", "yamnet_embedding", "classical", "linear_softmax", "none", "standard_scaler_train_only", "not_applicable"),
-        _candidate("stage2_yamnet_mlp", "stage2", "baseline", "yamnet_embedding", "classical", "mlp", "none", "standard_scaler_train_only", "not_applicable"),
         _candidate("stage2_cnn_only", "stage2", "ablation", "all_blocks", "neural", "cnn_only", "waveform_plus_mixup", "per_feature_bin", "categorical_crossentropy", requires_gpu=True),
         _candidate("stage2_cnn_bilstm", "stage2", "ablation", "all_blocks", "neural", "cnn_bilstm", "waveform_plus_mixup", "per_feature_bin", "categorical_crossentropy", requires_gpu=True),
         _candidate("stage2_corrected_attention", "stage2", "proposed", "all_blocks", "neural", "cnn_bilstm_attention", "waveform_plus_mixup", "per_feature_bin", "categorical_crossentropy", requires_gpu=True, parameters={"architecture": "corrected_single_branch"}),

@@ -268,7 +268,6 @@ def _audit_payload(config: ExperimentConfig) -> dict[str, Any]:
         name: importlib.util.find_spec(name) is not None
         for name in ("numpy", "sklearn", "librosa", "tensorflow")
     }
-    yamnet_archive = PROJECT_ROOT / "yamnet-tensorflow2-yamnet-v1.tar.gz"
     selected = (
         registry_payload(config.candidates)
         if config.candidate_source == "explicit"
@@ -283,10 +282,6 @@ def _audit_payload(config: ExperimentConfig) -> dict[str, Any]:
         "config": asdict(config),
         "candidate_source": config.candidate_source,
         "dependencies_available": dependencies,
-        "yamnet_archive": {
-            "path": str(yamnet_archive),
-            "available": yamnet_archive.is_file(),
-        },
         "training_started": False,
         "heldout_test_available_for_ranking": False,
     }

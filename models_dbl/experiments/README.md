@@ -4,6 +4,85 @@
 
 Final Test ไม่ถูกเปิดใช้ระหว่าง Wave A, Wave B หรือ Wave C และ CLI ไม่มีตัวเลือกสำหรับส่ง Test dataset เข้ามา ห้ามนำคะแนน Test มาใช้เลือก Candidate หรือปรับ Config ภายนอก Engine เช่นกัน
 
+## ความแตกต่างระหว่าง Main Training กับ Experiments
+
+Shared Experiment Engine เป็นชั้นสำหรับการเปรียบเทียบและตรวจสอบสมมติฐาน ไม่ใช่ตัวแทนของ trainer หลัก และไม่เผยแพร่ Candidate เข้า Webapp โดยอัตโนมัติ การทดลองทุกชุดต้องอ้างอิง Pipeline Run ที่ตรวจสอบเสร็จแล้ว แต่สร้าง Experiment Run และหลักฐานของตนเองแยกต่างหาก
+
+| ประเด็น | Main Training | Experiments |
+|---|---|---|
+| จุดประสงค์ | ฝึกโมเดล Stage 1/Stage 2 ที่จะใช้เป็นโมเดลหลักของระบบ | เปรียบเทียบ Baseline, Ablation และ Candidate architecture ภายใต้ protocol เดียวกัน |
+| Entry point | `Models_dbl/binary/train_binary_dbl.py` และ `Models_dbl/main/train_main_dbl.py` | `Models_dbl/experiments/run_experiments.py` |
+| สถาปัตยกรรม | ใช้ architecture หลักที่กำหนดสำหรับแต่ละ Stage | ทดลองโมเดลที่เรียบง่ายกว่า การตัด component หรือ configuration ทางเลือก |
+| ข้อมูลและ Fold | ฝึกจาก Train และประเมิน Locked Test หลัง Final refit ตาม protocol ของ Stage | ตรึง Train records, group และ fold assignments จาก Pipeline Run เดียวกันเพื่อให้เทียบ Candidate ได้ยุติธรรม |
+| การเลือกโมเดล | เลือก checkpoint จาก Validation แล้วทำ Final refit | จัดอันดับด้วย corrected grouped OOF เท่านั้น และห้ามใช้ Test metric เลือก Candidate |
+| Augmentation/Normalization | ใช้ตาม contract ของ trainer หลัก โดยไม่ให้ข้อมูลสังเคราะห์เข้า Validation/Test | แต่ละ Candidate ระบุ policy ของตนเองได้ แต่ต้อง fit statistics และสร้าง augmentation ภายใน training fold เท่านั้น |
+| Runtime | ใช้ runtime ที่บันทึกใน Stage Run; ผล GPU ที่รายงานต้องใช้ policy เดียวกัน | ค่า device, `require_gpu`, mixed precision และ cache ถูกตรึงตั้งแต่ Prepare และตรวจซ้ำตอน Train/Resume |
+| ผลลัพธ์ | Model bundle เช่น `best_model_*.keras`, labels, normalizer และ manifest สำหรับใช้งานต่อ | OOF predictions, metrics, leaderboard, provenance และ verification สำหรับการตัดสินใจเชิงวิจัย |
+| การนำไปใช้ | เป็นแหล่งโมเดลสำหรับ Webapp เมื่อผ่าน verification | ไม่เปลี่ยน trainer หลักและไม่ถูกนำไปใช้ใน Webapp จนกว่าจะผ่าน Promotion Gate และได้รับอนุมัติแยก |
+
+ลำดับความสัมพันธ์ของสองส่วนคือ:
+
+```text
+Main Training ที่ verification=complete
+                 │
+                 └── ใช้เป็น frozen reference
+                              ↓
+                 Prepare Experiment Run
+                              ↓
+                 ฝึก Baseline/Ablation/Candidate
+                              ↓
+                 Corrected grouped OOF ranking
+                              ↓
+                 Promotion Gate
+                              ↓
+                 อนุมัติแยกก่อนแก้หรือฝึก Main Model ใหม่
+```
+
+ดังนั้นคะแนนจาก Experiments ใช้ตอบว่า Candidate ใดเหมาะสมกว่าในการทดลองที่ควบคุมเงื่อนไขเดียวกัน แต่ยังไม่ใช่ผล Final Test ของระบบ และไม่ควรคัดลอกไฟล์ Candidate ไปทับ `best_model` ของ Main Training โดยตรง
+
+## Feature View ที่ใช้จริง
+
+คำว่า `Mel` และ `Log` ในเอกสารนี้หมายถึง feature เดียวกันคือ **Log-Mel**: ระบบคำนวณ Mel spectrogram แล้วแปลงพลังงานเป็น decibel ด้วย `power_to_db` ไม่ได้ป้อน Mel และ Log เป็น feature แยกกัน
+
+### Feature contract ของ Main Training
+
+| Stage | Feature order | ขนาด input |
+|---|---|---:|
+| Stage 1 — Binary Baby Gate | MFCC (40) + Delta (40) + Delta2 (40) | `120 × 128 × 1` |
+| Stage 2 — Five-class classifier | MFCC (40) + Delta (40) + Delta2 (40) + Log-Mel (64) + Chroma (12) | `196 × 128 × 1` |
+
+ดังนั้น Stage 1 Main ไม่ใช้ Log-Mel หรือ Chroma ส่วน Stage 2 Main ใช้ feature blocks ครบทั้งห้ากลุ่ม โดยลำดับและจำนวน bins ถูกตรึงใน `PreprocessingConfig` ของแต่ละ Stage
+
+### Feature View ของ Experiments
+
+Experiments ไม่ได้บังคับให้ทุก Candidate ใช้ input แบบเดียวกัน แต่กำหนด `feature_view` ใน Registry เพื่อให้เปรียบเทียบ representation และ architecture ได้เป็นระบบ
+
+| Candidate/กลุ่มการทดลอง | Feature View | Input ที่ใช้ |
+|---|---|---|
+| `stage*_majority` | `labels_only` | ไม่ใช้ audio feature; ใช้ class distribution เป็น baseline |
+| `stage*_mfcc_svm` | `mfcc_summary` | MFCC 40 coefficients สรุปด้วย mean และ standard deviation รวม 80 ค่า |
+| `stage*_logmel_small_cnn` | `log_mel` | Log-Mel อย่างเดียว `64 × 128 × 1` |
+| `stage2_cnn_only`, `stage2_cnn_bilstm`, `stage2_corrected_attention` และ Candidate ที่ใช้ `all_blocks` | `all_blocks` | MFCC + Delta + Delta2 + Log-Mel + Chroma, `196 × 128 × 1` |
+| `stage2_multi_branch_attention` | `multi_branch_blocks` | ใช้ feature blocks ครบ แต่แยก branch สำหรับ MFCC-family, Log-Mel และ Chroma ก่อนรวมลำดับ |
+| `stage2_feature_blocks` และ Wave B feature variants | `feature_block_subset` | เลือก subset ของ blocks เพื่อทำ ablation เช่น ไม่มี Chroma = 184 bins, ไม่มี Log-Mel = 132 bins หรือ MFCC derivatives เท่านั้น = 120 bins |
+| `stage2_normalization`, `stage2_augmentation_mixup` | `all_blocks` | ใช้ feature ครบเหมือน Stage 2 Main แต่เปลี่ยน normalization หรือ augmentation/Mixup เพียงปัจจัยเดียว |
+
+หลักการสำคัญคือ Candidate ที่ใช้ `all_blocks` หรือ `multi_branch_blocks` สามารถเทียบกับ Stage 2 Main ในแง่ representation ได้โดยตรง แต่ Candidate ที่ใช้ `labels_only`, `mfcc_summary` หรือ `log_mel` เป็น baseline/ablation คนละ input contract จึงต้องรายงานแยก ไม่ควรสรุปว่าเป็นการฝึก Main Model ด้วย feature ชุดเดียวกัน
+
+## ตำแหน่งโค้ด ผลลัพธ์ และเอกสาร
+
+| รายการ | ตำแหน่ง | บทบาท |
+|---|---|---|
+| Experiment CLI | `Models_dbl/experiments/run_experiments.py` | Prepare, Train, Resume, Summarize และ Verify Experiment Run |
+| Config | `Models_dbl/experiments/configs/` | กำหนด Wave, Candidate, Seed และ runtime contract |
+| Baseline/Ablation definitions | `Models_dbl/experiments/baselines/` และ `Models_dbl/experiments/ablations/` | นิยามวิธีทดลองและ input contract ของแต่ละ Candidate |
+| Experiment artefacts | `Models_dbl/experiments/runs/<experiment_run_id>/` | เก็บ protocol, fold evidence, OOF metrics, leaderboard และ verification |
+| รายงานผลรวม | `Report/experiments/report.md` | หน้าหลักสำหรับสรุปสถานะและลิงก์รายงาน Experiment |
+| รายงานของ Run | `Report/experiments/` | รายงานที่ผูกกับ Experiment Run แต่ละรายการ |
+| เอกสารนี้ | `Models_dbl/experiments/README.md` | วิธีใช้ Engine และความแตกต่างจาก Main Training |
+
+เมื่อเผยแพร่ Repository เอกสารนี้จะอยู่ที่ `Models_dbl/experiments/README.md` บน branch `codex/gpu-baseline-architecture` ส่วน `runs/` เป็นหลักฐานที่สร้างจากการรันจริง ไม่ใช่โค้ดที่ต้องนำไปแทนที่โมเดลหลัก
+
 ## Run ID สองชนิด
 
 - **Pipeline Run ID** เช่น `20260821T164332Z_490383ff` คือ Run อ้างอิงที่ Stage 1 และ Stage 2 เทรนเสร็จสมบูรณ์แล้ว ระบบนำ fold assignments และ OOF evidence จาก Run นี้มาตรึงไว้
@@ -27,7 +106,7 @@ Promotion Gate
 ขออนุมัติแยกก่อนแก้ trainer หลักหรือเริ่ม Training 3
 ```
 
-Wave B_features เลือก Neural architecture ของ Stage 2 ที่อันดับสูงสุดในกลุ่มที่รองรับ feature blocks ครบ โดยไม่เปลี่ยนอันดับ Baseline ใน Leaderboard; Majority/SVM/YAMNet หรือ Log-Mel-only ไม่ถูกนำมาใช้เป็น anchor ของการตัด Chroma/Log-Mel หากไม่มี architecture ที่เข้าเงื่อนไข ระบบหยุดและไม่เดาแทน
+Wave B_features เลือก Neural architecture ของ Stage 2 ที่อันดับสูงสุดในกลุ่มที่รองรับ feature blocks ครบ โดยไม่เปลี่ยนอันดับ Baseline ใน Leaderboard; Majority, SVM หรือ Log-Mel-only ไม่ถูกนำมาใช้เป็น anchor ของการตัด Chroma/Log-Mel หากไม่มี architecture ที่เข้าเงื่อนไข ระบบหยุดและไม่เดาแทน
 
 Wave B ขั้นถัดไปใช้ anchor ที่ชนะพร้อม one-factor variants และบันทึก parent/อันดับที่เลือกไว้ ส่วน Wave C ใช้ Candidate ที่เข้าเงื่อนไขไม่เกินสองอันดับแรกจาก B_loss ทุกขั้นต้องเป็น Pipeline Run เดียวกันและมี parent ตรงลำดับ `A → B_features → B_augmentation → B_loss → C` พร้อมตรวจ hashes Candidate ที่ล้มเหลวหรือ verification ไม่ครบไม่เข้าสู่ Leaderboard
 
@@ -39,7 +118,7 @@ cd "/mnt/d/INFANT CRY"
 python Models_dbl/experiments/run_experiments.py --audit-only --config Models_dbl/experiments/configs/stage2_wave_a.json
 ```
 
-Audit ตรวจ config, Registry, การพบ dependencies และ YAMNet archive โดยไม่สร้างโมเดล ไม่สร้าง Run และไม่เริ่ม training การพบ TensorFlow ไม่ได้ยืนยันว่า CUDA/GPU ใช้งานได้ ต้องผ่าน GPU/checkpoint smoke ใน environment ที่จะใช้จริงด้วย
+Audit ตรวจ config, Registry และการพบ dependencies โดยไม่สร้างโมเดล ไม่สร้าง Run และไม่เริ่ม training การพบ TensorFlow ไม่ได้ยืนยันว่า CUDA/GPU ใช้งานได้ ต้องผ่าน GPU/checkpoint smoke ใน environment ที่จะใช้จริงด้วย
 
 ## เตรียม Wave A โดยไม่เทรน
 
@@ -75,7 +154,7 @@ configs/
 └── stage2_wave_c.json
 ```
 
-Wave A มี Candidate 9 ตัวและ seed 42; Wave C บังคับ seeds `42`, `123`, `2026` อย่างเคร่งครัด
+Wave A มี Candidate 7 ตัวและ seed 42; Wave C บังคับ seeds `42`, `123`, `2026` อย่างเคร่งครัด
 
 ไฟล์ `configs/baselines.json` และ `configs/ablations.json` เป็น catalog นิยามจากโครงสร้างเดิม ไม่ใช่ Config สำหรับ `--config` ของ Shared Engine ให้ใช้หกไฟล์ในรายการข้างต้น โดย Wave B/C ต้องอ้าง parent ที่ตรวจแล้วก่อน Prepare
 

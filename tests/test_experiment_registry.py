@@ -21,7 +21,7 @@ class ExperimentRegistryTests(unittest.TestCase):
                 path.write_text(json.dumps({'schema_version': '1.0', 'selection_metric': 'oof_macro_f1', **case}))
                 with self.subTest(case=case), self.assertRaises(ExperimentProtocolError):
                     load_experiment_config(path)
-    def test_registry_has_required_baselines_and_multi_branch_candidate(self) -> None:
+    def test_registry_has_required_baselines_and_supported_feature_views(self) -> None:
         from cryinsight.experiments.registry import experiment_registry
 
         registry = experiment_registry()
@@ -32,8 +32,6 @@ class ExperimentRegistryTests(unittest.TestCase):
             "stage2_majority",
             "stage2_mfcc_svm",
             "stage2_logmel_small_cnn",
-            "stage2_yamnet_linear",
-            "stage2_yamnet_mlp",
             "stage2_cnn_only",
             "stage2_cnn_bilstm",
             "stage2_corrected_attention",
@@ -41,6 +39,17 @@ class ExperimentRegistryTests(unittest.TestCase):
         }
 
         self.assertTrue(required.issubset(registry))
+        supported_feature_views = {
+            "labels_only",
+            "mfcc_summary",
+            "log_mel",
+            "all_blocks",
+            "multi_branch_blocks",
+            "feature_block_subset",
+        }
+        self.assertTrue(
+            all(candidate.feature_view in supported_feature_views for candidate in registry.values())
+        )
         self.assertEqual(
             registry["stage2_multi_branch_attention"].parameters["architecture"],
             "corrected_multi_branch",

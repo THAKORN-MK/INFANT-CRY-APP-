@@ -174,7 +174,7 @@ CryInsight จึงแยก binary baby gate ออกจาก five-class cla
 
 CNN เหมาะกับ local time–frequency patterns ขณะที่ LSTM/BiLSTM เหมาะกับ dependency ตามเวลา งานของ Maghfira et al. [8] และ Liang et al. [9] แสดงให้เห็นการใช้ convolutional และ recurrent approaches ในโจทย์ infant cry แต่ผลของแต่ละ architecture ไม่คงที่ข้าม Dataset
 
-เหตุผลนี้ทำให้โครงงานจัด `majority`, MFCC-summary SVM, Log-Mel CNN, YAMNet transfer และ ablation ของ CNN/BiLSTM/Attention ไว้ใน Shared Experiment Engine โดยมีเป้าหมายให้ proposed architecture ถูกประเมินเทียบกับทางเลือกที่เรียบง่ายกว่าและทางเลือกที่ใช้ representation ต่างกัน
+เหตุผลนี้ทำให้โครงงานจัด `majority`, MFCC-summary SVM, Log-Mel CNN และ ablation ของ CNN/BiLSTM/Attention ไว้ใน Shared Experiment Engine โดยมีเป้าหมายให้ proposed architecture ถูกประเมินเทียบกับทางเลือกที่เรียบง่ายกว่าและทางเลือกที่ใช้ representation ต่างกัน
 
 #### (4) Class imbalance และ augmentation ต้องประเมินอย่างแยกปัจจัย
 

@@ -91,8 +91,6 @@ class ExperimentCliTests(unittest.TestCase):
                 "stage2_majority",
                 "stage2_mfcc_svm",
                 "stage2_logmel_small_cnn",
-                "stage2_yamnet_linear",
-                "stage2_yamnet_mlp",
                 "stage2_cnn_only",
                 "stage2_cnn_bilstm",
                 "stage2_corrected_attention",
@@ -103,7 +101,7 @@ class ExperimentCliTests(unittest.TestCase):
     def test_feature_wave_selects_best_compatible_neural_not_overall_winner(self):
         from cryinsight.experiments.registry import experiment_registry
         specs = experiment_registry()
-        rows = [{'rank': i, 'candidate_id': name} for i, name in enumerate(('stage2_majority', 'stage2_yamnet_linear', 'stage2_logmel_small_cnn', 'stage2_multi_branch_attention', 'stage2_cnn_only'), 1)]
+        rows = [{'rank': i, 'candidate_id': name} for i, name in enumerate(('stage2_majority', 'stage2_mfcc_svm', 'stage2_logmel_small_cnn', 'stage2_multi_branch_attention', 'stage2_cnn_only'), 1)]
         selected = self.cli._select_parent_candidates('B_features', rows, specs)
         self.assertEqual(selected, ['stage2_multi_branch_attention'])
         self.assertEqual(rows[0]['rank'], 1)

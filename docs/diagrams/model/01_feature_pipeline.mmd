@@ -1,0 +1,34 @@
+%% Current implementation only: cryinsight/audio/features.py
+%% This diagram covers preprocessing and tensor creation; it does not claim a
+%% production inference router exists.
+flowchart TB
+    A(["Input WAV"]) --> B["librosa.load<br/>sr=22,050 · mono=True"]
+    B --> C["Trim silence<br/>librosa.effects.trim(top_db=20)"]
+    C --> D["Validate finite mono waveform<br/>optional peak normalization"]
+    D --> E{"PreprocessingConfig.feature_order"}
+
+    subgraph S1["Stage 1: stage1_binary()"]
+      E --> F1["MFCC 40<br/>n_fft=2048 · hop=512"]
+      F1 --> F2["Delta 40<br/>width=9"]
+      F1 --> F3["Delta2 40<br/>width=9"]
+      F2 --> F4["vstack in declared order"]
+      F3 --> F4
+      F1 --> F4
+      F4 --> F5["Right-pad or truncate to 128 frames<br/>add channel axis"]
+      F5 --> F6(["120 × 128 × 1 float32"])
+    end
+
+    subgraph S2["Stage 2: stage2_main()"]
+      E --> G1["MFCC 40 + Delta 40 + Delta2 40"]
+      E --> G2["Log-Mel 64<br/>power_to_db"]
+      E --> G3["Chroma 12<br/>chroma_stft"]
+      G1 --> G4["vstack in declared order"]
+      G2 --> G4
+      G3 --> G4
+      G4 --> G5["Right-pad or truncate to 128 frames<br/>add channel axis"]
+      G5 --> G6(["196 × 128 × 1 float32"])
+    end
+
+    P["If waveform < 4,096 samples:<br/>right zero-pad before Delta"] -.-> E
+    Q["extract_original_tensors / extract_fold_tensors<br/>may use verified content-addressed FeatureCache"] -.-> F6
+    Q -.-> G6

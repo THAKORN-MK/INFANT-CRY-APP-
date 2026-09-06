@@ -105,8 +105,6 @@ def _default_feature_builder(
         config,
         cache,
         blocks=blocks,
-        yamnet_model=request.runtime.get("yamnet_model"),
-        yamnet_archive_sha256=request.runtime.get("yamnet_archive_sha256"),
     )
 
 

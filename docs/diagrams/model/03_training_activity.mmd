@@ -1,0 +1,33 @@
+%% Current training implementation:
+%% Models_dbl/binary/train_binary_dbl.py and Models_dbl/Main/train_main_dbl.py
+flowchart LR
+    subgraph PREP["1 · Audit and split"]
+      direction TB
+      A(["data_set_dbl_split/train + test"]) --> B["Discover candidates<br/>SHA-256, labels, source groups"]
+      B --> C["Reserve held-out Test first<br/>remove Train records overlapping Test"]
+      C --> D["Write source_snapshot identifier<br/>and protocol/run_config"]
+      D --> E["Assign grouped 5-fold split<br/>before augmentation"]
+    end
+
+    subgraph CV["2 · Each of 5 folds"]
+      direction TB
+      F["4 folds Training<br/>1 fold Validation"] --> G["Training-only waveform augmentation<br/>Stage 2 also Mixup"]
+      G --> H["Extract features<br/>optional verified FeatureCache"]
+      H --> I["Fit fold normalizer<br/>Training features only"]
+      I --> J["Train CNN + BiLSTM + Attention<br/>monitor val_loss"]
+      J --> K["Reload selected checkpoint<br/>predict original Validation records"]
+      K --> L["Write fold manifest + metrics + OOF"]
+      L --> M{"All 5 folds complete?"}
+      M -->|no| F
+      M -->|yes| N["Aggregate OOF exactly once per record<br/>median fold best_epoch"]
+    end
+
+    subgraph FINAL["3 · Final refit and Test"]
+      direction TB
+      O["Fit final normalizer from all eligible Train<br/>rebuild and refit final model"] --> P["Write one best_model bundle"]
+      P --> Q["Evaluate locked Test once<br/>original records, no augmentation"]
+      Q --> R(["Write final_test_* and verification.json"])
+    end
+
+    PREP --> CV
+    CV --> FINAL

@@ -565,7 +565,7 @@ python Models_dbl/Main/train_main_dbl.py --train --device gpu --require-gpu --mi
 
 ### Baseline, ablation และ repeated seeds
 
-`Models_dbl/experiments` ลงทะเบียน Majority, MFCC-summary SVM, Log-Mel small CNN, YAMNet heads และ ablations ของ CNN/BiLSTM/Attention, feature blocks, normalization และ augmentation/Mixup ทุก experiment ใช้ original cohort/group/fold assignments เดียวกัน พร้อม SHA-256 และเลือก candidate ด้วย grouped OOF เท่านั้น ค่า default repeated seeds คือ `42, 123, 2026`
+`Models_dbl/experiments` ลงทะเบียน Majority, MFCC-summary SVM, Log-Mel small CNN และ ablations ของ CNN/BiLSTM/Attention, feature blocks, normalization และ augmentation/Mixup ทุก experiment ใช้ original cohort/group/fold assignments เดียวกัน พร้อม SHA-256 และเลือก candidate ด้วย grouped OOF เท่านั้น ค่า default repeated seeds คือ `42, 123, 2026`
 
 โครงสร้าง implementation ที่มีอยู่ประกอบด้วย `baselines/stage1`, `baselines/stage2` และ `ablations` โดยแต่ละสคริปต์เปิดเผย factory/input contract/variants และตรวจได้ด้วย `--audit-only` โดยไม่โหลด TensorFlow ส่วน `experiments/runs` สงวนไว้สำหรับ immutable artefacts เมื่อมีการรัน experiment จริง
 
@@ -640,7 +640,7 @@ Wave A/B ใช้ seed 42 สำหรับ screening ส่วน Wave C บ�
 
 ### การตรวจรับ implementation
 
-Wave B_features ใช้ Neural anchor ที่รองรับ feature blocks ครบและอยู่ใน Pipeline เดียวกัน ไม่ตัด Chroma จากโมเดลที่ใช้เพียง Log-Mel/YAMNet การเลือก anchor ไม่แก้อันดับ Baseline ในรายงาน ทุก Wave เก็บ parent provenance และตรวจผลก่อนส่งต่อ
+Wave B_features ใช้ Neural anchor ที่รองรับ feature blocks ครบและอยู่ใน Pipeline เดียวกัน ไม่ตัด Chroma จากโมเดลที่ใช้เพียง Log-Mel การเลือก anchor ไม่แก้อันดับ Baseline ในรายงาน ทุก Wave เก็บ parent provenance และตรวจผลก่อนส่งต่อ
 
 การเปรียบเทียบความซับซ้อนใช้จำนวนค่าที่ fit จริง สำหรับ SVM จำนวน support vectors เปลี่ยนตาม Fold ได้ จึงรายงานจำนวนราย Fold และค่าเฉลี่ยสำหรับ tie-break; Neural architecture เดิมยังต้องมี parameter count เท่ากันทุก Fold กติกานี้ไม่เปลี่ยน Metric หลักหรือเกณฑ์ Promotion
 

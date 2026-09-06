@@ -1,0 +1,84 @@
+%% Current classes/modules only.
+%% There is no DeploymentBundle, CascadeClassifier, or predict_cascade.py
+%% in the current source tree.
+classDiagram
+    direction TB
+    class PreprocessingConfig {
+      +str version
+      +int sample_rate
+      +bool mono
+      +int trim_top_db
+      +tuple feature_order
+      +int max_frames
+      +feature_shape
+      +feature_blocks
+      +minimum_waveform_samples
+      +stage1_binary() PreprocessingConfig$
+      +stage2_main() PreprocessingConfig$
+    }
+    class FoldTensors {
+      +ndarray train_features
+      +tuple train_labels
+      +tuple train_sample_ids
+      +ndarray validation_features
+      +tuple validation_labels
+      +tuple validation_record_ids
+    }
+    class OriginalTensors {
+      +ndarray features
+      +tuple labels
+      +tuple record_ids
+      +tuple sample_kinds
+    }
+    class FeatureCache {
+      +Path root
+      +key(...) str
+      +get(key) ndarray
+      +put(key, values) Path
+    }
+    class NormalizerStats {
+      +mean
+      +std
+      +float epsilon
+      +str axis
+      +tuple feature_shape
+      +str run_id
+      +fold
+      +tuple feature_order
+    }
+    class OofPrediction {
+      +str record_id
+      +str label
+      +tuple scores
+      +fold
+      +str run_id
+    }
+    class OofMetricsResult {
+      +dict pooled_metrics
+      +dict classification_report
+      +ndarray confusion_matrix
+      +tuple per_fold_metrics
+    }
+    class Stage1ModelFactory {
+      <<function module>>
+      +build_stage1_model(tf, input_shape, num_classes)
+    }
+    class Stage2ModelFactory {
+      <<function module>>
+      +build_stage2_model(tf, input_shape, num_classes, architecture)
+    }
+    class AttentionLayer {
+      <<registered Keras layer>>
+      +call(inputs)
+      +get_config()
+    }
+
+    PreprocessingConfig --> FoldTensors : configures
+    PreprocessingConfig --> OriginalTensors : configures
+    FeatureCache --> OriginalTensors : caches features
+    NormalizerStats --> FoldTensors : normalizes
+    NormalizerStats --> OriginalTensors : normalizes
+    Stage1ModelFactory --> AttentionLayer : registers/uses
+    Stage2ModelFactory --> AttentionLayer : registers/uses
+    FoldTensors --> OofPrediction : validation outputs
+    OofPrediction --> OofMetricsResult : aggregated

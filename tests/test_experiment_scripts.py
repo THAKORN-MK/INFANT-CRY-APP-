@@ -19,7 +19,6 @@ EXPECTED_SCRIPTS = {
     "baselines/stage2/majority.py": "stage2_majority",
     "baselines/stage2/mfcc_svm.py": "stage2_mfcc_svm",
     "baselines/stage2/logmel_cnn.py": "stage2_logmel_small_cnn",
-    "baselines/stage2/yamnet_transfer.py": "stage2_yamnet_linear",
     "ablations/cnn_only.py": "stage2_cnn_only",
     "ablations/without_attention.py": "stage2_cnn_bilstm",
     "ablations/feature_ablation.py": "stage2_feature_blocks",

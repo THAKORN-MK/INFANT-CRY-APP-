@@ -2,5 +2,5 @@
   "schema_version": "1.0",
   "selection_scope": "grouped_oof_only",
   "stage1": ["majority", "mfcc_summary_svm", "logmel_small_cnn"],
-  "stage2": ["majority", "mfcc_summary_svm", "logmel_small_cnn", "yamnet_linear", "yamnet_mlp"]
+  "stage2": ["majority", "mfcc_summary_svm", "logmel_small_cnn"]
 }

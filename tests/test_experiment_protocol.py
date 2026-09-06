@@ -18,8 +18,6 @@ class ExperimentProtocolTests(unittest.TestCase):
             "stage2_majority",
             "stage2_mfcc_svm",
             "stage2_logmel_small_cnn",
-            "stage2_yamnet_linear",
-            "stage2_yamnet_mlp",
             "stage2_cnn_only",
             "stage2_cnn_bilstm",
             "stage2_corrected_attention",

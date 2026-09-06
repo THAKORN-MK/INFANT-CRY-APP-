@@ -1331,19 +1331,6 @@ def _train_experiment(
         str(runtime_base.pop("feature_cache_dir", store.run_dir / "feature_cache"))
     )
     runtime_base["feature_cache"] = FeatureCache(cache_root)
-    selected_candidates = [registry[candidate_id] for candidate_id in config.candidates]
-    if any(candidate.feature_view == "yamnet_embedding" for candidate in selected_candidates):
-        import tensorflow as tf
-
-        from .feature_views import prepare_yamnet_model
-
-        archive = Path(str(inputs["project_root"])) / "yamnet-tensorflow2-yamnet-v1.tar.gz"
-        saved_model = prepare_yamnet_model(
-            archive,
-            store.run_dir / "yamnet_model_cache",
-        )
-        runtime_base["yamnet_model"] = tf.saved_model.load(str(saved_model))
-        runtime_base["yamnet_archive_sha256"] = sha256_file(archive)
     runtime_base["config_sha256"] = store.config_hash
     assignment_hashes = store._state_payload()["assignment_hashes"]
     failed_candidates: set[str] = set()

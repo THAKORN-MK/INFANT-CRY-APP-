@@ -134,7 +134,7 @@ INFANT CRY/
 │       ├── configs/               # registry configurations
 │       ├── baselines/
 │       │   ├── stage1/             # Majority, MFCC-SVM, Log-Mel CNN
-│       │   └── stage2/             # Majority, MFCC-SVM, Log-Mel CNN, YAMNet
+│       │   └── stage2/             # Majority, MFCC-SVM, Log-Mel CNN
 │       ├── ablations/              # CNN, Attention, features, augmentation
 │       ├── runs/                   # immutable experiment runs เมื่อมีการรันจริง
 │       └── run_experiments.py      # shared-fold experiment protocol
@@ -457,7 +457,7 @@ best_model/best_model_main_dbl.keras
 
 ## Baseline และ Ablation
 
-registry อยู่ใน `Models_dbl/experiments/` และกำหนด Majority, MFCC-summary SVM, Log-Mel small CNN, YAMNet heads ตลอดจน CNN/BiLSTM/Attention, feature, normalization และ augmentation ablations ทุก candidate ต้องใช้ fold assignments และ SHA-256 เดียวกับ proposed model และจัดอันดับด้วย grouped OOF เท่านั้น
+registry อยู่ใน `Models_dbl/experiments/` และกำหนด Majority, MFCC-summary SVM, Log-Mel small CNN ตลอดจน CNN/BiLSTM/Attention, feature, normalization และ augmentation ablations ทุก candidate ต้องใช้ fold assignments และ SHA-256 เดียวกับ proposed model และจัดอันดับด้วย grouped OOF เท่านั้น
 
 ตรวจ registry โดยไม่สร้าง run และไม่เทรน:
 
@@ -478,7 +478,6 @@ Models_dbl/experiments/
 │       ├── majority.py
 │       ├── mfcc_svm.py
 │       ├── logmel_cnn.py
-│       └── yamnet_transfer.py
 ├── ablations/
 │   ├── cnn_only.py
 │   ├── without_attention.py
